@@ -13,13 +13,49 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/common/**" location="/WEB-INF/static/common/" />
+	<resources mapping="/images/**" location="/WEB-INF/static/images/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="2"/>
 	</beans:bean>
+	
+	<!-- ============================ tiles ============================================= -->
+	<beans:bean id="tilesConfigurer" 
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/**/*-tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<beans:property name="viewClass" 
+			value="org.springframework.web.servlet.view.tiles3.TilesView"></beans:property>
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	<!-- ===================================================================================== -->
+	
+	<!-- ============================ mybatis 사용 ============================================= -->
+	<!-- 1. connection 관리를 담당하는 객체 -->
+	<beans:bean id="ds" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<beans:property name="jndiName" value="jdbc/myspring"/>
+		<beans:property name="resourceRef" value="true"/>
+	</beans:bean>
+	<!-- 2. spring에서 mybatis의 핵심클래스인 sqlSession을 사용할 수 있도록 하기 위해서 생성 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="ds"/>
+		<beans:property name="configLocation" value="/WEB-INF/config/mybatis-config.xml"/>
+	</beans:bean>
+	<!-- 3. mybatis의 핵심클래스를 등록 -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg ref="sqlSessionFactory"/>
+	</beans:bean>
+	<!-- ===================================================================================== -->
 	
 	<context:component-scan base-package="play.game.LPG" />
 	
