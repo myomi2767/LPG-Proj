@@ -48,14 +48,13 @@
 	 ***************************************************************************************************************** -->
 	<div>
 		<!-- content(컨텐츠 위치) -->
+		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
 	<!-- *****************************************************************************************************************
 	 footer
 	 ***************************************************************************************************************** -->
-	<div>
-		<!-- footer 넣는 위치 -->
-		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-	</div>
+	<!-- footer 넣는 위치 -->
+	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 
 	<!-- JavaScript Libraries -->
 	<script src="/LPG/lib/jquery/jquery.min.js"></script>

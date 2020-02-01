@@ -6,7 +6,8 @@
 <tiles-definitions>
 	<definition name="indexTemplate" template="/WEB-INF/LPG/layout/3DivisionLayout.jsp">
 		<put-attribute name="nav" value="/WEB-INF/LPG/include/top.jsp"/>
-		<put-attribute name="header" value="/WEB-INF/LPG/include/header.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/LPG/match/MatchHeader.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/LPG/match/MatchList.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/LPG/include/footer.jsp"/>
 	</definition>	
 	
