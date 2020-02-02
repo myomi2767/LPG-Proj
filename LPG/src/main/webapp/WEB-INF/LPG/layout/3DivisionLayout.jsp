@@ -49,6 +49,7 @@
 	<div>
 		<!-- content(컨텐츠 위치) -->
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
+		<tiles:insertAttribute name="content2"></tiles:insertAttribute>
 	</div>
 	<!-- *****************************************************************************************************************
 	 footer

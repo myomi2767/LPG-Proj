@@ -67,13 +67,14 @@ ul {
 				</div>
 			</div>
 			<div class="row contact-form">
-				<div class="col-lg-3 ">
+				<div class="col-lg-3">
 					<h2>경기지역</h2>
 					<div class="ui-widget form-group-sm">
 						<input id="tags" placeholder="지역을 입력하세요" class="form-control">
 						<label for="tags"></label>
 					</div>
 				</div>
+				<div class="hline"></div>
 				<div class="col-lg-3 form-group">
 					<h2>경기종목</h2>
 					<input type="radio" id="radio1" name="mch_play" value="" checked>
