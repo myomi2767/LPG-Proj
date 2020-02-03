@@ -108,64 +108,110 @@
 
 	<div class="container mtb">
 		<div class="row">
-			<div class="col-lg-8">
+			<div class="col-sm-8">
 				<h4>구장 정보 입력</h4>
 				<div class="hline"></div>
 				<form class="contact-form php-mail-form" role="form"
 					action="contactform/contactform.php" method="POST">
 					<br />
-					<div class="form-group">
-						<input type="text" name="groundName" class="form-control"
-							id="groundName" placeholder="구장명" data-rule="minlen:2"
-							data-msg="2글자 이상 입력해주세요.">
-						<div class="validate"></div>
-					</div>
-
-					<div class="form-group">
-						<input type="button" name="searchAddr" class="btn" id="searchAddr" value="search address" /> 
-						<span class="selectedAddr"> <% 	/* 주소찾기 api에서 선택된 주소 */ %>	서울시
-						</span>
-					</div>
-					<div class="form-group">
-						<input type="text" name="addrDetail" class="form-control"
-							id="addrDetail" placeholder="상세 주소" data-rule="minlen:4"
-							data-msg="4글자 이상 입력해주세요.">
-						<div class="validate"></div>
-					</div>
-
-					<div class="form-group">
-						<input type="tel" name="groundTel" class="form-control"
-							id="groundTel" placeholder="구장 전화번호  -을 제외하고 입력하세요"
-							data-rule="minlen:9" data-msg="9글자 이상 입력해주세요.">
-						<div class="validate"></div>
-					</div>
-
-					<div class="form-group">
-						<input type="number" name="groundCost" class="cost"
-							id="groundCost" placeholder="이용료" min="0" step="100" /> <span
-							class="selectedAddr">원</span>
+					
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>구장명:</h4></div>
+							<div class="col-sm-7">
+								<input type="text" name="groundName" class="form-control"
+									id="groundName" placeholder="구장명" data-rule="minlen:2"
+									data-msg="2글자 이상 입력해주세요.">
+								<div class="validate"></div>
+							</div>
+						</div>
 					</div>
 					
-					<div class="form-group">
-						<!-- <h4>한줄 평가</h4> -->
-						<textarea class="form-control" name="groundDetail"
-							id="groundDetail" placeholder="상세정보" rows="5"
-							data-rule="required" data-msg="구장 상세 정보를 입력해주세요"></textarea>
-						<div class="validate"></div>
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>주소찾기:</h4></div>
+								<div class="col-sm-7">
+									<input type="button" name="searchAddr" class="btn" id="searchAddr" value="search address" /> 
+									<span class="selectedAddr"> <% 	/* 주소찾기 api에서 선택된 주소 */ %>	서울시
+									</span>
+								</div>
+						</div>
 					</div>
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>상세주소:</h4></div>
+							
+							<div class="col-sm-7">
+								<input type="text" name="addrDetail" class="form-control"
+									id="addrDetail" placeholder="상세 주소" data-rule="minlen:4"
+									data-msg="4글자 이상 입력해주세요.">
+								<div class="validate"></div>
+							</div>
+						</div>
+					</div>
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>상세주소:</h4></div>						
+								<div class="col-sm-7">
+									<input type="tel" name="groundTel" class="form-control"
+										id="groundTel" placeholder="구장 전화번호  -을 제외하고 입력하세요"
+										data-rule="minlen:9" data-msg="9글자 이상 입력해주세요.">
+									<div class="validate"></div>
+								</div>
+							</div>
+						</div>
+					
+					
+					
+					
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>이용료:</h4></div>						
+								<div class="col-sm-7">
+								<input type="number" name="groundCost" class="cost"
+									id="groundCost" placeholder="이용료" min="0" step="100" /> <span
+									class="selectedAddr">원</span>
+								</div>
+						</div>
+					</div>	
+				
+				
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>상세정보:</h4></div>						
+								<div class="col-sm-7">
+								<textarea class="form-control" name="groundDetail"
+									id="groundDetail" placeholder="상세정보" rows="5"
+									data-rule="required" data-msg="구장 상세 정보를 입력해주세요"></textarea>
+								<div class="validate"></div>
+								</div>
+							</div>
+						</div>
 
 					<div class="form-group">
-						<!-- <label class="btn">구장 이미지</label> -->
-						<input type="file" name="groupImgFile" accept="image/*" />
+						<div class="row">
+							<div class="col-sm-2"><h4>구장이미지:</h4></div>	
+								<div class="col-sm-7">
+								<input type="file" name="groupImgFile" accept="image/*" />
+								</div>
+						</div>
 					</div>
 
 					<div class="loading"></div>
+				
+				
 					<div class="error-message"></div>
+				
+				
 					<div class="sent-message">Your message has been sent. Thank
 						you!</div>
 
 					<div class="form-send">
+				
+				
 						<button type="submit" class="btn btn-large">Save</button>
+				
+				
 					</div>
 				</form>
 			</div>
