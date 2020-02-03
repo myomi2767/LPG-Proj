@@ -204,7 +204,7 @@
 
 	<div class="container mtb">
 		<div class="row">
-			<div class="col-lg-8">
+			<div class="col-sm-8">
 				<h4>대회 등록</h4>
 				<div class="hline"></div>
 				<br />
@@ -213,106 +213,166 @@
 
 
 					<div class="form-group">
-						<input type="text" name="competName" class="form-control"
-							id="competName" placeholder="대회명" data-rule="minlen:3"
-							data-msg="Please enter at least 3 chars">
-						<div class="validate"></div>
+						<div class="row">
+							<div class="col-sm-2"><h4>대회명:</h4></div>
+							<div class="col-sm-7">
+								<input type="text" name="competName" class="form-control"
+									id="competName" placeholder="대회명" data-rule="minlen:3"
+									data-msg="Please enter at least 3 chars">
+								<div class="validate"></div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>대회 주관사:</h4></div>
+							<div class="col-sm-7">
+								<input type="text" name="companyName" class="form-control"
+									id="companyName" placeholder="대회 주관사" data-rule="minlen:3"
+									data-msg="Please enter at least 3 chars">
+								<div class="validate"></div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>분야:</h4></div>
+							<div class="col-sm-7">
+								<select name="field" class="form-control">
+									<option value="soccer">축구</option>
+									<option value="lol">lol</option>
+									<option value="" selected="selected">분야를 선택하세요</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>참가대상:</h4></div>
+							<div class="col-sm-7">
+								<select name="target" class="form-control">
+									<option value="noLimit">제한없음</option>
+									<option value="elementary">초등학생</option>
+									<option value="middle">중학생</option>
+									<option value="high">고등학생</option>
+									<option value="college">대학생</option>
+									<option value="graduate">대학원생</option>
+									<option value="adult">일반인</option>
+									<option value="" selected="selected">참가 대상을 선택하세요</option>
+								</select>
+							</div>
+						</div>
 					</div>
 
 					<div class="form-group">
-						<input type="text" name="companyName" class="form-control"
-							id="companyName" placeholder="대회 주관사" data-rule="minlen:3"
-							data-msg="Please enter at least 3 chars">
-						<div class="validate"></div>
+						<div class="row">
+							<div class="col-sm-2"><h4>접수기간:</h4></div>
+							<div class="col-sm-3">								
+								<input type="date" class="form-control" name="applyStartDate">
+							</div>
+							<div class="col-sm-1"> <h3>~</h3></div>
+							<div class="col-sm-3">	 
+							 <input	type="date" class="form-control" name="applyEndDate">
+							</div>
+						</div>
 					</div>
 
 					<div class="form-group">
-						<select name="field" class="form-control">
-							<option value="soccer">축구</option>
-							<option value="lol">lol</option>
-							<option value="" selected="selected">분야를 선택하세요</option>
-						</select>
+						<div class="row">
+							<div class="col-sm-2"><h4>대회기간:</h4></div>
+							<div class="col-sm-3">
+								<input type="date" class="form-control" name="compStartDate"> 								
+							</div>
+							<div class="col-sm-1"><h3>~</h3></div>
+							<div class="col-sm-3">
+							<input type="date" class="form-control" name="compEndDate">
+							</div>
+						</div>
 					</div>
 
 					<div class="form-group">
-						<select name="target" class="form-control">
-							<option value="noLimit">제한없음</option>
-							<option value="elementary">초등학생</option>
-							<option value="middle">중학생</option>
-							<option value="high">고등학생</option>
-							<option value="college">대학생</option>
-							<option value="graduate">대학원생</option>
-							<option value="adult">일반인</option>
-							<option value="" selected="selected">참가 대상을 선택하세요</option>
-						</select>
-					</div>
-
-
-					<div class="form-group">
-						<h4>접수기간</h4>
-						<input type="date" class="form-control" name="applyStartDate"> ~ <input
-							type="date" class="form-control" name="applyEndDate">
-					</div>
-
-					<div class="form-group">
-						<h4>대회 기간</h4>
-						<input type="date" class="form-control" name="compStartDate"> ~ 
-						<input type="date" class="form-control" name="compEndDate">
-					</div>
-
-					<div class="form-group">
-						<h4>대회 지역</h4>
-						<select name="competLoc" class="form-control">
-							<option value="whole">전국</option>
-							<option value="seoul">서울</option>
-							<option value="incheon">인천</option>
-							<option value="daejeon">대전</option>
-							<option value="gwangju">광주</option>
-							<option value="daegu">대구</option>
-							<option value="busan">부산</option>
-							<option value="ulsan">울산</option>
-							<option value="sejong">세종</option>
-							<option value="gg">경기</option>
-							<option value="gw">강원</option>
-							<option value="cn">충남</option>
-							<option value="cb">충북</option>
-							<option value="jn">전남</option>
-							<option value="jb">전북</option>
-							<option value="gn">경남</option>
-							<option value="gb">경북</option>
-							<option value="jeju">제주</option>
-							<option value="abroad">해외</option>
-							<option value="etc">기타</option>
-							<option value="" selected="selected">참가 대상을 선택하세요</option>
-						</select>
+						<div class="row"> 
+						<div class="col-sm-2"><h4>참가 대상:</h4></div>
+							<div class="col-sm-7">
+								<select name="competLoc" class="form-control">
+									<option value="whole">전국</option>
+									<option value="seoul">서울</option>
+									<option value="incheon">인천</option>
+									<option value="daejeon">대전</option>
+									<option value="gwangju">광주</option>
+									<option value="daegu">대구</option>
+									<option value="busan">부산</option>
+									<option value="ulsan">울산</option>
+									<option value="sejong">세종</option>
+									<option value="gg">경기</option>
+									<option value="gw">강원</option>
+									<option value="cn">충남</option>
+									<option value="cb">충북</option>
+									<option value="jn">전남</option>
+									<option value="jb">전북</option>
+									<option value="gn">경남</option>
+									<option value="gb">경북</option>
+									<option value="jeju">제주</option>
+									<option value="abroad">해외</option>
+									<option value="etc">기타</option>
+									<option value="" selected="selected">참가 대상을 선택하세요</option>
+								</select>
+							</div>
+						</div>
 					</div>
 
 					<div class="form-group">
-						<h4>대회 지역 주소</h4>
-
-						<span>서울특별시 광진구 군자동 000</span>
-						<span><input type="button" class="btn" onclick="location.href='addrPopUp.jsp'" name="addrbtn" value="검색"></span>
-						<br />
-						<br />
-						<input type="text" class="form-control" name="addrDetail" placeholder="상세 주소">
+						<div class="row">
+							<div class="col-sm-2"><h4>대회지역주소:</h4></div>
+								<div class="col-sm-6">
+	
+									<span>서울특별시 광진구 군자동 000</span>
+									<span><input type="button" class="btn" onclick="location.href='addrPopUp.jsp'" name="addrbtn" value="검색"></span>
+								</div>
+						</div>
+					</div>
+						<div class = "form-group">
+							<div class="row">		
+								<div class="col-sm-2"><h4>상세 주소:</h4></div>
+								<div class="col-sm-7">
+								<input type="text" class="form-control" name="addrDetail" placeholder="상세 주소">
+								</div>
+							</div>
+						</div>
+						
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h6>주최사 홈페이지 url:</h6></div>
+							<div class="col-sm-7">
+								<input type="text" name="comURL" class="form-control" placeholder="주최사 홈페이지 url">
+							</div>
+						</div>
+					</div>
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h6>주최사 전화번호:</h6></div>
+							<div class="col-sm-7">
+								<input type="text" name="groundTel" class="form-control" placeholder=" 주최사 전화번호  ' - 을 제외하고 입력하세요' ">
+							</div>
+						</div>
 					</div>
 					
-					<div class="form-group">
-						<input type="text" name="comURL" class="form-control" placeholder="주최사 홈페이지 url">
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>상세정보:</h4></div>
+							<div class="col-sm-7">
+								<textarea class="form-control" name="detail" rows="5" cols="25"></textarea>
+							</div>
+						</div>
 					</div>
 
-					<div class="form-group">
-						<input type="text" name="groundTel" class="form-control" placeholder=" 주최사 전화번호  ' - 을 제외하고 입력하세요' ">
-					</div>
-
-					<div class="form-group">
-						<h4>상세정보</h4>
-						<textarea class="form-control" name="detail" rows="5" cols="25"></textarea>
-					</div>
-
-					<div class="form-group">
-						<h4>대회 포스터</h4>
-						<input type="file" value = "파일 선택" name = "file" accept="image/*"/><br/><br/>
+					<div class = "form-group">
+						<div class="row">
+							<div class="col-sm-2"><h4>대회 포스터:</h4></div>
+							<div class="col-sm-7">
+								<input type="file" value = "파일 선택" name = "file" accept="image/*"/><br/><br/>
+							</div>
+						</div>
 					</div>
 
 
@@ -328,18 +388,8 @@
 				</form>
 			</div>
 
-			<div class="col-lg-4">
-				<h4>Our Address</h4>
-				<div class="hline"></div>
-				<p>
-					Some Ave, 987,<br /> 23890, New York,<br /> United States.<br />
-				</p>
-				<p>
-					Email: hello@solidtheme.com<br /> Tel: +34 8493-4893
-				</p>
-				<p>Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum has been the industry's standard
-					dummy text ever since the 1500s.</p>
+			<div class="col-sm-4">
+				
 			</div>
 		</div>
 	</div>
