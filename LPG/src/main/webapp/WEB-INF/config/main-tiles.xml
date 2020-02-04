@@ -10,22 +10,7 @@
 		<put-attribute name="content" value="/WEB-INF/LPG/match/MatchList.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/LPG/include/footer.jsp"/>
 	</definition>	
-
-	<!-- team -->
-	<definition name="teamTemplate" template="/WEB-INF/LPG/layout/5DivisionLayout.jsp">
-		<put-attribute name="nav" value="/WEB-INF/LPG/include/top.jsp"/>
-		<put-attribute name="header" value="/WEB-INF/LPG/team/headercreate.jsp"/>
-		<put-attribute name="content" value="/WEB-INF/LPG/team/createtile.jsp"/>
-		<put-attribute name="footer" value="/WEB-INF/LPG/include/footer.jsp"/>
-	</definition>
 	
-	
-	
-	<definition name="index" extends="indexTemplate"/>
-	
-	<definition name="teamCreate" extends="teamTemplate"/>
-	
- 	
 	<definition name="match" extends="MatchTemplate"/>
 	<definition name="matchTeam" extends="MatchTemplate">
 		<put-attribute name="content" value="/WEB-INF/LPG/match/MatchListTeam.jsp"/>
