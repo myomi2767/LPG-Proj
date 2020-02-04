@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+	<definition name="teamMody" extends="teamTemplate">
+		<put-attribute name="header" value="/WEB-INF/LPG/team/headermody.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/LPG/team/modytile.jsp"/>
+	</definition>
+
+	<definition name="teamSearch" extends="teamTemplate">
+		<put-attribute name="header" value="/WEB-INF/LPG/team/headersearch.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/LPG/team/searchtile.jsp"/>
+	</definition>
+</tiles-definitions>
