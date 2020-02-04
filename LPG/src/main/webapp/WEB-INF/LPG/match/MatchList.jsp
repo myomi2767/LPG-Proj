@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +8,6 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
-
-<!-- Main Stylesheet File -->
-<link href="/LPG/css/radio.css" rel="stylesheet">
 
 <!-- =======================================================
     Template Name: Solid
@@ -46,10 +43,12 @@ ul {
 	border-color: orange;
 }
 </style>
-<!-- ³»°¡ Ãß°¡ÇÑ ¸µÅ© -->
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- ë‚´ê°€ ì¶”ê°€í•œ ë§í¬ -->
+<!-- Main Stylesheet File -->
 <link rel="stylesheet" href="/LPG/css/calendarTheme2.css" />
+<link href="/LPG/css/radio.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -59,7 +58,7 @@ ul {
 	<form action="">
 		<div class="container mtb">
 			<div class="row centered">
-				<h2>°æ±âÀÏÀÚ</h2>
+				<h2>ê²½ê¸°ì¼ìž</h2>
 				<div class="col-lg-10 col-lg-offset-2 centered">
 					<div id="caleandar">
 						<!-- https://www.cssscript.com/create-simple-event-calendar-javascript-caleandar-js/ -->
@@ -67,64 +66,60 @@ ul {
 				</div>
 			</div>
 			<div class="row contact-form">
-				<div class="col-lg-3">
-					<h2>°æ±âÁö¿ª</h2>
+				<div class="col-lg-2">
+					<h2>ê²½ê¸°ì¢…ëª©</h2>
+					<div class="form-group">
+						<input type="radio" id="radio1" name="mch_play" value="" checked>
+						<label for="radio1">ì „ì²´</label> 
+						<input type="radio" id="radio2"	name="mch_play" value=""> 
+						<label for="radio2">ì¶•êµ¬</label> 
+						<input type="radio" id="radio3" name="mch_play" value=""> 
+						<label for="radio3">í’‹ì‚´</label>
+					</div>
+				</div>
+				<div class="col-lg-5">
+					<h2>ê²½ê¸°ì§€ì—­</h2>
 					<div class="ui-widget form-group-sm">
-						<input id="tags" placeholder="Áö¿ªÀ» ÀÔ·ÂÇÏ¼¼¿ä" class="form-control">
+						<input id="tags" placeholder="ì§€ì—­ì„ ìž…ë ¥í•˜ì„¸ìš”" class="form-control">
 						<label for="tags"></label>
 					</div>
 				</div>
-				<div class="hline"></div>
-				<div class="col-lg-3 form-group">
-					<h2>°æ±âÁ¾¸ñ</h2>
-					<input type="radio" id="radio1" name="mch_play" value="" checked>
-					<label for="radio1">ÀüÃ¼</label> <input type="radio" id="radio2"
-						name="mch_play" value=""> <label for="radio2">Ãà±¸</label> <input
-						type="radio" id="radio3" name="mch_play" value=""> <label
-						for="radio3">Ç²»ì</label>
-				</div>
-				<div class="col-lg-3 form-group">
-					<h2>¸ÅÄ¡Å¸ÀÔ</h2>
-					<input type="radio" id="radio4" name="mch_type" value="" checked>
-					<label for="radio4">ÆÀ ¸ÅÄ¡</label> <input type="radio" id="radio5"
-						name="mch_type" value=""> <label for="radio5">°³ÀÎ
-						¸ÅÄ¡</label>
-				</div>
-				<div class="col-lg-3 form-group-sm">
-					<h2>¸ÅÄ¡Á¦¸ñ</h2>
+				
+				<div class="col-lg-5">
+					<h2>ë§¤ì¹˜ì œëª©</h2>
+					<div class="form-group-sm">
 					<input type="text" class="form-control">
+					</div>
 				</div>
 			</div>
 			<div class="row centered">
-				<input type="submit" value="¸ÅÄ¡°Ë»ö" class="btn btn-theme"
+				<input type="submit" value="ë§¤ì¹˜ê²€ìƒ‰" class="btn btn-theme"
 					style="width: 50%">
 			</div>
 		</div>
 	</form>
 	<div id="myfix">
-		<a href="#" class="btn btn-block btn-theme2">»õ ¸ÅÄ¡ µî·Ï</a>
+		<a href="#" class="btn btn-block btn-theme2">ìƒˆ ë§¤ì¹˜ ë“±ë¡</a>
 	</div>
-
-	<!-- JavaScript Á÷Á¢Ãß°¡ -->
-	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> Ãæµ¹³­´Ù.-->
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<!-- JavaScript ì§ì ‘ì¶”ê°€ -->
+	
 	<script type="text/javascript" src="/LPG/js/caleandar.js"></script>
 	<script type="text/javascript" src="/LPG/js/calendarDemo.js"></script>
 
-	<!-- Template Main Javascript File -->
-	<script src="js/main.js"></script>
 	<script>
 		$(function() {
-			var availableTags = [ "¼­¿ï½Ã Á¾·Î±¸", "¼­¿ï½Ã Áß±¸", "¼­¿ï½Ã ¿ë»ê±¸", "¼­¿ï½Ã ¼ºµ¿±¸",
-					"¼­¿ï½Ã ±¤Áø±¸", "¼­¿ï½Ã µ¿´ë¹®±¸", "¼­¿ï½Ã Áß¶û±¸", "¼­¿ï½Ã ¼ººÏ±¸", "¼­¿ï½Ã °­ºÏ±¸",
-					"¼­¿ï½Ã µµºÀ±¸", "¼­¿ï½Ã ³ë¿ø±¸", "¼­¿ï½Ã ÀºÆò±¸", "¼­¿ï½Ã ¼­´ë¹®±¸", "¼­¿ï½Ã ¸¶Æ÷±¸",
-					"¼­¿ï½Ã ¾çÃµ±¸", "¼­¿ï½Ã °­¼­±¸", "¼­¿ï½Ã ±¸·Î±¸", "¼­¿ï½Ã ±ÝÃµ±¸", "¼­¿ï½Ã ¿µµîÆ÷±¸",
-					"¼­¿ï½Ã µ¿ÀÛ±¸", "¼­¿ï½Ã °ü¾Ç±¸", "¼­¿ï½Ã ¼­ÃÊ±¸", "¼­¿ï½Ã °­³²±¸", "¼­¿ï½Ã ¼ÛÆÄ±¸",
-					"¼­¿ï½Ã °­µ¿±¸" ];
+			var availableTags = [ "ì„œìš¸ì‹œ ì¢…ë¡œêµ¬", "ì„œìš¸ì‹œ ì¤‘êµ¬", "ì„œìš¸ì‹œ ìš©ì‚°êµ¬", "ì„œìš¸ì‹œ ì„±ë™êµ¬",
+					"ì„œìš¸ì‹œ ê´‘ì§„êµ¬", "ì„œìš¸ì‹œ ë™ëŒ€ë¬¸êµ¬", "ì„œìš¸ì‹œ ì¤‘ëž‘êµ¬", "ì„œìš¸ì‹œ ì„±ë¶êµ¬", "ì„œìš¸ì‹œ ê°•ë¶êµ¬",
+					"ì„œìš¸ì‹œ ë„ë´‰êµ¬", "ì„œìš¸ì‹œ ë…¸ì›êµ¬", "ì„œìš¸ì‹œ ì€í‰êµ¬", "ì„œìš¸ì‹œ ì„œëŒ€ë¬¸êµ¬", "ì„œìš¸ì‹œ ë§ˆí¬êµ¬",
+					"ì„œìš¸ì‹œ ì–‘ì²œêµ¬", "ì„œìš¸ì‹œ ê°•ì„œêµ¬", "ì„œìš¸ì‹œ êµ¬ë¡œêµ¬", "ì„œìš¸ì‹œ ê¸ˆì²œêµ¬", "ì„œìš¸ì‹œ ì˜ë“±í¬êµ¬",
+					"ì„œìš¸ì‹œ ë™ìž‘êµ¬", "ì„œìš¸ì‹œ ê´€ì•…êµ¬", "ì„œìš¸ì‹œ ì„œì´ˆêµ¬", "ì„œìš¸ì‹œ ê°•ë‚¨êµ¬", "ì„œìš¸ì‹œ ì†¡íŒŒêµ¬",
+					"ì„œìš¸ì‹œ ê°•ë™êµ¬" ];
 			$("#tags").autocomplete({
 				source : availableTags
 			});
 		});
 	</script>
+	
 </body>
 </html>

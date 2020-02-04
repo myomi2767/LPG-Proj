@@ -5,8 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MatchController {
-	@RequestMapping("match/team.do")
+	@RequestMapping("/match.do")
 	public String match() {
-		return "match/team";
+		return "match";
+	}
+	
+	@RequestMapping("/match/team.do")
+	public String matchTeam() {
+		return "matchTeam";
 	}
 }

@@ -31,7 +31,8 @@
 					data-toggle="dropdown">Match<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">매치등록</a></li>
-						<li><a href="#">매치검색</a></li>
+						<li><a href="#">팀매치검색</a></li>
+						<li><a href="#">개인매치검색</a></li>
 						<li><a href="#">매치신청현황</a></li>
 					</ul>
 				</li>
@@ -51,7 +52,7 @@
 						<li><a href="#">매치신청현황</a></li>
 					</ul>
 				</li>				
-				<li><a href="#">Q&A</a></li>
+				<li><a href="#">QA</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">PAGES <b class="caret"></b></a>
 					<ul class="dropdown-menu">
