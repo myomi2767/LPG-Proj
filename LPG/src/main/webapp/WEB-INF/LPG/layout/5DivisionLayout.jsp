@@ -26,6 +26,22 @@
 	
 	<!-- Main Stylesheet File -->
 	<link href="/LPG/css/style.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	
+	<!-- JavaScript Libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- <script src="/LPG/lib/jquery/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="/LPG/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/LPG/lib/php-mail-form/validate.js"></script>
+	<script src="/LPG/lib/prettyphoto/js/prettyphoto.js"></script>
+	<script src="/LPG/lib/isotope/isotope.min.js"></script>
+	<script src="/LPG/lib/hover/hoverdir.js"></script>
+	<script src="/LPG/lib/hover/hoverex.min.js"></script>
+	
+	<!-- Template Main Javascript File -->
+	<script src="/LPG/js/main.js"></script>
 </head>
 <body>
 	<!-- *****************************************************************************************************************
@@ -62,16 +78,6 @@
 		<!-- footer 넣는 위치 -->
 	</div>
 
-	<!-- JavaScript Libraries -->
-	<script src="/LPG/lib/jquery/jquery.min.js"></script>
-	<script src="/LPG/lib/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/LPG/lib/php-mail-form/validate.js"></script>
-	<script src="/LPG/lib/prettyphoto/js/prettyphoto.js"></script>
-	<script src="/LPG/lib/isotope/isotope.min.js"></script>
-	<script src="/LPG/lib/hover/hoverdir.js"></script>
-	<script src="/LPG/lib/hover/hoverex.min.js"></script>
 	
-	<!-- Template Main Javascript File -->
-	<script src="/LPG/js/main.js"></script>
 </body>
 </html>
