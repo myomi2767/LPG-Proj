@@ -14,38 +14,75 @@
 	  		font-size: 20pt;
 	  	}
 	  </style>
+	  
+	  <script type="text/javascript">
+	  	
+	  </script>
+	  
 	  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 	  <meta content="" name="keywords">
 	  <meta content="" name="description">
 	
 	  <!-- Favicons -->
-	  <link href="img/favicon.png" rel="icon">
-	  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+	  <link href="/LPG/img/favicon.png" rel="icon">
+	  <link href="/LPG/img/apple-touch-icon.png" rel="apple-touch-icon">
 	
 	  <!-- Google Fonts -->
 	  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900" rel="stylesheet">
 	
 	  <!-- Bootstrap CSS File -->
-	  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	  <link href="/LPG/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
 	  <!-- Libraries CSS Files -->
-	  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	  <link href="lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
-	  <link href="lib/hover/hoverex-all.css" rel="stylesheet">
+	  <link href="/LPG/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	  <link href="/LPG/lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
+	  <link href="/LPG/lib/hover/hoverex-all.css" rel="stylesheet">
 	
 	  <!-- Main Stylesheet File -->
-	  <link href="css/style.css" rel="stylesheet">
+	  <link href="/LPG/css/style.css" rel="stylesheet">
+	  <script>
+    
+	    // 입력을 제한 할 특수문자의 정규식
+	    var replaceId  = /[<>(){}\[\]!@#$%^&*]/gi;
+	    
+	    $(document).ready(function(){
+	        
+	        $("#teamname").on("focusout", function() {
+	            var x = $(this).val();
+	            if (x.length > 0) {
+	                if (x.match(replaceId)) {
+	                   x = x.replace(replaceId, "");
+	                }
+	                $(this).val(x);
+	            }
+	        }).on("keyup", function() {
+	            $(this).val($(this).val().replace(replaceId, ""));
+	
+	        });
+	
+	    });
+	 
+	</script>
+	  
 </head>
 <body>
 	<div class="container mtb">
 	    <div class="row">
 	      <div class="col-lg-12">
 	        <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+		         <div class="form-group">
+		            <div class="row">
+		            	<div class="col-sm-2" ></div>
+		            	<div class="col-lg-6">
+		            		<span style="color: red; font-size: 7pt; position: relative; top: 14px;" id="specban">특수문자 입력 불가</span>
+		            	</div>
+		            </div>
+	           	</div>
 	            <div class="form-group">
 	            	<div class="row">
 	            	<div class="col-sm-2" ><h4>팀명</h4></div>
 	               <div class="col-lg-6">
-	              		<input type="text" name="name" class="form-control" id="contact-name" placeholder="팀명을 입력해주세요">
+	              		<input type="text" name="name" class="form-control" id="teamname" placeholder="팀명을 입력해주세요">
 	             	</div>
 		              <div class="col-lg-2" style="position: relative; bottom: 5px; right: 20px;">
 		              	<input type="submit" class="btn btn-theme" style="border-radius: 5px" value="중복확인" >

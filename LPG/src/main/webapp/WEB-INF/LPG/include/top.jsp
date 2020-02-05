@@ -63,9 +63,9 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 
 					data-toggle="dropdown">Team<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">팀 등록</a></li>
-						<li><a href="#">팀 검색</a></li>
-						<li><a href="#">내 팀보기</a></li>
+						<li><a href="/LPG/team/create.do">팀 등록</a></li>
+						<li><a href="/LPG/team/search.do">팀 검색</a></li>
+						<li><a href="/LPG/team/myteam.do">내 팀보기</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 
