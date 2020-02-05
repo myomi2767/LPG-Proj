@@ -14,4 +14,20 @@ public class MatchController {
 	public String matchTeam() {
 		return "matchTeam";
 	}
+	@RequestMapping("/match/matchResist.do")
+	public String matchResist() {
+		return "matchResist";
+	}
+	@RequestMapping("/match/userSports.do")
+	public String userSports() {
+		return "userSports";
+	}
+	@RequestMapping("/match/mchIndvDetail.do")
+	public String mchIndvDetail() {
+		return "mchIndvDetail";
+	}
+	@RequestMapping("/match/mchTeamYong.do")
+	public String mchTeamYong() {
+		return "mchTeamYong";
+	}
 }

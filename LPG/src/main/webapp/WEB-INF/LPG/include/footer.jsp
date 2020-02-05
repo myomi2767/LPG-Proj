@@ -10,14 +10,14 @@
 	<div id="footerwrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-sm-4">
 					<h4>About</h4>
 					<div class="hline-w"></div>
 					<p>Lorem Ipsum is simply dummy text of the printing and
 						typesetting industry. Lorem Ipsum has been the industry's standard
 						dummy text ever since the 1500s.</p>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-sm-4">
 					<h4>Social Links</h4>
 					<div class="hline-w"></div>
 					<p>
@@ -28,7 +28,7 @@
 							class="fa fa-tumblr"></i></a>
 					</p>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-sm-4">
 					<h4>Our Address</h4>
 					<div class="hline-w"></div>
 					<p>
