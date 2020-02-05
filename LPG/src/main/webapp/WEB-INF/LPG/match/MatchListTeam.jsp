@@ -105,6 +105,7 @@ ul {
 		<!-- portfolio container -->
 	</div>
 	<!--/Portfoliowrap -->
+	
 	<script>
 		// Use the settings object to change the theme
 		mobiscroll.settings = {
