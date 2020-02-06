@@ -1,4 +1,4 @@
-package game.LPG.UserSports;
+package game.LPG.userSports;
 
 public class UserSportsDTO {
 	private int sportsNo;

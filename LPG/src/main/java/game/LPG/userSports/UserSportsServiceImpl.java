@@ -1,4 +1,4 @@
-package game.LPG.UserSports;
+package game.LPG.userSports;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

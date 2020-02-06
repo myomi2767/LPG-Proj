@@ -1,4 +1,4 @@
-package game.LPG.UserSports;
+package game.LPG.userSports;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ public class UserSportsDAOImpl implements UserSportsDAO {
 	@Override
 	public int insert(UserSportsDTO userSports) {
 		
-		return sqlSession.insert("game.LPG.UserSports.insert", userSports);
+		return sqlSession.insert("game.LPG.userSports.insert", userSports);
 	}
 
 }
