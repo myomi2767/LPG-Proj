@@ -161,52 +161,52 @@
 		<div id="tsearchbuttonall">
 			<div class="form-group" style="width: 100px; float: left;">
               <label>소속 유형</label>
-	              <select name="email" class="form-control">
-	              	<option>남성</option>
-					<option>혼성</option>
-					<option>여성</option>
-	              </select>
+	              <select class="form-control">
+				            <option value="남성">남성</option>
+							 <option value="혼성">혼성</option>
+							 <option value="여성">여성</option>
+				           </select>
             </div>
 			<div class="form-group" style="width: 150px; float: left; margin-left: 40px; margin-right: 40px;">
               <label>연령 제한</label>
-	              <select name="email" class="form-control">
-	              	<option>제한 없음</option>
-					<option>10대</option>
-					<option>20대</option>
-					<option>30대</option>
-					<option>40대</option>
-					<option>50대이상</option>
-	              </select>
+	              <select class="form-control">
+				              	<option value="0">제한 없음</option>
+								<option value="10">10대</option>
+								<option value="20">20대</option>
+								<option value="30">30대</option>
+								<option value="40">40대</option>
+								<option value="50">50대이상</option>
+				              </select>
             </div>
 			<div class="form-group" style="width: 150px; float: left;">
             	<label>팀 지역</label>
-	            	<select name="email" class="form-control">
-						<option>강서구</option>
-						<option>강동구</option>
-						<option>강남구</option>
-						<option>성북구</option>
-						<option>중구</option>
-						<option>은평구</option>
-						<option>금천구</option>
-						<option>광친구</option>
-						<option>서대문구</option>
-						<option>중랑구</option>
-						<option>강북구</option>
-						<option>관악구</option>
-						<option>구로구</option>
-						<option>영등포구</option>
-						<option>마포구</option>
-						<option>종로구</option>
-						<option>도봉구</option>
-						<option>용산구</option>
-						<option>동작구</option>
-						<option>서초구</option>
-						<option>송파구</option>
-						<option>노원구</option>
-						<option>성동구</option>
-						<option>양천구</option>
-						<option>동대문구</option>
-					</select>
+	            	<select class="form-control">
+								<option value="강서구">강서구</option>
+								<option value="강동구">강동구</option>
+								<option value="강남구">강남구</option>
+								<option value="성북구">성북구</option>
+								<option value="중구">중구</option>
+								<option value="은평구">은평구</option>
+								<option value="금천구">금천구</option>
+								<option value="광친구">광친구</option>
+								<option value="서대문구">서대문구</option>
+								<option value="중랑구">중랑구</option>
+								<option value="강북구">강북구</option>
+								<option value="관악구">관악구</option>
+								<option value="구로구">구로구</option>
+								<option value="영등포구">영등포구</option>
+								<option value="마포구">마포구</option>
+								<option value="종로구">종로구</option>
+								<option value="도봉구">도봉구</option>
+								<option value="용산구">용산구</option>
+								<option value="동작구">동작구</option>
+								<option value="서초구">서초구</option>
+								<option value="송파구">송파구</option>
+								<option value="노원구">노원구</option>
+								<option value="성동구">성동구</option>
+								<option value="양천구">양천구</option>
+								<option value="동대문구">동대문구</option>
+							</select>
             </div>
 			<div class="tsearchbutton">
 				<input type="search" name="name" class="form-control" id="contact-name" placeholder="검색어를 입력해주세요" style="float: left; width: 200px">
