@@ -17,14 +17,14 @@
         <h4>청산별곡 Ver.2</h4>
         <div class="hline"></div>
         <p>살어리 살어리랐다 청산에 살어리랐다</p>
-        <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+        <form class="form-horizontal style-from" action="/LPG/match/userSports.do" method="post">
 
 	      <div class="form-group">
 					<div class="row">
 					<div class="col-sm-2" ><h4>주포지션</h4></div>
 						
 						<div class="col-sm-1">
-							<select style="margin-top: 10px">
+							<select name="sportsPosition" style="margin-top: 10px">
 								<option value="GK">골키퍼(GK)</option>
 								<option value="DF">수비수(DF)</option>
 								<option value="CB">센터백(CB)</option>
@@ -51,15 +51,15 @@
 			<div class="form-group">
 				<div class="row">
 				<div class="col-sm-2"><h4>성향</h4></div>
-				<div class="col-sm-7"><input type="text" class="form-control" placeholder="공격형/수비형"></div>
+				<div class="col-sm-7"><input type="text" name="sportsTend" class="form-control" placeholder="공격형/수비형"></div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="row">
 				<div class="col-sm-2"><h4>주발</h4></div>
-				<input style="margin-top: 10px" type="radio" class="radiodiv" name="user_foot">양발
-			 	<input style="margin-top: 10px" type="radio" class="radiodiv" name="user_foot">오른발
-				<input style="margin-top: 10px" type="radio" class="radiodiv" name="user_foot">왼발
+				<input style="margin-top: 10px" type="radio" class="radiodiv" name="sportsFoot" value="양발">양발
+			 	<input style="margin-top: 10px" type="radio" class="radiodiv" name="sportsFoot" value="오른발">오른발
+				<input style="margin-top: 10px" type="radio" class="radiodiv" name="sportsFoot" value="왼발">왼발
 				</div>
 			</div>
 		
@@ -72,23 +72,7 @@
 					<button type="reset" class="btn btn-theme" >입력취소</button>
 					</div>
 			</div>			
-           
-			
-		
-			
-		
-	
-		
-		
-			
-           
-
-      
-         
-
-       
-
-           
+  
 
           </form>
       </div>

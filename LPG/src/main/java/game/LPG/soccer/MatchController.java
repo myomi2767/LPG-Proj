@@ -18,10 +18,6 @@ public class MatchController {
 	public String matchResist() {
 		return "matchResist";
 	}
-	@RequestMapping("/match/userSports.do")
-	public String userSports() {
-		return "userSports";
-	}
 	@RequestMapping("/match/mchIndvDetail.do")
 	public String mchIndvDetail() {
 		return "mchIndvDetail";
