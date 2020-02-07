@@ -33,8 +33,16 @@ public class SportsMatchController {
 	}
 	
 	@RequestMapping("/match/mchIndvDetail.do")
-	public String mchIndvDetail() {
-		return "mchIndvDetail";
+	public ModelAndView mchIndvDetail(String mchNo) {
+		System.out.println("mchNo=>"+mchNo);
+		ModelAndView mav = new ModelAndView();
+		
+		SportsMatchDTO list = service.sportsMatchList(mchNo);
+		System.out.println(list);
+		mav.addObject("sportsMatchList", list);
+		mav.setViewName("mchIndvDetail");
+		
+		return mav;
 	}
 	@RequestMapping("/match/mchTeamYong.do")
 	public String mchTeamYong() {

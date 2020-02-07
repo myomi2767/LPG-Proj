@@ -21,6 +21,11 @@ public class SportsMatchServiceImpl implements SportsMatchService {
 	public List<SportsMatchDTO> matchlist(MatchSelectDTO select) {
 		return dao.matchlist(select);
 	}
+	@Override
+	public SportsMatchDTO sportsMatchList(String mchNo) {
+		SportsMatchDTO list = dao.sportsMatchList(mchNo); 
+		return list;
+	}
 
 
 }

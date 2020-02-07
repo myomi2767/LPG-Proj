@@ -21,4 +21,12 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 	public List<SportsMatchDTO> matchlist(MatchSelectDTO select) {
 		return sqlSession.selectList("game.LPG.sportsMatch.matchlist", select);
 	}
+	@Override
+	public SportsMatchDTO sportsMatchList(String mchNo) {
+		
+		SportsMatchDTO list = (SportsMatchDTO) sqlSession.selectOne("game.LPG.sportsMatch.mchNoSearch", mchNo);
+		
+		return list;
+	}
+	
 }

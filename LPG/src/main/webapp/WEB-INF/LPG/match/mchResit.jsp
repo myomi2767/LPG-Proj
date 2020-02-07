@@ -164,6 +164,12 @@
 					<button type="reset" class="btn btn-theme" >입력취소</button>
 					</div>
 			</div>
+			 <div class="form-group">
+	            
+				<div class="col-sm-7">
+					<a href="/LPG/match/mchIndvDetail.do?mchNo=6">입력취소</a>
+					</div>
+			</div>
           </form>
       </div>
 
