@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="game.LPG.sportsMatch">
+	<insert id="insert" parameterType="sportsMatch">
+		insert into sportsMatch
+		values(sportsMatch_seq.nextVal,1,#{mchName},#{mchDate},#{mchPlay},null,#{mchPrice},#{mchUrgent},#{mchContent},#{mchGender},#{mchShoes},#{mchAbil},#{mchType},#{mchDateStart},#{mchDateEnd})
+	</insert>
+</mapper>

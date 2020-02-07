@@ -1,4 +1,4 @@
-package game.LPG.soccer;
+package game.LPG.sportsMatch;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
