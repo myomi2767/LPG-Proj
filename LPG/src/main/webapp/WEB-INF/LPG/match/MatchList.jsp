@@ -55,7 +55,7 @@ ul {
 	<!-- *****************************************************************************************************************
 	 TITLE & CONTENT
 	 ***************************************************************************************************************** -->
-	<form action="">
+	<form action="/LPG/match/list.do">
 		<div class="container mtb">
 			<div class="row centered">
 				<h2>경기일자</h2>
@@ -66,29 +66,35 @@ ul {
 				</div>
 			</div>
 			<div class="row contact-form">
+				<div class="col-lg-2 form-group">
+			 		<h2>매치타입</h2>
+					<input type="radio" id="team" name="mchType" value="t" checked>
+						<label for="team">팀 매치</label>
+					<input type="radio" id="indiv" name="mchType" value="i">
+						<label for="indiv">개인 매치</label>
+				</div>
 				<div class="col-lg-2">
 					<h2>경기종목</h2>
 					<div class="form-group">
-						<input type="radio" id="radio1" name="mch_play" value="" checked>
-						<label for="radio1">전체</label> 
-						<input type="radio" id="radio2"	name="mch_play" value=""> 
-						<label for="radio2">축구</label> 
-						<input type="radio" id="radio3" name="mch_play" value=""> 
-						<label for="radio3">풋살</label>
+						<input type="radio" id="all" name="mchPlay" value="all" checked>
+						<label for="all">전체</label> 
+						<input type="radio" id="soccer"	name="mchPlay" value="축구"> 
+						<label for="soccer">축구</label> 
+						<input type="radio" id="futsal" name="mchPlay" value="풋살"> 
+						<label for="futsal">풋살</label>
 					</div>
 				</div>
-				<div class="col-lg-5">
+				<div class="col-lg-4">
 					<h2>경기지역</h2>
 					<div class="ui-widget form-group-sm">
-						<input id="tags" placeholder="지역을 입력하세요" class="form-control">
-						<label for="tags"></label>
+						<input id="area" name="grdArea" placeholder="지역을 입력하세요" class="form-control">
+						<label for="area"></label>
 					</div>
 				</div>
-				
-				<div class="col-lg-5">
+				<div class="col-lg-4">
 					<h2>매치제목</h2>
 					<div class="form-group-sm">
-					<input type="text" class="form-control">
+					<input type="text" name="mchName" class="form-control">
 					</div>
 				</div>
 			</div>
@@ -115,7 +121,7 @@ ul {
 					"서울시 양천구", "서울시 강서구", "서울시 구로구", "서울시 금천구", "서울시 영등포구",
 					"서울시 동작구", "서울시 관악구", "서울시 서초구", "서울시 강남구", "서울시 송파구",
 					"서울시 강동구" ];
-			$("#tags").autocomplete({
+			$("#area").autocomplete({
 				source : availableTags
 			});
 		});

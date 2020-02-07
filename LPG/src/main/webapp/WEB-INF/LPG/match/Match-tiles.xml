@@ -4,7 +4,15 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
        
 <tiles-definitions>
-	<definition name="match/team" extends="indexTemplate">
-		<put-attribute name="content2" value="/WEB-INF/LPG/match/MatchListTeam.jsp" />
+	<definition name="MatchListTemplate" template="/WEB-INF/LPG/layout/MatchListLayout.jsp">
+		<put-attribute name="nav" value="/WEB-INF/LPG/include/top.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/LPG/match/MatchHeader.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/LPG/match/MatchList.jsp"/>
+		<put-attribute name="list" value="/WEB-INF/LPG/match/MatchListTeam"/>
+		<put-attribute name="footer" value="/WEB-INF/LPG/include/footer.jsp"/>
+	</definition>
+	<definition name="listTeam" extends="MatchListTemplate"></definition>
+	<definition name="listIndiv" extends="MatchListTemplate">
+		<put-attribute name="list" value="/WEB-INF/LPG/match/MatchListIndiv"></put-attribute>
 	</definition>
 </tiles-definitions>
