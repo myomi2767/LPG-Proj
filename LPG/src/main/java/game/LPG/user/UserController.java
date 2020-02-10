@@ -29,7 +29,7 @@ public class UserController {
 		String viewName = "";
 		if(user!=null) {
 			HttpSession ses = request.getSession();
-			ses.setAttribute("user", user);
+			ses.setAttribute("loginUserInfo", user);
 			viewName = "redirect:/match.do";
 		}else {
 			//로그인 실패
