@@ -1,3 +1,4 @@
+<%@page import="game.LPG.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,6 +32,7 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
+	<% UserDTO user = (UserDTO)session.getAttribute("user"); %>
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -76,17 +78,15 @@
 					</ul>
 				</li>				
 				<li><a href="#">QA</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">PAGES <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="blog.html">Ground</a></li>
-						<li><a href="single-post.html">Match</a></li>
-						<li><a href="portfolio.html">Team</a></li>
-						<li><a href="single-project.html">Championship</a></li>
-						<li><a href="single-project.html">QA</a></li>
-					</ul></li>
+			<% //처음 접속하는 사용자에게 보여줄 컨텐츠
+					if(user==null){ %>
+				<li class="icon-bar" style="border: 1px solid white; height: 48px;"><a href="/LPG/user/login.do" class="icon-bar">로그인</a></li>
 			</ul>
-			<ul></ul>
+				<%//로그인 성공한 사용자에게 보여줄 컨텐츠
+					}else{ %>
+				<li class="icon-bar" style="border: 1px solid white; height: 48px;"><a href="/LPG/user/logout.do" class="icon-bar">로그아웃</a></li>
+			</ul>
+				<%} %>
 		</div>
 		<!--/.nav-collapse -->
 	</div>
