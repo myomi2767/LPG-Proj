@@ -12,7 +12,7 @@ public class TeamDTO {
 	private String teamStrategy;
 	private String teamPre;
 	private String teamDate;
-	private int teamAge;
+	private String teamAge;
 	private String teamEmblem;
 	private String memberPrivate;
 	private String teamGender;
@@ -23,7 +23,7 @@ public class TeamDTO {
 
 	public TeamDTO(int teamNo, String teamName, String teamIntroduce, String teamLocation, String teamGround,
 			String teamAbility, String teamUniform, String teamManner, String teamStrategy, String teamPre,
-			String teamDate, int teamAge, String teamEmblem, String memberPrivate, String teamGender) {
+			String teamDate, String teamAge, String teamEmblem, String memberPrivate, String teamGender) {
 		super();
 		this.teamNo = teamNo;
 		this.teamName = teamName;
@@ -130,11 +130,11 @@ public class TeamDTO {
 		this.teamDate = teamDate;
 	}
 
-	public int getTeamAge() {
+	public String getTeamAge() {
 		return teamAge;
 	}
 
-	public void setTeamAge(int teamAge) {
+	public void setTeamAge(String teamAge) {
 		this.teamAge = teamAge;
 	}
 

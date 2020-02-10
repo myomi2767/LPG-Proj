@@ -1,3 +1,5 @@
+<%@page import="game.LPG.soccerteam.TeamDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -67,9 +69,7 @@ table, th, td {
 	float: left;
 	width: 60%;
 	height: 100%;
-	text-align: center;
 }
-
 .footer {
 	clear: both;
 	padding-top: 10px;
@@ -117,10 +117,12 @@ table, th, td {
 
 .ttrr {
 	height: 35px;
+	text-align: center;
 }
 
 .ttr {
 	height: 79px;
+	text-align: left;
 }
 
 .ttrr td {
@@ -217,6 +219,7 @@ table, th, td {
 </head>
 
 <body>
+<% ArrayList<TeamDTO> list = (ArrayList<TeamDTO>)request.getAttribute("teamlist");%>
 	<div class="container mt" style="margin-bottom: 50px">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1 centered">
@@ -225,6 +228,7 @@ table, th, td {
 					<div>
 						<a href="/LPG/team/Mgrade.do" class="btn btn-theme" style="float: right">팀원 등급 변경</a>
 						<a href="/LPG/team/mody.do" class="btn btn-theme" style="float: right">팀 정보 수정</a>
+						<a href="#" class="btn btn-theme" style="float: right">가입신청 확인</a>
 					</div>
 					<div style="clear: both;">
 						<div class="team_img">

@@ -1,3 +1,6 @@
+<%@page import="game.LPG.soccerteam.TeamDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -10,13 +13,11 @@
 			display: inline-block;
 			padding: 10px;
 			width: 100%;
-			text-align: center;
 		}
 		
 		
 		#tsearchbuttonall{
 			width: 100%;
-			padding-left: 25%;
 			display: inline-block;
 		}
 		.tsearchbutton{
@@ -50,6 +51,7 @@
 		.footer{
 			clear: both;
 			padding-top: 10px;
+			width: 90%;
 		}
 		#tttable {
 		  border-collapse: collapse;
@@ -107,7 +109,9 @@
 			width: 50%;
 			float: left;
 		}
-		
+		p{
+		height: 10px;
+		}
 		
 		
 		.ta_center{text-align: center;}
@@ -124,93 +128,155 @@
 		.pagination span:hover:after{position: absolute; left:0; right:0; bottom: 0; top: 0;border: 1px solid #006d14; content: ""; display: block;}
  
   </style>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-  <!-- Favicons -->
-  <link href="/LPG/img/favicon.png" rel="icon">
-  <link href="/LPG/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900" rel="stylesheet">
-
-  <!-- Bootstrap CSS File -->
-  <link href="/LPG/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="/LPG/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/LPG/lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
-  <link href="/LPG/lib/hover/hoverex-all.css" rel="stylesheet">
-
   <!-- Main Stylesheet File -->
   <link href="/LPG/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-    Template Name: Solid
-    Template URL: https://templatemag.com/solid-bootstrap-business-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 </head>
 
+<script type="text/javascript">
+	window.onload=function(){
+		document.getElementById("tss").click();
+		
+		
+				
+		if(teamGender==""){
+			teamGender="3";
+		}else{
+			form.teamGender.value = "<%=request.getParameter("teamGender")%>";
+		}
+		if(teamAge==""){
+			teamAge="선택";
+		}else{
+			form.teamAge.value = "<%=request.getParameter("teamAge")%>";
+		}
+		if(teamLocation==""){
+			teamLocation="지역선택";
+		}else{
+			form.teamLocation.value = "<%=request.getParameter("teamLocation")%>";
+		}
+		if(teamName==""){
+			teamName="";
+		}else{
+			form.teamName.value = "<%=request.getParameter("teamName")%>";
+		}
+	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("input:text[name=teamName]").attr("disabled",true);
+		$("select[name=teamGender]").prop("disabled",false);
+		$("select[name=teamAge]").prop("disabled",false);
+		$("select[name=teamLocation]").prop("disabled",false);
+		$("input:radio[name=radio]").click(function() {
+			if($("input[name=radio]:checked").val() == "1"){
+				$("input:text[name=teamName]").attr("disabled",true);
+				$("select[name=teamGender]").prop("disabled",false);
+				$("select[name=teamAge]").prop("disabled",false);
+				$("select[name=teamLocation]").prop("disabled",false);
+			}else if ($("input[name=radio]:checked").val() == "0"){
+				$("input:text[name=teamName]").attr("disabled",false);
+				$("select[name=teamGender]").prop("disabled",true);
+				$("select[name=teamAge]").prop("disabled",true);
+				$("select[name=teamLocation]").prop("disabled",true);
+			}
+		})
+	})
+</script>
+<!-- <script type="text/javascript">
+function search(){
+teamGender = "${teamGender}"
+	teamAge = "${teamAge}"
+	teamLocation = "${teamLocation}"
+	
+	if(teamGender==""){
+		teamGender="성별"
+	}
+	$("#teamGender").val(teamGender).attr("selected", "selected")
+
+	if(teamAge==""){
+		teamAge="선택"
+	}
+	$("#teamAge").val(teamAge).attr("selected", "selected")
+	
+	if(teamLocation==""){
+		teamLocation="지역선택"
+	}
+	$("#teamLocation").val(teamLocation).attr("selected", "selected")
+	
+}
+</script> -->
+
+
 <body>
+<% ArrayList<TeamDTO> list = (ArrayList<TeamDTO>)request.getAttribute("teamlist");%>
 
   <div class="container mtb">
     	<div id="tsearchtotal">
 		<div id="tsearchbuttonall">
-			<div class="form-group" style="width: 100px; float: left;">
-              <label>소속 유형</label>
-	              <select class="form-control">
-				            <option value="남성">남성</option>
-							 <option value="혼성">혼성</option>
-							 <option value="여성">여성</option>
-				           </select>
-            </div>
-			<div class="form-group" style="width: 150px; float: left; margin-left: 40px; margin-right: 40px;">
-              <label>연령 제한</label>
-	              <select class="form-control">
-				              	<option value="0">제한 없음</option>
-								<option value="10">10대</option>
-								<option value="20">20대</option>
-								<option value="30">30대</option>
-								<option value="40">40대</option>
-								<option value="50">50대이상</option>
-				              </select>
-            </div>
-			<div class="form-group" style="width: 150px; float: left;">
-            	<label>팀 지역</label>
-	            	<select class="form-control">
-								<option value="강서구">강서구</option>
-								<option value="강동구">강동구</option>
-								<option value="강남구">강남구</option>
-								<option value="성북구">성북구</option>
-								<option value="중구">중구</option>
-								<option value="은평구">은평구</option>
-								<option value="금천구">금천구</option>
-								<option value="광친구">광친구</option>
-								<option value="서대문구">서대문구</option>
-								<option value="중랑구">중랑구</option>
-								<option value="강북구">강북구</option>
-								<option value="관악구">관악구</option>
-								<option value="구로구">구로구</option>
-								<option value="영등포구">영등포구</option>
-								<option value="마포구">마포구</option>
-								<option value="종로구">종로구</option>
-								<option value="도봉구">도봉구</option>
-								<option value="용산구">용산구</option>
-								<option value="동작구">동작구</option>
-								<option value="서초구">서초구</option>
-								<option value="송파구">송파구</option>
-								<option value="노원구">노원구</option>
-								<option value="성동구">성동구</option>
-								<option value="양천구">양천구</option>
-								<option value="동대문구">동대문구</option>
-							</select>
-            </div>
-			<div class="tsearchbutton">
-				<input type="search" name="name" class="form-control" id="contact-name" placeholder="검색어를 입력해주세요" style="float: left; width: 200px">
-				<a href=""><input type="button" value="검색" style="margin-left: 5px; width: 60px; height: 33px;"></a>
+		<div style="float: left; width: 20%;">
+			<input type="radio" name="radio" value="1" id="tss" style="margin-left: 10%; margin-top: 10px;">
+			<label for="tss">선택항목으로 검색</label><br/>
+			<input type="radio" name="radio" value="0" id="tns" style="margin-left: 10%">
+			<label for="tns">팀명으로 검색</label>
+		</div>
+		<div style="float: left; width:80%; text-align: center;">
+			<form action="/LPG/team/detailsearch.do" name="form">
+				<div class="form-group" style="width: 100px; float: left;">
+	              <label>소속 유형</label>
+		              <select class="form-control" name="teamGender" id="teamGender">
+		              			<option value="3">성별</option>
+					            <option value="0">남성</option>
+								<option value="1">혼성</option>
+								<option value="2">여성</option>
+					  </select>
+	            </div>
+				<div class="form-group" style="width: 120px; float: left; margin-left: 40px; margin-right: 40px;">
+	              <label>연령 제한</label>
+		              <select class="form-control" name="teamAge" id="teamAge">
+		              				<option value="선택">선택</option>
+					              	<option value="0">제한 없음</option>
+									<option value="10">10대</option>
+									<option value="20">20대</option>
+									<option value="30">30대</option>
+									<option value="40">40대</option>
+									<option value="50">50대이상</option>
+					              </select>
+	            </div>
+				<div class="form-group" style="width: 120px; float: left;">
+	            	<label>팀 지역</label>
+		            	<select class="form-control" name="teamLocation" id="teamLocation">
+		            				<option value="지역선택">선택</option>
+									<option value="강서구">강서구</option>
+									<option value="강동구">강동구</option>
+									<option value="강남구">강남구</option>
+									<option value="성북구">성북구</option>
+									<option value="중구">중구</option>
+									<option value="은평구">은평구</option>
+									<option value="금천구">금천구</option>
+									<option value="광친구">광친구</option>
+									<option value="서대문구">서대문구</option>
+									<option value="중랑구">중랑구</option>
+									<option value="강북구">강북구</option>
+									<option value="관악구">관악구</option>
+									<option value="구로구">구로구</option>
+									<option value="영등포구">영등포구</option>
+									<option value="마포구">마포구</option>
+									<option value="종로구">종로구</option>
+									<option value="도봉구">도봉구</option>
+									<option value="용산구">용산구</option>
+									<option value="동작구">동작구</option>
+									<option value="서초구">서초구</option>
+									<option value="송파구">송파구</option>
+									<option value="노원구">노원구</option>
+									<option value="성동구">성동구</option>
+									<option value="양천구">양천구</option>
+									<option value="동대문구">동대문구</option>
+								</select>
+	            </div>
+				<div class="tsearchbutton">
+					<input type="text" name="teamName" class="form-control" id="teamName" placeholder="팀명을 입력해주세요" style="float: left; width: 200px">
+					<input type="submit" name="tsb" id="tsb" value="검색" style="margin-left: 5px; width: 60px; height: 33px;">
+				</div>
+			</form>
 			</div>
 		</div>
 		<div class="footer">
@@ -220,155 +286,74 @@
 		   		<th class="ttth2">팀명</th>
 		    	<th class="ttth3">팀 정보</th>
 			</tr>
-			<tr class="tttr" onclick="window.open('/team/final_jsp/team_info_normal.jsp')">
-				<td class="tttd">1</td>
-		    	<td class="tttd">A</td>
+			
+			
+			<%
+			String teamage = "";
+			String teamgender = "";
+			for(int i=0;i<list.size();i++){
+				TeamDTO row = list.get(i);
+				
+				if(row.getTeamAge().equals("0")){
+					teamage = "제한없음";
+				}else if(row.getTeamAge().equals("10")){
+					teamage = "10대";
+				}else if(row.getTeamAge().equals("20")){
+					teamage = "20대";
+				}else if(row.getTeamAge().equals("30")){
+					teamage = "30대";
+				}else if(row.getTeamAge().equals("40")){
+					teamage = "40대";
+				}else if(row.getTeamAge().equals("50")){
+					teamage = "50대이상";
+				}
+				
+				if(row.getTeamGender().equals("0")){
+					teamgender = "남성";
+				}else if(row.getTeamGender().equals("1")){
+					teamgender = "혼성";
+				}else if(row.getTeamGender().equals("2")){
+					teamgender = "여성";
+				}
+			%>
+			<!-- location.href='http://localhost:8088/LPG/team/myteam.do' -->
+			<tr class="tttr" onclick="location.href='/LPG/team/myteam.do'">
+				<td class="tttd"><%= row.getTeamNo() %></td>
+		    	<td class="tttd"><%= row.getTeamName() %></td>
 		    	<td class="tttd">
 		    		
 		    		<div class="a">
 		    			<div class="b">
 		    				<div class="c">
-		    					<p>지역 : 강서구</p>
+		    					<p>지역 : <%= row.getTeamLocation() %></p>
 		    				</div>
 		    				<div class="c">
-		    					<p>팀 : 혼성</p>
-		    				</div>
-		    			</div>
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>연령제한 : 20대</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>팀원 수 : 20명</p>
+		    					<p>팀원 수 : </p>
 		    				</div>
 		    			</div>
 		    			<div class="b">
 		    				<div class="c">
-		    					<p>실력 : 중</p>
+		    					<p>연령제한 : <%= teamage %></p>
 		    				</div>
 		    				<div class="c">
-		    					<p>경기유형 : 풋살</p>
+		    					<p>성별 : <%= teamgender %></p>
+		    				</div>
+		    			</div>
+		    			<div class="b">
+		    				<div class="c">
+		    					<p>실력 : <%= row.getTeamAbility() %></p>
+		    				</div>
+		    				<div class="c">
+		    					<p>경기유형 : <%= row.getTeamPre() %></p>
 		    				</div>
 		    			</div>
 		    		</div>
 		    		
 		    	</td>
 			</tr>
-			<tr class="tttr" onclick="window.open('/team/final_jsp/team_info_normal.jsp')">
-			    <td class="tttd">2</td>
-			    <td class="tttd">B</td>
-			    <td class="tttd">
-			    	<div class="a">
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>지역 : 강서구</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>팀 : 혼성</p>
-		    				</div>
-		    			</div>
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>연령제한 : 20대</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>팀원 수 : 20명</p>
-		    				</div>
-		    			</div>
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>실력 : 중</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>경기유형 : 풋살</p>
-		    				</div>
-		    			</div>
-		    		</div>
-			    </td>
-			</tr>
-			<tr class="tttr" onclick="window.open('/team/final_jsp/team_info_normal.jsp')">
-			    <td class="tttd">3</td>
-			    <td class="tttd">C</td>
-			    <td class="tttd">
-			    	<div class="a">
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>지역 : 강서구</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>팀 : 혼성</p>
-		    				</div>
-		    			</div>
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>연령제한 : 20대</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>팀원 수 : 20명</p>
-		    				</div>
-		    			</div>
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>실력 : 중</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>경기유형 : 풋살</p>
-		    				</div>
-		    			</div>
-		    		</div>
-			    </td>
-			</tr>
-			<tr class="tttr" onclick="window.open('/team/final_jsp/team_info_normal.jsp')">
-			    <td class="tttd">4</td>
-			    <td class="tttd">D</td>
-				<td class="tttd">
-					<div class="a">
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>지역 : 강서구</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>팀 : 혼성</p>
-		    				</div>
-		    			</div>
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>연령제한 : 20대</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>팀원 수 : 20명</p>
-		    				</div>
-		    			</div>
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>실력 : 중</p>
-		    				</div>
-		    				<div class="c">
-		    					<p>경기유형 : 풋살</p>
-		    				</div>
-		    			</div>
-		    		</div>
-				</td>
-			</tr>
+			<% } %>
 		</table>
 	</div>
-	
-							<div class="pagination ta_center">
-								<a href="#!" class="prev_all"></a>
-								<a href="#!" class="prev"></a>
-								<span class="active">1</span>
-								<span>2</span>
-								<span>3</span>
-								<span>4</span>
-								<span>5</span>
-								<span>6</span>
-								<span>7</span>
-								<span>8</span>
-								<span>9</span>
-								<span>10</span>
-								<a href="#!" class="next"></a>
-								<a href="#!" class="next_all"></a>
-							</div>
 	</div>
   </div>
 

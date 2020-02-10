@@ -31,8 +31,15 @@
 		<put-attribute name="content" value="/WEB-INF/LPG/team/infomanagertile.jsp"/>
 	</definition>
 	
+<!-- 	<definition name="teamMyteam" extends="teamTemplate">
+		<put-attribute name="header" value="/WEB-INF/LPG/team/headermyteam.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/LPG/team/infonormaltile.jsp"/>
+	</definition> -->
+	
 	<definition name="teamMgrade" extends="teamTemplate">
 		<put-attribute name="header" value="/WEB-INF/LPG/team/headermgrade.jsp"/>
 		<put-attribute name="content" value="/WEB-INF/LPG/team/membergrade.jsp"/>
 	</definition>
+	
+	
 </tiles-definitions>

@@ -1,7 +1,20 @@
 package game.LPG.soccerteam;
 
+import java.util.List;
+
 public interface TeamService {
 
-//ÆÀ »ý¼º
+	//ÆÀ »ý¼º
 	int insert(TeamDTO dto);
+
+	//ÆÀ¸í Áßº¹°Ë»ç
+	boolean idCheck(String teamName);
+	
+	//ÆÀ ÀüÃ¼ °Ë»ö
+	List<TeamDTO> teamSearchList();
+	
+	//ÆÀ Á¶°Ç °Ë»ö
+	List<TeamDTO> searchTeam(TeamDTO tds);
+	
+	
 }

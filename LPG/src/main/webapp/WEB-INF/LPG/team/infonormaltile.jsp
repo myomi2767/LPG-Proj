@@ -204,8 +204,8 @@ table, th, td {
 				<div id="carousel-example-generic" class="carousel slide"
 					data-ride="carousel">
 					<div>
-						<a href="/team/mody.do" class="btn btn-theme" style="float: right">팀 정보 수정</a>
-						<a href="" class="btn btn-theme" style="float: right">팀원 등급 변경</a>
+						<input type="button" class="btn btn-theme" style="float: right" value="가입신청" 
+		onclick="window.open('/LPG/team/apply.do','window_name','width=800,height=450,left=200,top=50,status=no')">
 					</div>
 					<div style="clear: both;">
 						<div class="team_img">

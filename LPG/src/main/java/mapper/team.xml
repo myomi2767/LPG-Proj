@@ -3,7 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="game.LPG.soccerteam">
-	<select id="teamcreate" parameterType="team">
+	<!-- 팀 생성 -->
+	<insert id="teamcreate" parameterType="team">
 		insert into team values(teamno_seq.nextval,#{teamName},null,#{teamLocation},null,#{teamAbility},null,null,null,#{teamPre},sysdate,#{teamAge},null,#{memberPrivate},#{teamGender})
+	</insert>
+	
+	<!-- 팀 전체 목록 -->
+	<select id="teamlistall" resultType="team">
+		select * from team
 	</select>
+	
+	<!-- 팀명 중복체크 -->
+	<select id="idcheck" resultType="team" parameterType="String">
+		select * from team where teamName = #{teamName}
+	</select>
+	
+	<!-- 팀 선택항목 검색 -->
+	<select id="teamcheckbox" resultType="team" parameterType="Map">
+		select * from team 
+		where teamGender = #{teamGender}
+			  and teamAge = #{teamAge}
+			  and teamLocation = #{teamLocation}
+	</select>
+	
+	<!-- 팀명으로 팀 검색 -->
+	<select id="teamnamesearch" resultType="team" parameterType="String">
+		select * from team where teamName like '%' || #{teamName} || '%'
+	</select>
+	
+	
 </mapper>
