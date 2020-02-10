@@ -382,12 +382,12 @@ textarea {
 				<form id="pw_form" name="pw_form" method="post">
 					<div class="field-wrap">
 						<label> 아이디<span class="req">*</span>
-						</label> <input type="text" required autocomplete="off" maxlength="15" id="userId" name="userId" value="ohsungsik" />
+						</label> <input type="text" required autocomplete="off" maxlength="15" id="userId" name="userId" value="" />
 					</div>
 
 					<div class="field-wrap" style="display: inline-block;">
 						<label> 이메일<span class="req">*</span>
-						</label><input type="email" required autocomplete="off" maxlength="35" style="width: 415px;" name="userEmail" value="nnaadd@hanmail.net"/>
+						</label><input type="email" required autocomplete="off" maxlength="35" style="width: 415px;" name="userEmail" value=""/>
 					</div>
 <!-- 						<button class="btn" value="인증메일 보내기" style="height: 50px">인증보내기</button> -->
 						<br/><br/>

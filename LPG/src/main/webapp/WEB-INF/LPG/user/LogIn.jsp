@@ -210,9 +210,9 @@ input:focus {
 
 			<a href="/LPG/user/findId.do" class="find"><small>아이디찾기</small></a> 
 			<span class="bar" aria-hidden="true">|</span> 
-				<a href="/LPG/user/findPass.do" class="find"><small>비밀번찾기</small></a> 
+				<a href="/LPG/user/findId.do" class="find"><small>비밀번찾기</small></a> 
 				<span class="bar"aria-hidden="true">|</span> 
-				<a href="/LPG/user/signup.do" class="find"><small>회원가입</small></a>
+				<a href="/LPG/user/signagree.do" class="find"><small>회원가입</small></a>
 			<br />
 			<br /> <a id="kakao-login-btn"></a> <a
 				href="http://developers.kakao.com/logout"></a>

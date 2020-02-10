@@ -299,13 +299,13 @@ textarea {
 				<input type="hidden" id="hidden_userId" name="hidden_userId" value="${hidden_userId}"/>
 					<div class="top-row">
 						<div class="field-wrap">
-							<label>* 새비밀번호</label><input type="text" required autocomplete="off" style="width: 415px;" id="userPwd" name="userPwd" />
+							<label>* 새비밀번호</label><input type="password" required autocomplete="off" style="width: 415px;" id="userPwd" name="userPwd" />
 						</div>
 					</div>
 					<br/>
 					<div class="top-row">
 						<div class="field-wrap">
-							<label>* 새비밀번호 확인</label><input type="text" required autocomplete="off" style="width: 415px;" id="userPwd_chk" name="userPwd_chk" />
+							<label>* 새비밀번호 확인</label><input type="password" required autocomplete="off" style="width: 415px;" id="userPwd_chk" name="userPwd_chk" />
 						</div>
 					</div>
 					<br/>

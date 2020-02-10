@@ -16,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 	@Autowired
 	UserService service;
+	//로그인
 	@RequestMapping(value="/user/login.do", method=RequestMethod.GET)
 	public String loginPage() {
 		return "login";
 	}
+	//로그인
 	@RequestMapping(value="/user/login.do", method=RequestMethod.POST)
 	public ModelAndView login(UserDTO loginUserInfo, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -36,6 +38,7 @@ public class UserController {
 		mav.setViewName(viewName);
 		 return mav;
 	}
+	//로그아웃
 	@RequestMapping("/user/logout.do")
 	public String logout(HttpSession session) {
 		if(session!=null) {
@@ -56,6 +59,7 @@ public class UserController {
 		return "redirect:/user/login.do";
 	}
 	
+	//회원가입 아이디 중복검사
 	@RequestMapping(value="/user/joinIdCheck.do", method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public String idCheck(UserDTO findidInfo, HttpServletRequest request) {
@@ -74,24 +78,14 @@ public class UserController {
 		
 		return return_message;
 	}
-	/*@RequestMapping(value="/user/idCheck.do", method = RequestMethod.GET 
-	         , produces="application/text;charset=utf-8")
-	   public @ResponseBody String idCheck(String userId) {
-	       boolean state = service.idCheck(userId);
-	       String result = "";
-	       if(state) {//이미 사용자가 입력한 아이디가 db에 저장되어 있다는 의미
-	          result = "사용 불가능한 아이디";
-	       }else {
-	          result = "사용가능한 아이디";
-	       }
-	       return result;
-	   }
-*/	
+
+	//기본정보 조회수정
 	@RequestMapping(value="/user/myinfo.do", method=RequestMethod.GET)
 	public String myInfoView() {
 		
 		return "myinfo";
 	}
+	//기본정보 조회수정
 	@RequestMapping(value="/user/myinfo.do", method=RequestMethod.POST)
 	public String updateMyInfo(HttpSession session, UserDTO updateInfo) {
 		System.out.println("updateController"+updateInfo);
@@ -110,51 +104,28 @@ public class UserController {
 		return "redirect:/match.do";
 	}
 	
+	//회원가입 동의
 	@RequestMapping(value="/user/signagree.do", method=RequestMethod.GET)
 	public String signAgree(){
 		return "sigupagree";
 	}
-	
+	//아이디 찾기 뷰
 	@RequestMapping(value="/user/findId.do", method= {RequestMethod.POST,RequestMethod.GET})
 	public String findIdView() {
 		return "findId";
 	}
 	
-	
-	
+	//아이디 찾기
 	@RequestMapping(value="/user/findIdSearch.do", method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-//	public ModelAndView findId(UserDTO findidInfo, HttpServletRequest request) {
 	public String findId(UserDTO findidInfo, HttpServletRequest request) {
-//		ModelAndView mav = new ModelAndView();
-//		System.out.println("컨트롤러=>"+findidInfo);
-//		UserDTO userId = service.findID(findidInfo);
-//		String viewName = "";
-//		if(userId!=null) {
-//			HttpSession ses = request.getSession();			
-//			ses.setAttribute("findidInfo", userId);
-////			viewName = "redirect:/user/login.do";
-//		}else {
-//			//id찾기 실패
-//			viewName = "findId";
-//		}
-//		mav.setViewName(viewName);
-		
 		UserDTO userId = service.findID(findidInfo);
 		String user_id = userId.getUserId();
 		
 		return user_id;
 	}
 	
-	
-	
-	
-	
-	
-//	@RequestMapping(value="/user/findPass.do", method=RequestMethod.GET)
-//	public String findPassView() {
-//		return "findPass";
-//	}
+	//비밀번호 찾기
 	@RequestMapping(value="/user/findPass.do", method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public String findPass(UserDTO findpassInfo, HttpServletRequest request) {
@@ -170,7 +141,7 @@ public class UserController {
 		
 		return return_message;
 	}
-	
+	//
 	@RequestMapping(value="/user/find_IDPass_modify.do", method={RequestMethod.POST,RequestMethod.GET})
 	public String find_IDPass_modify(Model model, HttpServletRequest request){
 		
@@ -193,4 +164,5 @@ public class UserController {
 		
 		return "success";
 	}
+	
 }
