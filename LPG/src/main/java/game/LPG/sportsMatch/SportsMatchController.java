@@ -32,35 +32,46 @@ public class SportsMatchController {
 		return "redirect:/match.do";
 	}
 	
-	@RequestMapping("/match/mchIndvDetail.do")
-	public ModelAndView mchIndvDetail(String mchNo) {
-		System.out.println("mchNo=>"+mchNo);
-		ModelAndView mav = new ModelAndView();
-		
-		SportsMatchDTO list = service.sportsMatchList(mchNo);
-		System.out.println(list);
-		mav.addObject("sportsMatchList", list);
-		mav.setViewName("mchIndvDetail");
-		
-		return mav;
-	}
+	
 	@RequestMapping("/match/mchTeamYong.do")
 	public String mchTeamYong() {
 		return "mchTeamYong";
 	}
 	
 	@RequestMapping(value="/match/list.do", method=RequestMethod.GET)
-	public ModelAndView matchlist(MatchSelectDTO select) {
+	public ModelAndView matchlist(MatchSelectDTO ms) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("검색한 값=>"+select);
-		List<SportsMatchDTO> list = service.matchlist(select);
+		System.out.println("검색한 값=>"+ms);
+		List<SportsMatchDTO> list = service.matchlist(ms);
 		System.out.println("결과 값=>"+list);
 		mav.addObject("matchlist", list);
-		if(select.getMchType().equals("t")) {
+		if(ms.getMchType().equals("0")) {
 			mav.setViewName("listTeam");
 		}else {
 			mav.setViewName("listIndiv");
 		}
+		return mav;
+	}
+	@RequestMapping("/match/mchIndvDetail.do")
+	public ModelAndView mchIndvDetail(String mchNo) {
+		System.out.println("mchNo=>"+mchNo);
+		ModelAndView mav = new ModelAndView();
+		
+		SportsMatchDTO list = service.MatchIndvDetail(mchNo);
+		System.out.println(list);
+		mav.addObject("sportsMatchList", list);
+		mav.setViewName("mchIndvDetail");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/match/mchTeamDetail.do")
+	public ModelAndView mchTeamDetail(String mchNo) {
+		ModelAndView mav = new ModelAndView();
+		SportsMatchDTO list = service.MatchTeamDetail(mchNo);
+		System.out.println(list);
+		mav.addObject("sportsMatchList", list);
+		mav.setViewName("mchTeamDetail");
 		return mav;
 	}
 }

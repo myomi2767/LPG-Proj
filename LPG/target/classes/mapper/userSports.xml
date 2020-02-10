@@ -5,6 +5,6 @@
 <mapper namespace="game.LPG.userSports">
 	<insert id="insert" parameterType="userSports">
 		insert into userSports
-		values(userSports_seq.nextVal,1,#{sportsPosition},#{sportsTend},#{sportsFoot})
+		values(userSports_seq.nextVal,'letplay1',#{sportsPosition},#{sportsTend},#{sportsFoot})
 	</insert>
 </mapper>

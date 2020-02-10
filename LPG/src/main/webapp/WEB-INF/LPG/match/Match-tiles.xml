@@ -8,11 +8,15 @@
 		<put-attribute name="nav" value="/WEB-INF/LPG/include/top.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/LPG/match/MatchHeader.jsp"/>
 		<put-attribute name="content" value="/WEB-INF/LPG/match/MatchList.jsp"/>
-		<put-attribute name="list" value="/WEB-INF/LPG/match/MatchListTeam"/>
+		<put-attribute name="list" value="/WEB-INF/LPG/match/MatchListTeam.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/LPG/include/footer.jsp"/>
 	</definition>
 	<definition name="listTeam" extends="MatchListTemplate"></definition>
 	<definition name="listIndiv" extends="MatchListTemplate">
-		<put-attribute name="list" value="/WEB-INF/LPG/match/MatchListIndiv"></put-attribute>
+		<put-attribute name="list" value="/WEB-INF/LPG/match/MatchListIndiv.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="mchTeamDetail" extends="MatchTemplate">
+		<put-attribute name="content" value="/WEB-INF/LPG/match/MatchTeamDetail.jsp"/>
 	</definition>
 </tiles-definitions>

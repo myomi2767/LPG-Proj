@@ -5,20 +5,50 @@
 <mapper namespace="game.LPG.sportsMatch">
 	<insert id="insert" parameterType="sportsMatch">
 		insert into sportsMatch
-		values(sportsMatch_seq.nextVal,1,#{mchName},#{mchDate},#{mchPlay},null,#{mchPrice},#{mchUrgent},#{mchContent},#{mchGender},#{mchShoes},#{mchAbil},#{mchType},#{mchDateStart},#{mchDateEnd})
+		values(sportsMatch_seq.nextVal,#{mchName},to_date(#{mchDate}),#{mchPlay},null,#{mchPrice},#{mchUrgent},#{mchContent},#{mchGender},#{mchShoes},#{mchAbil},#{mchType},1,#{mchDateStart},#{mchDateEnd})
 	</insert>
-	<select id="matchlist" resultType="sportsMatch" parameterType="select">
-		select m.*, g.* 
-		from sportsmatch m, ground g, groundreserve gr
+	<insert id="insertTeam">
+		insert into sportsMatchteam
+	</insert>
+	<select id="matchListTeam" resultType="sportsMatch" parameterType="ms">
+		select m.*, g.*, t.*
+		from sportsmatch m, sportsmatchteam tm, ground g, groundreserve gr, team t
+		where m.mchno=tm.mchno
+			and tm.teamno=t.teamno
+			and m.mchno=gr.mchno
+			and g.grdno=gr.grdno
+			and m.mchtype=#{mchType}
+			and m.mchplay like '%' || #{mchPlay}
+			<!-- and g.grdarea like '%' || #{grdArea} || '%' --> 
+			and m.mchname like '%' || #{mchName} || '%'
+	</select>
+	<select id="matchListIndiv" resultType="sportsMatch" parameterType="ms">
+		select m.*, g.*, su.*
+		from sportsmatch m, usersports su, sportsmatchindiv im, ground g, groundreserve gr
 		where m.mchno=gr.mchno 
 			and g.grdno=gr.grdno
-			and m.mchdate=#{mchDate}
-			and m.mchtype like '%' || #{mchType}
+			and im.mchno=m.mchno
+			and im.sportsno=su.sportsno
+			and m.mchtype=#{mchType}
+			and m.mchplay like '%' || #{mchPlay}
 			and g.grdarea like '%' || #{grdArea} || '%' 
 			and m.mchname like '%' || #{mchName} || '%'
 	</select>
+	<!-- <select id="matchlist" resultType="sportsMatch" parameterType="select">
+		select * from sportsmatch m where m.mchtype=#{mchType} 
+				and m.mchplay like '%' || #{mchPlay}
+				and m.mchname like '%' || #{mchName} || '%'
+	</select> -->
 	<select id="mchNoSearch" resultType="sportsMatch" parameterType="String">
 		select * from sportsMatch where mchNo = #{mchNo}
-	
+	</select>
+	<select id="matchTeamDetail" resultType="sportsMatch" parameterType="String">
+		select m.*, g.*, t.*
+		from sportsmatch m, sportsmatchteam tm, ground g, groundreserve gr, team t
+		where m.mchno=tm.mchno
+			and tm.teamno=t.teamno
+			and m.mchno=gr.mchno
+			and g.grdno=gr.grdno
+			and m.mchNo = #{mchNo}
 	</select>
 </mapper>

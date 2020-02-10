@@ -44,7 +44,18 @@
 	    });
 	 
 	</script>
-	  
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#teamName").on("keyup",function(){
+				$.get("/LPG/team/idCheck.do",
+						{"teamName":$("#teamName").val()},
+						function(data){
+							$("#checkVal").text(data);
+						},
+						"text")
+			})
+		})
+	</script>
 </head>
 <body>
 	<div class="container mtb">
@@ -62,12 +73,12 @@
 	            <div class="form-group">
 	            	<div class="row">
 	            	<div class="col-sm-2" ><h4>팀명</h4></div>
-	               <div class="col-lg-6">
-	              		<input type="text" name="teamName" class="form-control" id="teamname" placeholder="팀명을 입력해주세요">
+	               <div class="col-lg-4">
+	              		<input type="text" name="teamName" class="form-control" id="teamName" placeholder="팀명을 입력해주세요" minlength="2">
 	             	</div>
-		              <div class="col-lg-2" style="position: relative; bottom: 5px; right: 20px;">
-		              	<input type="submit" class="btn btn-theme" style="border-radius: 5px" value="중복확인" >
-		              </div>
+	             	<div class="col-lg-4">
+	             	<span id="checkVal" style="color: red; position: relative;top: 5px"></span>
+	             	</div>
 	              	</div>
 	            </div>
 	            <div class="form-group">
@@ -109,12 +120,12 @@
 	            	<div class="col-sm-2" ><h4>연령 제한</h4></div>
 	               		<div class="col-lg-7">
 	              		     <select class="form-control" name="teamAge">
-				              	<option value="0">제한 없음</option>
-								<option value="10">10대</option>
-								<option value="20">20대</option>
-								<option value="30">30대</option>
-								<option value="40">40대</option>
-								<option value="50">50대이상</option>
+					              	<option value="0">제한 없음</option>
+									<option value="10">10대</option>
+									<option value="20">20대</option>
+									<option value="30">30대</option>
+									<option value="40">40대</option>
+									<option value="50">50대이상</option>
 				              </select>             
 	             		</div>		           
 	              	</div>
@@ -124,9 +135,9 @@
 					<div class="col-sm-2" ><h4>소속 유형</h4></div>
 						<div class="col-lg-7">
 							<select class="form-control" name="teamGender">
-				             <option value="0">남성</option>
-							 <option value="1">혼성</option>
-							 <option value="2">여성</option>
+					            <option value="0">남성</option>
+								<option value="1">혼성</option>
+								<option value="2">여성</option>
 				           </select>
 						</div>
 					</div>
@@ -167,9 +178,9 @@
 					<div class="row">
 						<div class="col-sm-2" ><h4>팀원 정보 공개여부</h4></div>
 						<div class="col-lg-7" style="position: relative; top: 8px">
-							<input type="radio" name="memberPrivate" id="checkbox-info-1" name="openinfo" value="0">
+							<input type="radio" name="memberPrivate" id="checkbox-info-1" value="0">
 					 		<label for="checkbox-info-1">공개</label>
-					 		<input type="radio" name="memberPrivate" id="checkbox-info-2" name="openinfo" value="1" style="margin-left: 10%">
+					 		<input type="radio" name="memberPrivate" id="checkbox-info-2" value="1" style="margin-left: 10%">
 					 		<label for="checkbox-info-2">비공개</label>
 				 		</div>
 					</div>

@@ -6,8 +6,15 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="game.LPG.userSports.UserSportsDTO" alias="userSports"/>
+		<typeAlias type="game.LPG.sportsMatch.SportsMatchDTO" alias="sportsMatch"/>
+		<typeAlias type="game.LPG.sportsMatch.MatchSelectDTO" alias="ms"/>
+		<typeAlias type="game.LPG.soccerteam.TeamDTO" alias="team"/>
+		<typeAlias type="game.LPG.user.UserDTO" alias="user"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/userSports.xml"/>
+		<mapper resource="mapper/sportsMatch.xml"/>
+		<mapper resource="mapper/team.xml"/>
+		<mapper resource="mapper/user.xml"/>
 	</mappers>
 </configuration>

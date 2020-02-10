@@ -31,6 +31,7 @@
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/*/*-tiles.xml</beans:value>
+				<beans:value>/WEB-INF/*/*/*-tiles.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

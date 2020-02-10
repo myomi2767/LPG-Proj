@@ -7,16 +7,21 @@
 <html>
 <meta charset="UTF-8"%>
 <head>
-<body>
-
-<script type="text/javascript">
 
 
-</script>
+<style type="text/css">
+#myfix {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%
+}
+</style>
 </head>
+
+
+<body>
 <% SportsMatchDTO dto= (SportsMatchDTO)request.getAttribute("sportsMatchList");%>
-
-
 <div class="container mtb">
     <div class="row">
       <div class="col-sm-8">
@@ -61,7 +66,11 @@
 	      </div>
     </div>
   </div>
-
+  <div id="myfix">
+		<form action="">
+			<input type="submit" value="매치신청" class="btn btn-block btn-theme">
+		</form>
+	</div>
 
   
 </body>

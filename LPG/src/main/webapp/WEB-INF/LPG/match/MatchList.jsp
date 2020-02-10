@@ -45,12 +45,40 @@ ul {
 </style>
 <!-- 내가 추가한 링크 -->
 <!-- Main Stylesheet File -->
-<link rel="stylesheet" href="/LPG/css/calendarTheme2.css" />
 <link href="/LPG/css/radio.css" rel="stylesheet">
-
-
+<!-- <link rel="stylesheet" type="text/css" href="/LPG/lib/dist/hello.week.css" /> -->
+<link rel="stylesheet" type="text/css" href="/LPG/lib/dist/hello.week.min.css" />
+<link rel="stylesheet" type="text/css" href="/LPG/lib/dist/hello.week.theme.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/LPG/lib/dist/default.theme.css" /> -->
+<script type="module" src="/LPG/lib/dist/hello-week.js" ></script>
+<script type="text/javascript">
+	mchDate = null;
+</script>
+<script type="module">
+	import {HelloWeek} from '/LPG/lib/dist/hello-week.js';
+	const myCalendar = new HelloWeek({
+      	todayHighlight: false,
+      	disablePastDays: true,
+     	multiplePick: false,
+     	onSelect: () => {
+			mchDate = myCalendar.getDaySelected();
+      }
+	});
+	
+</script>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$("#sub").on("click", function(){
+			/* location.href="/LPG/match/list.do?mchType="+${mchType}+"&mchPlay="+${mchPlay}+"&grdArea="
+					+${grdArea}+"&mchName="+${mchName}+"&mchDate="+${mchDate}; */
+			$.get("/LPG/match/list.do", {"mchName":$("#mchName").val(),"mchDate":$("#mchDate").val(),
+				"mchPlay":$("#mchPlay").val(),"mchType":$("#mchType"),"grdArea":$("#grdArea").val()});
+		});
+	});
+</script>
 </head>
-
+<!-- https://hello-week.now.sh/#/docs/v2/get-clicked-date -->
 <body>
 	<!-- *****************************************************************************************************************
 	 TITLE & CONTENT
@@ -59,24 +87,26 @@ ul {
 		<div class="container mtb">
 			<div class="row centered">
 				<h2>경기일자</h2>
-				<div class="col-lg-10 col-lg-offset-2 centered">
-					<div id="caleandar">
-						<!-- https://www.cssscript.com/create-simple-event-calendar-javascript-caleandar-js/ -->
-					</div>
+				<div id="mchDate" name="mchDate" class="hello-week">
+				    <div class="navigation"></div>
+				    <div class="week"></div>
+				    <div class="month"></div>
 				</div>
 			</div>
 			<div class="row contact-form">
 				<div class="col-lg-2 form-group">
 			 		<h2>매치타입</h2>
-					<input type="radio" id="team" name="mchType" value="t" checked>
-						<label for="team">팀 매치</label>
-					<input type="radio" id="indiv" name="mchType" value="i">
-						<label for="indiv">개인 매치</label>
+			 		<div id="mchType">
+						<input type="radio" id="team" name="mchType" value="0" checked>
+							<label for="team">팀 매치</label>
+						<input type="radio" id="indiv" name="mchType" value="1">
+							<label for="indiv">개인 매치</label>
+					</div>
 				</div>
 				<div class="col-lg-2">
 					<h2>경기종목</h2>
-					<div class="form-group">
-						<input type="radio" id="all" name="mchPlay" value="all" checked>
+					<div id="mchPlay" class="form-group">
+						<input type="radio" id="all" name="mchPlay" value="22" checked>
 						<label for="all">전체</label> 
 						<input type="radio" id="soccer"	name="mchPlay" value="축구"> 
 						<label for="soccer">축구</label> 
@@ -86,32 +116,29 @@ ul {
 				</div>
 				<div class="col-lg-4">
 					<h2>경기지역</h2>
-					<div class="ui-widget form-group-sm">
+					<div id="grdArea" class="ui-widget form-group-sm">
 						<input id="area" name="grdArea" placeholder="지역을 입력하세요" class="form-control">
 						<label for="area"></label>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<h2>매치제목</h2>
-					<div class="form-group-sm">
+					<div id="mchName" class="form-group-sm">
 					<input type="text" name="mchName" class="form-control">
 					</div>
 				</div>
 			</div>
 			<div class="row centered">
-				<input type="submit" value="매치검색" class="btn btn-theme"
+				<input type="submit" id="sub" value="매치검색" class="btn btn-theme"
 					style="width: 50%">
 			</div>
 		</div>
 	</form>
 	<div id="myfix">
-		<a href="#" class="btn btn-block btn-theme2">새 매치 등록</a>
+		<a href="/LPG/match/matchResist.do" class="btn btn-block btn-theme2">새 매치 등록</a>
 	</div>
 	
 	<!-- JavaScript 직접추가 -->
-	
-	<script type="text/javascript" src="/LPG/js/caleandar.js"></script>
-	<script type="text/javascript" src="/LPG/js/calendarDemo.js"></script>
 
 	<script>
 		$(function() {
