@@ -11,4 +11,6 @@ public interface UserDAO {
 	
 	UserDTO joinIdCheck(UserDTO findidInfo);
 	UserDTO updateUserPassword(UserDTO updateInfo);
+	
+	UserDTO myinfoPWCheck(UserDTO ppc);
 }

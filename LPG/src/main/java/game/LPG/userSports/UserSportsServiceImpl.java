@@ -10,7 +10,7 @@ public class UserSportsServiceImpl implements UserSportsService {
 	@Qualifier("userSportsDAO")
 	UserSportsDAO dao;
 	@Override
-	public int insert(UserSportsDTO userSports) {
+	public UserSportsDTO insert(UserSportsDTO userSports) {
 		
 		return dao.insert(userSports);
 	}

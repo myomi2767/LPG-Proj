@@ -1,10 +1,14 @@
+<%@page import="game.LPG.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <body>
 
- 
+ <%
+  	UserDTO user = (UserDTO) session.getAttribute("loginUserInfo"); 
+  	System.out.println(user.toString());
+  	%>
 
 
   <!-- *****************************************************************************************************************
@@ -72,7 +76,7 @@
 					<button type="reset" class="btn btn-theme" >입력취소</button>
 					</div>
 			</div>			
-  
+  					<input type="hidden" class="" name="userId" value="<%=user.getUserId()%>"> 
 
           </form>
       </div>

@@ -1,3 +1,4 @@
+<%@page import="game.LPG.userSports.UserSportsDTO"%>
 <%@page import="game.LPG.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -32,7 +33,8 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-	<% UserDTO user = (UserDTO)session.getAttribute("user"); %>
+	<% UserDTO user = (UserDTO)session.getAttribute("user");
+	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");%>
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -75,6 +77,13 @@
 						<li><a href="#">대회등록</a></li>
 						<li><a href="#">대회목록</a></li>
 						<li><a href="#">매치신청현황</a></li>
+					</ul>
+				</li>	
+				<li class="dropdown"><a href="#" class="dropdown-toggle" 
+					data-toggle="dropdown">Mypage<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/LPG/user/myinfoPWCheck.do">개인정보조회수정</a></li>
+						<li><a href="/LPG/point/mypoint.do">내포인트조회</a></li>
 					</ul>
 				</li>				
 				<li><a href="#">QA</a></li>

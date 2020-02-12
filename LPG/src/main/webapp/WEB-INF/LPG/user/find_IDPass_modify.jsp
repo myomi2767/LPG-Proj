@@ -24,6 +24,7 @@
  					alert(data);
  					if(data == 'success'){
  						alert("비밀번호 변경에 성공했습니다.");
+ 						location.href="/LPG/user/login.do";
  					}
  				}
 			})

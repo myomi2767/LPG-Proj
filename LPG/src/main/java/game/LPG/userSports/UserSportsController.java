@@ -1,5 +1,8 @@
 package game.LPG.userSports;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +17,18 @@ public class UserSportsController {
 		return "userSports";
 	}
 	@RequestMapping(value="/match/userSports.do", method=RequestMethod.POST)
-	public String insert(UserSportsDTO userSports) {
+	public String insert(UserSportsDTO userSports, HttpServletRequest requst) {
 		System.out.println("************+board");
-		int result = service.insert(userSports);
-		System.out.println("######"+result);
-		System.out.println(userSports);
-		return "redirect:/match/userSports.do";
+		System.out.println("컨트롤러스포츠유저"+userSports);
+		UserSportsDTO result = service.insert(userSports);
+		System.out.println("반환세션값제발~~~"+result);
+		if(result!=null) {
+			HttpSession ses = requst.getSession();
+			ses.setAttribute("userSports", result);
+			 return "redirect:/match/userSports.do";
+		}else {
+			 return "";
+		}
 	}
-	
 }
+	

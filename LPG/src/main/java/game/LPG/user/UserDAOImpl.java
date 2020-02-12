@@ -53,4 +53,12 @@ public class UserDAOImpl implements UserDAO {
 		UserDTO dto = sqlSession.selectOne("game.LPG.user.updateUserPassword", updateInfo);
 		return dto;
 	}
+	@Override
+	public UserDTO myinfoPWCheck(UserDTO ppc) {
+		System.out.println("dto"+ppc);
+		UserDTO dto = sqlSession.selectOne("game.LPG.user.myinfoPWCheck", ppc);
+		return dto;
+	}
+	
+	
 }

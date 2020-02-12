@@ -9,9 +9,15 @@ public class UserSportsDAOImpl implements UserSportsDAO {
 	@Autowired
 	SqlSession sqlSession;
 	@Override
-	public int insert(UserSportsDTO userSports) {
+	/*sqlSession.insert("game.LPG.userSports.insert", userSports);*/
+	public UserSportsDTO insert(UserSportsDTO userSports) {
+		int result = sqlSession.insert("game.LPG.userSports.insert", userSports); 
+		if(result>0) {
+			return userSports;
+		}else {
+			return null;
+		}
 		
-		return sqlSession.insert("game.LPG.userSports.insert", userSports);
 	}
 
 }

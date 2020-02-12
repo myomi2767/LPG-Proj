@@ -31,4 +31,8 @@
 	<definition name="sigupagree" extends="MatchTemplate">
 		<put-attribute name="content" value="/WEB-INF/LPG/user/signUp1.jsp"/>
 	</definition>
+	
+	<definition name="myinfoPWCheck" extends="MatchTemplate">
+		<put-attribute name="content" value="/WEB-INF/LPG/user/myinfoPWCheck.jsp"/>
+	</definition>
 </tiles-definitions>

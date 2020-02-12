@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +29,7 @@ public class UserController {
 		if(user!=null) {
 			HttpSession ses = request.getSession();
 			ses.setAttribute("loginUserInfo", user);
-			viewName = "redirect:/match.do";
+			viewName = "redirect:/match/userSports.do";
 		}else {
 			//로그인 실패
 			viewName = "login";
@@ -46,6 +45,7 @@ public class UserController {
 		}
 		return "redirect:/user/login.do";
 	}
+	//회원가입 정보입력
 	@RequestMapping(value="/user/signup.do", method=RequestMethod.GET)
 	public String insertView() {
 		return "signup";
@@ -78,6 +78,30 @@ public class UserController {
 		
 		return return_message;
 	}
+	//기본정보조회 전 현재 비밀번호 확인
+	@RequestMapping(value="/user/myinfoPWCheck.do", method=RequestMethod.GET)
+	public String myinfoPWCheckView() {
+	
+	return  "myinfoPWCheck";
+	}
+	
+	@RequestMapping(value="/user/myinfoPWCheck.do", method=RequestMethod.POST)
+	//@ResponseBody
+	public ModelAndView myinfoPWCheck(UserDTO ppc) {
+		System.out.println("컨트롤러"+ppc);
+		ModelAndView mav = new ModelAndView();
+		UserDTO userPw = service.myinfoPWCheck(ppc);
+		int check_value = userPw.getCheckValue();
+		String viewName = "";
+		if(check_value > 0) {
+			viewName = "redirect:/user/myinfo.do"; 
+		}else {
+			viewName = "myinfoPWCheck";
+		}
+		mav.setViewName(viewName);
+		return mav;
+	}
+
 
 	//기본정보 조회수정
 	@RequestMapping(value="/user/myinfo.do", method=RequestMethod.GET)
@@ -88,6 +112,7 @@ public class UserController {
 	//기본정보 조회수정
 	@RequestMapping(value="/user/myinfo.do", method=RequestMethod.POST)
 	public String updateMyInfo(HttpSession session, UserDTO updateInfo) {
+		
 		System.out.println("updateController"+updateInfo);
 		
 		//session에서 user데이터 userid 받아오기
@@ -164,8 +189,6 @@ public class UserController {
 		
 		return "success";
 	}
-	
-	
 	
 
 }

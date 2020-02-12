@@ -45,4 +45,12 @@ public class UserServiceImpl implements UserService {
 		System.out.println("비밀번호 찾기 - 비밀번호 수정"+updateInfo);
 		return dao.updateUserPassword(updateInfo);
 	}
+	@Override
+	public UserDTO myinfoPWCheck(UserDTO ppc) {
+		System.out.println("서비스ppc"+ppc);
+		return dao.myinfoPWCheck(ppc);
+	}
+	
+	
+	
 }

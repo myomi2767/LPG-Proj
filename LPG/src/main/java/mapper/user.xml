@@ -47,5 +47,10 @@
   		where userId = #{userId}
   	</update>
   	
-  	
+  	<select id="myinfoPWCheck" resultType="user" parameterType="user">
+  		SELECT COUNT(*) AS checkValue
+  		FROM lpguser
+  		WHERE userId = #{userId}
+  		AND userPwd=#{userPwd}
+  	</select>
   </mapper>
