@@ -7,6 +7,8 @@
 	<typeAliases>
 		<typeAlias type="game.LPG.userSports.UserSportsDTO" alias="userSports"/>
 		<typeAlias type="game.LPG.sportsMatch.SportsMatchDTO" alias="sportsMatch"/>
+		<typeAlias type="game.LPG.sportsMatch.SportsMatchIndivDTO" alias="sportsMatchIndiv"/>
+		<typeAlias type="game.LPG.sportsMatch.SportsMatchTeamDTO" alias="sportsMatchTeam"/>
 		<typeAlias type="game.LPG.sportsMatch.MatchSelectDTO" alias="ms"/>
 		<typeAlias type="game.LPG.soccerteam.TeamDTO" alias="team"/>
 		<typeAlias type="game.LPG.user.UserDTO" alias="user"/>

@@ -24,11 +24,17 @@ public class SportsMatchController {
 	}
 	
 	@RequestMapping(value="/match/matchResist.do", method=RequestMethod.POST)
-	public String insert(SportsMatchDTO sportsMatch) {
-		System.out.println("****************board");
-		int result = service.insert(sportsMatch);
-		System.out.println("#####"+result);
-		System.out.println(sportsMatch);
+	public String insert(SportsMatchIndivDTO sportsMatchIndiv, SportsMatchTeamDTO sportsMatchTeam, SportsMatchDTO sportsMatch) {
+		System.out.println("***************시작");
+		
+		
+			 System.out.println("컨트롤러:"+sportsMatch+sportsMatchIndiv+sportsMatchTeam);
+			 int result =service.insert(sportsMatchIndiv, sportsMatchTeam, sportsMatch);
+			 System.out.println("controller:"+result);
+			 
+		
+		
+		
 		return "redirect:/match.do";
 	}
 	

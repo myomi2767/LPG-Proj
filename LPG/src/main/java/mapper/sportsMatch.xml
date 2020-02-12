@@ -7,9 +7,17 @@
 		insert into sportsMatch
 		values(sportsMatch_seq.nextVal,#{mchName},to_date(#{mchDate}),#{mchPlay},null,#{mchPrice},#{mchUrgent},#{mchContent},#{mchGender},#{mchShoes},#{mchAbil},#{mchType},1,#{mchDateStart},#{mchDateEnd})
 	</insert>
-	<insert id="insertTeam">
-		insert into sportsMatchteam
+	<insert id="insertIndiv" parameterType="sportsMatchIndiv">
+		insert into sportsMatchIndiv
+		values(sportsMatchIndiv_seq.nextVal,1,sportsMatch_seq.currVal)
+	
 	</insert>
+	
+	<insert id="insertTeam" parameterType="sportsMatchTeam">
+		insert into sportsMatchTeam
+		values(sportsMatchTeam_seq.nextVal,sportsMatch_seq.currVal,4,2)
+	</insert>
+	
 	<select id="matchListTeam" resultType="sportsMatch" parameterType="ms">
 		select m.*, g.*, t.*
 		from sportsmatch m, sportsmatchteam tm, ground g, groundreserve gr, team t
