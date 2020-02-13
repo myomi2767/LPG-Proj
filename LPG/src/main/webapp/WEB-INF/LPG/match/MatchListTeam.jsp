@@ -61,7 +61,6 @@ ul {
 								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 735px">
 									<%= match.getTeamName() %> <%= match.getGrdArea()%> <%= match.getTeamName() %></h4>
 								<input type="hidden" id="mchNo" name="mchNo" value="<%= match.getMchNo() %>">
-								<
 							</div>
 							
 							<!-- he bg -->

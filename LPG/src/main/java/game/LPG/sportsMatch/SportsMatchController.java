@@ -69,9 +69,10 @@ public class SportsMatchController {
 	@RequestMapping(value="/match/mchTeamDetail.do")
 	public ModelAndView mchTeamDetail(String mchNo) {
 		ModelAndView mav = new ModelAndView();
-		SportsMatchDTO list = service.MatchTeamDetail(mchNo);
-		System.out.println(list);
-		mav.addObject("sportsMatchList", list);
+		System.out.println(mchNo);
+		MatchDetailDTO list = service.MatchTeamDetail(mchNo);
+		System.out.println("controller=>"+list);
+		mav.addObject("mchTeamDetail", list);
 		mav.setViewName("mchTeamDetail");
 		return mav;
 	}

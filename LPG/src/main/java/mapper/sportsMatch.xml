@@ -19,47 +19,47 @@
 <!-- =============================================================================================== -->
 <!-- ======================================= matchTeam select문 ======================================== -->
 	<select id="matchListTeam" resultType="sportsMatch" parameterType="ms">
-		select m.*,t.teamname, <!-- 팀 전적 계산 --> g.grdname, g.grdarea
-		from sportsmatch m, sportsmatchteam tm, ground g, groundreserve gr, team t
+		select m.*,t.teamname<!-- , g.grdname, g.grdarea -->
+		from sportsmatch m, sportsmatchteam tm, <!-- ground g, groundreserve gr, --> team t
 		where m.mchno=tm.mchno
 			and tm.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
+			<!-- and m.mchno=gr.mchno
+			and g.grdno=gr.grdno -->
 			and m.mchtype=#{mchType}
 			and m.mchplay like '%' || #{mchPlay}
-			<!-- and g.grdarea like '%' || #{grdArea} || '%' --> 
+			<!-- and g.grdarea like '%' || #{grdArea} || '%' -->
 			and m.mchname like '%' || #{mchName} || '%'
 	</select>
 	
 	<select id="matchTeamDetailM" resultType="sportsMatch" parameterType="String">
 		select m.*, tm.tmgrade
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
+		from sportsmatch m, sportsmatchteam smt, <!-- ground g, groundreserve gr, --> team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
+			<!-- and m.mchno=gr.mchno
+			and g.grdno=gr.grdno -->
 			and t.teamno = tm.teamno
 			and m.mchNo = #{mchNo}
 	</select>
 	
 	<select id="matchTeamDetailG" resultType="ground" parameterType="String">
 		select g.*
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
+		from sportsmatch m, sportsmatchteam smt, <!-- ground g, groundreserve gr, --> team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
+			<!-- and m.mchno=gr.mchno
+			and g.grdno=gr.grdno -->
 			and t.teamno = tm.teamno
 			and m.mchNo = #{mchNo}
 	</select>
 	
 	<select id="matchTeamDetailT" resultType="team" parameterType="String">
 		select t.*
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
+		from sportsmatch m, sportsmatchteam smt, <!-- ground g, groundreserve gr, --> team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
+			<!-- and m.mchno=gr.mchno
+			and g.grdno=gr.grdno -->
 			and t.teamno = tm.teamno
 			and m.mchNo = #{mchNo}
 	</select>

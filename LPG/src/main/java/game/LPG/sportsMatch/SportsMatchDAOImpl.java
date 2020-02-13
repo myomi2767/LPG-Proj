@@ -6,6 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import game.LPG.ground.GroundDTO;
+import game.LPG.soccerteam.TeamDTO;
+
 @Repository("sportsMatchDAO")
 public class SportsMatchDAOImpl implements SportsMatchDAO {
 	@Autowired
@@ -56,9 +59,13 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 		SportsMatchDTO list = (SportsMatchDTO) sqlSession.selectOne("game.LPG.sportsMatch.mchNoSearch", mchNo);
 		return list;
 	}
-	public SportsMatchDTO MatchTeamDetail(String mchNo) {
-		SportsMatchDTO list = (SportsMatchDTO) sqlSession.selectOne("game.LPG.sportsMatch.matchTeamDetail", mchNo);
-		return list;
+	public MatchDetailDTO MatchTeamDetail(String mchNo) {
+		SportsMatchDTO sm = sqlSession.selectOne("game.LPG.sportsMatch.matchTeamDetailM", mchNo);
+		GroundDTO grd = sqlSession.selectOne("game.LPG.sportsMatch.matchTeamDetailG", mchNo);
+		List<TeamDTO> team = sqlSession.selectList("game.LPG.sportsMatch.matchTeamDetailT", mchNo);
+		MatchDetailDTO detail = new MatchDetailDTO(sm, grd, team, null);
+		System.out.println("dao=>"+detail);
+		return detail;
 	}
 	
 	@Override
