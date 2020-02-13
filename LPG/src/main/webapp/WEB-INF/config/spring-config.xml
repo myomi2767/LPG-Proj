@@ -63,6 +63,14 @@
 	<context:component-scan base-package="play.game.LPG" />
 	<context:component-scan base-package="game"/>
 	
-	
+	<interceptors>
+	<interceptor>
+		<mapping path="/user/myinfoPWCheck.do"/>
+		<mapping path="/user/myinfo.do"/>
+		<mapping path="/point/**"/>
+		<!-- <mapping path="/board/**"/> -->
+		<beans:bean class="game.LPG.user.LoginCheckInterceptor"/>
+	</interceptor>
+	</interceptors>
 	
 </beans:beans>

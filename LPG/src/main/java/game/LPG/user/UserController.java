@@ -27,12 +27,9 @@ public class UserController {
 		UserDTO user = service.login(loginUserInfo);
 		System.out.println(user);
 		String viewName = "";
-		if(user!=null&user.getSportsno()!=null) {
+		if(user!=null) {
 			HttpSession ses = request.getSession();
 			ses.setAttribute("loginUserInfo", user);
-			viewName = "redirect:/match.do";
-		}else if(user!=null&user.getSportsno()==null){
-			//로그인 실패
 			viewName = "redirect:/match/userSports.do";
 		}else {
 			viewName = "login";

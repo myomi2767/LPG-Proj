@@ -51,7 +51,7 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 
 					data-toggle="dropdown">Ground<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">구장등록</a></li>
+						<li><a href="/ground/add.do">구장등록</a></li>
 						<li><a href="#">구장검색</a></li>
 					</ul>
 				</li>

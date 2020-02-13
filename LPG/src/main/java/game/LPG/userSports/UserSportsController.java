@@ -25,7 +25,7 @@ public class UserSportsController {
 		if(result!=null) {
 			HttpSession ses = requst.getSession();
 			ses.setAttribute("userSports", result);
-			 return "redirect:/match.do";
+			return "redirect:/match.do";
 		}else {
 			 return "";
 		}

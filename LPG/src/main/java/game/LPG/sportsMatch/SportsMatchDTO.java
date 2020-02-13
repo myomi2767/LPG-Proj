@@ -20,25 +20,13 @@ public class SportsMatchDTO {
 	private String mchType;
 	/*	team DTO */
 	private String teamName;
-	private String teamIntroduce;
-	private String teamLocation;
-	private String teamGround;
-	private String teamAbility;
-	private String teamUniform;
-	private String teamManner;
-	private String teamStrategy;
-	private String teamSoccerPre;
-	private String teamFutPre;
-	private String teamCreateDate;
-	private String teamAge;
 	private String teamEmblem;
+	/*	teamMember - tmgrade*/
+	private String tmGrade;
 	/*	ground DTO */
 	private String grdName;
-	private String grdAddr;
-	private String grdPhone;
 	private String grdArea;
-	private String grdDetail;
-	private String grdCost;
+	private String grdAddr;
 	
 	public SportsMatchDTO() {
 		
@@ -46,11 +34,8 @@ public class SportsMatchDTO {
 
 	public SportsMatchDTO(String mchNo, String sportsNo, String mchName, String mchDate, String mchDateStart,
 			String mchDateEnd, String mchPlay, String mchGrd, String mchPrice, String mchUrgent, String mchContent,
-			String mchGender, String mchShoes, String mchAbil, String mchType, String teamName, String teamIntroduce,
-			String teamLocation, String teamGround, String teamAbility, String teamUniform, String teamManner,
-			String teamStrategy, String teamSoccerPre, String teamFutPre, String teamCreateDate, String teamAge,
-			String teamEmblem, String grdName, String grdAddr, String grdPhone, String grdArea, String grdDetail,
-			String grdCost) {
+			String mchGender, String mchShoes, String mchAbil, String mchType, String teamName, String teamEmblem,
+			String tmGrade, String grdName, String grdArea, String grdAddr) {
 		super();
 		this.mchNo = mchNo;
 		this.sportsNo = sportsNo;
@@ -68,24 +53,11 @@ public class SportsMatchDTO {
 		this.mchAbil = mchAbil;
 		this.mchType = mchType;
 		this.teamName = teamName;
-		this.teamIntroduce = teamIntroduce;
-		this.teamLocation = teamLocation;
-		this.teamGround = teamGround;
-		this.teamAbility = teamAbility;
-		this.teamUniform = teamUniform;
-		this.teamManner = teamManner;
-		this.teamStrategy = teamStrategy;
-		this.teamSoccerPre = teamSoccerPre;
-		this.teamFutPre = teamFutPre;
-		this.teamCreateDate = teamCreateDate;
-		this.teamAge = teamAge;
 		this.teamEmblem = teamEmblem;
+		this.tmGrade = tmGrade;
 		this.grdName = grdName;
-		this.grdAddr = grdAddr;
-		this.grdPhone = grdPhone;
 		this.grdArea = grdArea;
-		this.grdDetail = grdDetail;
-		this.grdCost = grdCost;
+		this.grdAddr = grdAddr;
 	}
 
 	@Override
@@ -94,13 +66,16 @@ public class SportsMatchDTO {
 				+ mchDate + ", mchDateStart=" + mchDateStart + ", mchDateEnd=" + mchDateEnd + ", mchPlay=" + mchPlay
 				+ ", mchGrd=" + mchGrd + ", mchPrice=" + mchPrice + ", mchUrgent=" + mchUrgent + ", mchContent="
 				+ mchContent + ", mchGender=" + mchGender + ", mchShoes=" + mchShoes + ", mchAbil=" + mchAbil
-				+ ", mchType=" + mchType + ", teamName=" + teamName + ", teamIntroduce=" + teamIntroduce
-				+ ", teamLocation=" + teamLocation + ", teamGround=" + teamGround + ", teamAbility=" + teamAbility
-				+ ", teamUniform=" + teamUniform + ", teamManner=" + teamManner + ", teamStrategy=" + teamStrategy
-				+ ", teamSoccerPre=" + teamSoccerPre + ", teamFutPre=" + teamFutPre + ", teamCreateDate="
-				+ teamCreateDate + ", teamAge=" + teamAge + ", teamEmblem=" + teamEmblem + ", grdName=" + grdName
-				+ ", grdAddr=" + grdAddr + ", grdPhone=" + grdPhone + ", grdArea=" + grdArea + ", grdDetail="
-				+ grdDetail + ", grdCost=" + grdCost + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", mchType=" + mchType + ", teamName=" + teamName + ", teamEmblem=" + teamEmblem + ", tmGrade="
+				+ tmGrade + ", grdName=" + grdName + ", grdArea=" + grdArea + ", grdAddr=" + grdAddr + ", getMchNo()="
+				+ getMchNo() + ", getSportsNo()=" + getSportsNo() + ", getMchName()=" + getMchName() + ", getMchDate()="
+				+ getMchDate() + ", getMchDateStart()=" + getMchDateStart() + ", getMchDateEnd()=" + getMchDateEnd()
+				+ ", getMchPlay()=" + getMchPlay() + ", getMchGrd()=" + getMchGrd() + ", getMchPrice()=" + getMchPrice()
+				+ ", getMchUrgent()=" + getMchUrgent() + ", getMchContent()=" + getMchContent() + ", getMchGender()="
+				+ getMchGender() + ", getMchShoes()=" + getMchShoes() + ", getMchAbil()=" + getMchAbil()
+				+ ", getMchType()=" + getMchType() + ", getTeamName()=" + getTeamName() + ", getTeamEmblem()="
+				+ getTeamEmblem() + ", getTmGrade()=" + getTmGrade() + ", getGrdName()=" + getGrdName()
+				+ ", getGrdArea()=" + getGrdArea() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
 
@@ -232,100 +207,20 @@ public class SportsMatchDTO {
 		this.teamName = teamName;
 	}
 
-	public String getTeamIntroduce() {
-		return teamIntroduce;
-	}
-
-	public void setTeamIntroduce(String teamIntroduce) {
-		this.teamIntroduce = teamIntroduce;
-	}
-
-	public String getTeamLocation() {
-		return teamLocation;
-	}
-
-	public void setTeamLocation(String teamLocation) {
-		this.teamLocation = teamLocation;
-	}
-
-	public String getTeamGround() {
-		return teamGround;
-	}
-
-	public void setTeamGround(String teamGround) {
-		this.teamGround = teamGround;
-	}
-
-	public String getTeamAbility() {
-		return teamAbility;
-	}
-
-	public void setTeamAbility(String teamAbility) {
-		this.teamAbility = teamAbility;
-	}
-
-	public String getTeamUniform() {
-		return teamUniform;
-	}
-
-	public void setTeamUniform(String teamUniform) {
-		this.teamUniform = teamUniform;
-	}
-
-	public String getTeamManner() {
-		return teamManner;
-	}
-
-	public void setTeamManner(String teamManner) {
-		this.teamManner = teamManner;
-	}
-
-	public String getTeamStrategy() {
-		return teamStrategy;
-	}
-
-	public void setTeamStrategy(String teamStrategy) {
-		this.teamStrategy = teamStrategy;
-	}
-
-	public String getTeamSoccerPre() {
-		return teamSoccerPre;
-	}
-
-	public void setTeamSoccerPre(String teamSoccerPre) {
-		this.teamSoccerPre = teamSoccerPre;
-	}
-
-	public String getTeamFutPre() {
-		return teamFutPre;
-	}
-
-	public void setTeamFutPre(String teamFutPre) {
-		this.teamFutPre = teamFutPre;
-	}
-
-	public String getTeamCreateDate() {
-		return teamCreateDate;
-	}
-
-	public void setTeamCreateDate(String teamCreateDate) {
-		this.teamCreateDate = teamCreateDate;
-	}
-
-	public String getTeamAge() {
-		return teamAge;
-	}
-
-	public void setTeamAge(String teamAge) {
-		this.teamAge = teamAge;
-	}
-
 	public String getTeamEmblem() {
 		return teamEmblem;
 	}
 
 	public void setTeamEmblem(String teamEmblem) {
 		this.teamEmblem = teamEmblem;
+	}
+
+	public String getTmGrade() {
+		return tmGrade;
+	}
+
+	public void setTmGrade(String tmGrade) {
+		this.tmGrade = tmGrade;
 	}
 
 	public String getGrdName() {
@@ -336,22 +231,6 @@ public class SportsMatchDTO {
 		this.grdName = grdName;
 	}
 
-	public String getGrdAddr() {
-		return grdAddr;
-	}
-
-	public void setGrdAddr(String grdAddr) {
-		this.grdAddr = grdAddr;
-	}
-
-	public String getGrdPhone() {
-		return grdPhone;
-	}
-
-	public void setGrdPhone(String grdPhone) {
-		this.grdPhone = grdPhone;
-	}
-
 	public String getGrdArea() {
 		return grdArea;
 	}
@@ -360,21 +239,15 @@ public class SportsMatchDTO {
 		this.grdArea = grdArea;
 	}
 
-	public String getGrdDetail() {
-		return grdDetail;
+	public String getGrdAddr() {
+		return grdAddr;
 	}
 
-	public void setGrdDetail(String grdDetail) {
-		this.grdDetail = grdDetail;
+	public void setGrdAddr(String grdAddr) {
+		this.grdAddr = grdAddr;
 	}
 
-	public String getGrdCost() {
-		return grdCost;
-	}
-
-	public void setGrdCost(String grdCost) {
-		this.grdCost = grdCost;
-	}
 	
 	
 }
+
