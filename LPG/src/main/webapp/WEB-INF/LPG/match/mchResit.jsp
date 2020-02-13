@@ -1,13 +1,17 @@
+<%@page import="game.LPG.soccerteam.TeamMemberDTO"%>
+<%@page import="game.LPG.userSports.UserSportsDTO"%>
+<%@page import="game.LPG.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-
-  
-
-
+<html>
+<head>
+<link href="/LPG/css/radio.css" rel="stylesheet">
+</head>
  <body>
-
+  <% UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
+	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports"); %>
   <div class="container mtb">
     <div class="row">
       <div class="col-sm-8">
@@ -15,7 +19,8 @@
         <div class="hline"></div>
         <p>살어리 살어리랐다 청산에 살어리랐다</p>
         <form class="form-horizontal style-from" action="/LPG/match/matchResist.do" method="POST">
-
+			<input type="hidden" name="sportsNo" value="<%= userSprots.getSportsNo() %>">
+			<input type="hidden" id="teamNo" name="teamNo" value="<%= userSprots.getTeamNo() %>">
             <div class="form-group">
             	<div class="row">
             	<div class="col-sm-2" ><h4>매치제목:</h4></div>
@@ -25,8 +30,10 @@
              	</div>
              		<div class="row">
 			              <div class="col-sm-2">
-			              	<input type="radio" style="width:10px" class="radio"  name="mchUrgent" value="0" >긴급
-			              	<input type="radio" style="width:10px" class="radio"  name="mchUrgent" value="1">일반
+			              	<input type="radio" style="width: 10px" class="radio" id="mchUrgent0" name="mchUrgent" value="0"> 
+								<label for="mchUrgent0">긴급</label>
+							<input type="radio"	style="width: 10px" class="radio" id="mchUrgent1" name="mchUrgent" value="1">
+								<label for="mchUrgent1">일반</label>
 			              </div>
 	              </div>		           
               	</div>
@@ -35,8 +42,10 @@
             <div class="form-group">
 				<div class="row">
 				<div class="col-sm-2" ><h4>매치타입:</h4></div>
-					<input type="radio" class="radiodiv" name="mchType" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" class="radiodiv" name="mchType" value="1"><br/>팀매치개인매치
+					<input type="radio" class="radio" name="mchType" id="mchType0" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<label for="mchType0">팀매치</label>
+					<input type="radio" class="radio" name="mchType" id="mchType1" value="1">
+						<label for="mchType1">개인매치</label>
 				</div>
 			</div>
              <div class="form-group">
@@ -91,13 +100,13 @@
 				<div class="row">
 				<div class="col-sm-2" ><h4>경기타입:</h4></div>
 					<select style="margin-top: 10px" name="mchPlay">
-					<option value="8">4vs4 풋살
-					<option value="10">5vs5 풋살
-					<option value="12">6vs6 풋살
-					<option value="14">7vs7 풋살
-					<option value="16">8vs8 풋살
-					<option value="18">9vs9 축구
-					<option value="22">11vs11 축구
+					<option value="4vs4 풋살">4vs4 풋살
+					<option value="5vs5 풋살">5vs5 풋살
+					<option value="6vs6 풋살">6vs6 풋살
+					<option value="7vs7 풋살">7vs7 풋살
+					<option value="8vs8 풋살">8vs8 풋살
+					<option value="9vs9 축구">9vs9 축구
+					<option value="11vs11 축구">11vs11 축구
 				</select>
 				</div>
 			</div>
@@ -126,25 +135,32 @@
 			<div class="form-group">
 				<div class="row">
 				<div class="col-sm-2" ><h4>매치성별:</h4></div>
-					<input style="margin-top: 10px" type="radio" class="radiodiv" name="mchGender" value="0">남성매치
-					<input style="margin-top: 10px" type="radio" class="radiodiv" name="mchGender" value="1">여성매치
-					<input style="margin-top: 10px" type="radio" class="radiodiv" name="mchGender" value="2">혼성매치
+					<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchGender0" name="mchGender" value="0"> &nbsp;&nbsp;&nbsp;&nbsp;
+						<label for="mchGender0">남성매치</label>
+					<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchGender1" name="mchGender" value="1">
+						<label for="mchGender1">여성매치</label> 
+					<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchGender2" name="mchGender" value="2">
+						<label for="mchGender2">혼성매치</label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="row">
 				<div class="col-sm-2" ><h4>실력:</h4></div>
-					<input style="margin-top: 10px" type="checkbox" class="radiodiv" name="mchAbil" value="상">상
-					<input style="margin-top: 10px" type="checkbox" class="radiodiv" name="mchAbil" value="중">중
-					<input style="margin-top: 10px" type="checkbox" class="radiodiv" name="mchAbil" value="하">하
+					<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchAbil0" name="mchAbil" value="상"> 
+						<label for="mchAbil0">상</label>
+					<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchAbil1" name="mchAbil" value="중">
+						<label for="mchAbil1">중</label> 
+					<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchAbil2" name="mchAbil" value="하">
+						<label for="mchAbil2">하</label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="row">
 				<div class="col-sm-2" ><h4>슈즈:</h4></div>
-					<input style="margin-top: 10px" type="checkbox" class="radiodiv" name="mchShoes" value="1">풋살화
-					<input style="margin-top: 10px" type="checkbox" class="radiodiv" name="mchShoes" value="2">축구화
-					
+					<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchShoes0" name="mchShoes" value="1">
+						<label for="mchShoes0">풋살화</label>
+					<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchShoes1" name="mchShoes" value="2">
+						<label for="mchShoes1">축구화</label>
 				</div>
 			</div>
            
@@ -162,12 +178,6 @@
 				</div>
 				<div class="col-sm-7">
 					<button type="reset" class="btn btn-theme" >입력취소</button>
-					</div>
-			</div>
-			 <div class="form-group">
-	            
-				<div class="col-sm-7">
-					<a href="/LPG/match/mchIndvDetail.do?mchNo=6">입력취소</a>
 					</div>
 			</div>
           </form>

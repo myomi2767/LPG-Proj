@@ -19,6 +19,7 @@
 		<typeAlias type="game.LPG.ground.GroundDTO" alias="ground"/>
 		<typeAlias type="game.LPG.ground.GroundReserveDTO" alias="groundReserve"/>
 		<typeAlias type="game.LPG.ground.GroundReviewDTO" alias="groundReview"/>
+		<typeAlias type="game.LPG.paging.PagingDTO" alias="Paging"/>
 		<!-- <typeAlias type="game.LPG.competition.ContestDTO" alias="contest"/>
 		<typeAlias type="game.LPG.competition.ContestAttendeeDTO" alias="contestAttendee"/> -->
 	</typeAliases>
@@ -28,5 +29,6 @@
 		<mapper resource="mapper/sportsMatch.xml"/>
 		<mapper resource="mapper/team.xml"/>
 		<mapper resource="mapper/ground.xml"/>
+		<mapper resource="mapper/Paging.xml"/>
 	</mappers>
 </configuration>

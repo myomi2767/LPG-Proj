@@ -4,8 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="game.LPG.user">
   	<select id="login" resultType="user" parameterType="user">
-  		select *from lpguser
-  		where u.userId=#{userId} and u.userPwd=#{userPwd} 
+  		select * from lpguser
+  		where userId=#{userId} and userPwd=#{userPwd} 
+  	</select>
+  	<select id="login2" resultType="userSports" parameterType="user">
+  		select su.*, tm.teamno from lpguser u, usersports su, teammember tm
+  		where u.userId=#{userId} and u.userPwd=#{userPwd} and u.userid = su.userid and su.sportsno=tm.sportsno
   	</select>
   	<insert id="signup" parameterType="user">
   	insert into lpguser values(#{userId},#{userPwd},#{userName},

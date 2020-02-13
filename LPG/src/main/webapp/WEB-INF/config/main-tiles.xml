@@ -31,6 +31,11 @@
 	<definition name="mchTeamYong" extends="MatchTemplate">
 		<put-attribute name="content" value="/WEB-INF/LPG/match/mchTeamYong.jsp"></put-attribute>
 		<put-attribute name="header" value="/WEB-INF/LPG/match/mchTeamYongHeader.jsp"></put-attribute>
-	
+	</definition>
+	<definition name="mgrPaging" template="/WEB-INF/LPG/match/mgrMchList.jsp">
+		
+	</definition>
+	<definition name="paging" template="/WEB-INF/LPG/match/mgrMchList.jsp">
+		
 	</definition>
 </tiles-definitions>

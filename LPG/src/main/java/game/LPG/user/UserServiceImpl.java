@@ -3,6 +3,9 @@ package game.LPG.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import game.LPG.soccerteam.TeamMemberDTO;
+import game.LPG.userSports.UserSportsDTO;
+
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -50,7 +53,12 @@ public class UserServiceImpl implements UserService {
 		System.out.println("서비스ppc"+ppc);
 		return dao.myinfoPWCheck(ppc);
 	}
-	
+	@Override
+	public UserSportsDTO login2(UserDTO loginUserInfo) {
+		UserSportsDTO su = dao.login2(loginUserInfo);
+		System.out.println(su);
+		return su;
+	}
 	
 	
 }

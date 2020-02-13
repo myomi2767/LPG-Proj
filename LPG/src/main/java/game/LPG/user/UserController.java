@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import game.LPG.soccerteam.TeamMemberDTO;
+import game.LPG.userSports.UserSportsDTO;
+
 @Controller
 public class UserController {
 	@Autowired
@@ -25,12 +28,19 @@ public class UserController {
 	public ModelAndView login(UserDTO loginUserInfo, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		UserDTO user = service.login(loginUserInfo);
+		UserSportsDTO su = service.login2(loginUserInfo);
 		System.out.println(user);
 		String viewName = "";
 		if(user!=null) {
 			HttpSession ses = request.getSession();
 			ses.setAttribute("loginUserInfo", user);
-			viewName = "redirect:/match/userSports.do";
+			if(su!=null) {
+				HttpSession ses2 = request.getSession();
+				ses2.setAttribute("userSports", su);
+				viewName = "redirect:/match.do";
+			}else {
+				viewName = "redirect:/match/userSports.do";
+			}
 		}else {
 			viewName = "login";
 		}

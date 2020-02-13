@@ -20,18 +20,18 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 	}
 	
 	@Override
-	public int insertIndiv(SportsMatchIndivDTO sportsMatchIndiv) {
-		System.out.println(sportsMatchIndiv);
-		int result = sqlSession.insert("game.LPG.sportsMatch.insertIndiv", sportsMatchIndiv);
+	public int insertIndiv(SportsMatchDTO sportsMatch) {
+		System.out.println(sportsMatch);
+		int result = sqlSession.insert("game.LPG.sportsMatch.insertIndiv", sportsMatch);
 		System.out.println("indivdivdivid"+result);
 		return result;
 	}
 
 
 	@Override
-	public int insertTeam(SportsMatchTeamDTO sportsMatchTeam) {
-		System.out.println(sportsMatchTeam);
-		int result = sqlSession.insert("game.LPG.sportsMatch.insertTeam", sportsMatchTeam);
+	public int insertTeam(SportsMatchDTO sportsMatch) {
+		System.out.println(sportsMatch);
+		int result = sqlSession.insert("game.LPG.sportsMatch.insertTeam", sportsMatch);
 		System.out.println("teamteaemateam"+result);
 		return result;
 		

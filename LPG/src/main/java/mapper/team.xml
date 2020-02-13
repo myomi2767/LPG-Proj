@@ -5,9 +5,11 @@
 <mapper namespace="game.LPG.soccerteam">
 	<!-- 팀 생성 -->
 	<insert id="teamcreate" parameterType="team">
-		insert into team values(teamNo_seq.nextval,#{teamName},null,#{teamLocation},null,#{teamAbility},null,null,null,#{teamPre},sysdate,#{teamAge},null,#{memberPrivate},#{teamGender})
+		insert into team values(team_seq.nextval,#{teamName},null,#{teamLocation},null,#{teamAbility},null,null,null,#{teamPre},sysdate,#{teamAge},null,#{memberPrivate},#{teamGender},'0')
 	</insert>
-	
+	<insert id="teamcreate2" parameterType="team">
+      insert into teammember values(teammember_seq.nextval,sysdate,'매니저',team_seq.currVal,#{sportsNo},null,null,null)
+    </insert>
 	<!-- 팀 정보수정 -->
 	<update id="teamupdate" parameterType="team">
 		update team 

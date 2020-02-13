@@ -1,5 +1,8 @@
 package game.LPG.user;
 
+import game.LPG.soccerteam.TeamMemberDTO;
+import game.LPG.userSports.UserSportsDTO;
+
 public interface UserDAO {
 	UserDTO login(UserDTO loginUserInfo);
 	int signup(UserDTO user);
@@ -13,4 +16,6 @@ public interface UserDAO {
 	UserDTO updateUserPassword(UserDTO updateInfo);
 	
 	UserDTO myinfoPWCheck(UserDTO ppc);
+	
+	UserSportsDTO login2(UserDTO loginUserInfo);
 }

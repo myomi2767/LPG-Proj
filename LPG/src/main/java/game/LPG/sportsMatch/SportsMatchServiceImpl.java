@@ -13,20 +13,20 @@ public class SportsMatchServiceImpl implements SportsMatchService {
 	SportsMatchDAO dao;
 	
 	@Override
-	public int insert(SportsMatchIndivDTO sportsMatchIndiv, SportsMatchTeamDTO sportsMatchTeam,SportsMatchDTO sportsMatch) {
+	public int insert(SportsMatchDTO sportsMatch) {
 		int result = 0;
 		if(sportsMatch.getMchType().equals("0")) {
-			System.out.println("servicecs"+sportsMatchTeam);
+			System.out.println("servicecs"+sportsMatch);
 			result = dao.insert(sportsMatch);
 			System.out.println(result);
-			result= result+ dao.insertTeam(sportsMatchTeam);
+			result= result+ dao.insertTeam(sportsMatch);
 			System.out.println(result);
 			return result;
 		}else if(sportsMatch.getMchType().equals("1")){
-			System.out.println("servicecs"+sportsMatchIndiv);
+			System.out.println("servicecs"+sportsMatch);
 			result = dao.insert(sportsMatch);
 			System.out.println(result);
-			result= result+ dao.insertIndiv(sportsMatchIndiv);
+			result= result+ dao.insertIndiv(sportsMatch);
 			System.out.println(result);
 			return result;
 		}else {

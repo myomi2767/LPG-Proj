@@ -7,7 +7,6 @@ public interface TeamService {
 
 	//팀 생성
 	int insert(TeamDTO dto);
-
 	//팀원 신청현황
 	List<TeamMemberDTO> tmemberSearchList(int teamNo);
 	//팀원 수락하기

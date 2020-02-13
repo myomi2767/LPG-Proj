@@ -16,10 +16,14 @@ public class TeamDAOImpl implements TeamDAO {
 	SqlSession sqlSession;
 	
 	//팀 생성
+	@Override
 	public int insert(TeamDTO dto) {
 		return sqlSession.insert("game.LPG.soccerteam.teamcreate", dto);
 	}
-	
+	@Override
+	public int insertTM(TeamDTO dto) {
+		return sqlSession.insert("game.LPG.soccerteam.teamcreate2", dto);
+	}
 	//팀원 신청현황
 	@Override
 	   public List<TeamMemberDTO> tmemberList(int teamNo) {

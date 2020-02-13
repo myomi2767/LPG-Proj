@@ -1,5 +1,8 @@
 package game.LPG.user;
 
+import game.LPG.soccerteam.TeamMemberDTO;
+import game.LPG.userSports.UserSportsDTO;
+
 public interface UserService {	
 	UserDTO login(UserDTO loginUserInfo);
 	int signup(UserDTO signupInfo);
@@ -11,5 +14,6 @@ public interface UserService {
 	UserDTO updateUserPassword(UserDTO updateInfo);
 	
 	UserDTO myinfoPWCheck(UserDTO ppc);
+	UserSportsDTO login2(UserDTO loginUserInfo);
 }
 

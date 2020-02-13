@@ -17,7 +17,9 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	public int insert(TeamDTO dto) {
 		System.out.println("팀생성 service들어가는거 "+dto);
-		int result = dao.insert(dto);
+		int result = 0;
+		result = dao.insert(dto); 
+		result += dao.insertTM(dto);		
 		System.out.println("팀생성 service나오는거"+result);
 		return result;
 	}

@@ -6,19 +6,23 @@ public class UserSportsDTO {
 	private String sportsPosition;
 	private String sportsTend;
 	private String sportsFoot;
+	private String teamNo;
 	
 	public UserSportsDTO() {
 		
 	}
 
-	public UserSportsDTO(int sportsNo, String userId, String sportsPosition, String sportsTend, String sportsFoot) {
+	public UserSportsDTO(int sportsNo, String userId, String sportsPosition, String sportsTend, String sportsFoot,
+			String teamNo) {
 		super();
 		this.sportsNo = sportsNo;
 		this.userId = userId;
 		this.sportsPosition = sportsPosition;
 		this.sportsTend = sportsTend;
 		this.sportsFoot = sportsFoot;
+		this.teamNo = teamNo;
 	}
+
 
 	public int getSportsNo() {
 		return sportsNo;
@@ -60,11 +64,18 @@ public class UserSportsDTO {
 		this.sportsFoot = sportsFoot;
 	}
 
+	public String getTeamNo() {
+		return teamNo;
+	}
+
+	public void setTeamNo(String teamNo) {
+		this.teamNo = teamNo;
+	}
+
 	@Override
 	public String toString() {
 		return "UserSportsDTO [sportsNo=" + sportsNo + ", userId=" + userId + ", sportsPosition=" + sportsPosition
-				+ ", sportsTend=" + sportsTend + ", sportsFoot=" + sportsFoot + "]";
+				+ ", sportsTend=" + sportsTend + ", sportsFoot=" + sportsFoot + ", teamNo=" + teamNo + "]";
 	}
 
-	
 }

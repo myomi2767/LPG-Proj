@@ -7,7 +7,7 @@ public interface TeamDAO {
 
 	//팀 생성
 	int insert(TeamDTO dto);
-	
+	int insertTM(TeamDTO dto);
 	//팀원 신청현황
 	List<TeamMemberDTO> tmemberList(int teamNo);
 	

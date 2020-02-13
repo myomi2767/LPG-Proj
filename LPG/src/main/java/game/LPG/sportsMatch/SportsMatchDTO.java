@@ -19,6 +19,7 @@ public class SportsMatchDTO {
 	private String mchAbil;
 	private String mchType;
 	/*	team DTO */
+	private String teamNo;
 	private String teamName;
 	private String teamEmblem;
 	/*	teamMember - tmgrade*/
@@ -34,8 +35,8 @@ public class SportsMatchDTO {
 
 	public SportsMatchDTO(String mchNo, String sportsNo, String mchName, String mchDate, String mchDateStart,
 			String mchDateEnd, String mchPlay, String mchGrd, String mchPrice, String mchUrgent, String mchContent,
-			String mchGender, String mchShoes, String mchAbil, String mchType, String teamName, String teamEmblem,
-			String tmGrade, String grdName, String grdArea, String grdAddr) {
+			String mchGender, String mchShoes, String mchAbil, String mchType, String teamNo, String teamName,
+			String teamEmblem, String tmGrade, String grdName, String grdArea, String grdAddr) {
 		super();
 		this.mchNo = mchNo;
 		this.sportsNo = sportsNo;
@@ -52,6 +53,7 @@ public class SportsMatchDTO {
 		this.mchShoes = mchShoes;
 		this.mchAbil = mchAbil;
 		this.mchType = mchType;
+		this.teamNo = teamNo;
 		this.teamName = teamName;
 		this.teamEmblem = teamEmblem;
 		this.tmGrade = tmGrade;
@@ -59,24 +61,16 @@ public class SportsMatchDTO {
 		this.grdArea = grdArea;
 		this.grdAddr = grdAddr;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "SportsMatchDTO [mchNo=" + mchNo + ", sportsNo=" + sportsNo + ", mchName=" + mchName + ", mchDate="
 				+ mchDate + ", mchDateStart=" + mchDateStart + ", mchDateEnd=" + mchDateEnd + ", mchPlay=" + mchPlay
 				+ ", mchGrd=" + mchGrd + ", mchPrice=" + mchPrice + ", mchUrgent=" + mchUrgent + ", mchContent="
 				+ mchContent + ", mchGender=" + mchGender + ", mchShoes=" + mchShoes + ", mchAbil=" + mchAbil
-				+ ", mchType=" + mchType + ", teamName=" + teamName + ", teamEmblem=" + teamEmblem + ", tmGrade="
-				+ tmGrade + ", grdName=" + grdName + ", grdArea=" + grdArea + ", grdAddr=" + grdAddr + ", getMchNo()="
-				+ getMchNo() + ", getSportsNo()=" + getSportsNo() + ", getMchName()=" + getMchName() + ", getMchDate()="
-				+ getMchDate() + ", getMchDateStart()=" + getMchDateStart() + ", getMchDateEnd()=" + getMchDateEnd()
-				+ ", getMchPlay()=" + getMchPlay() + ", getMchGrd()=" + getMchGrd() + ", getMchPrice()=" + getMchPrice()
-				+ ", getMchUrgent()=" + getMchUrgent() + ", getMchContent()=" + getMchContent() + ", getMchGender()="
-				+ getMchGender() + ", getMchShoes()=" + getMchShoes() + ", getMchAbil()=" + getMchAbil()
-				+ ", getMchType()=" + getMchType() + ", getTeamName()=" + getTeamName() + ", getTeamEmblem()="
-				+ getTeamEmblem() + ", getTmGrade()=" + getTmGrade() + ", getGrdName()=" + getGrdName()
-				+ ", getGrdArea()=" + getGrdArea() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", mchType=" + mchType + ", teamNo=" + teamNo + ", teamName=" + teamName + ", teamEmblem="
+				+ teamEmblem + ", tmGrade=" + tmGrade + ", grdName=" + grdName + ", grdArea=" + grdArea + ", grdAddr="
+				+ grdAddr + "]";
 	}
 
 	public String getMchNo() {
@@ -245,6 +239,14 @@ public class SportsMatchDTO {
 
 	public void setGrdAddr(String grdAddr) {
 		this.grdAddr = grdAddr;
+	}
+
+	public String getTeamNo() {
+		return teamNo;
+	}
+
+	public void setTeamNo(String teamNo) {
+		this.teamNo = teamNo;
 	}
 
 	

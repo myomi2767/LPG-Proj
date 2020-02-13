@@ -106,13 +106,13 @@
 								<h4>경기타입:</h4>
 							</div>
 							<select id="mchPlay" style="margin-top: 10px" name="mchPlay">
-								<option value="8">4vs4 풋살
-								<option value="10">5vs5 풋살
-								<option value="12">6vs6 풋살
-								<option value="14">7vs7 풋살
-								<option value="16">8vs8 풋살
-								<option value="18">9vs9 축구
-								<option value="22">11vs11 축구
+								<option value="4vs4 풋살">4vs4 풋살
+								<option value="5vs5 풋살">5vs5 풋살
+								<option value="6vs6 풋살">6vs6 풋살
+								<option value="7vs7 풋살">7vs7 풋살
+								<option value="8vs8 풋살">8vs8 풋살
+								<option value="9vs9 축구">9vs9 축구
+								<option value="11vs11 축구">11vs11 축구
 							</select>
 						</div>
 					</div>
@@ -175,8 +175,10 @@
 							<div class="col-sm-2">
 								<h4>슈즈:</h4>
 							</div>
-							<input style="margin-top: 10px" type="checkbox" class="radiodiv" name="mchShoes" value="1">풋살화 
-							<input style="margin-top: 10px" type="checkbox" class="radiodiv" name="mchShoes" value="2">축구화
+							<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchShoes0" name="mchShoes" value="1">
+								<label for="mchShoes0">풋살화</label>
+							<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchShoes1" name="mchShoes" value="2">
+								<label for="mchShoes1">축구화</label>
 						</div>
 					</div>
 
@@ -219,12 +221,8 @@
 			$("#mchDateEnd").val(mchDateEnd).attr("selected","selected");
 			$("#mchPlay").val(mchPlay).attr("selected","selected");
 			$("input:radio[name='mchGender']:input[value='"+mchGender+"']").attr("checked",true); 
-			$("input:checkbox[name='mchAbil']").each(function(){
-				if(this.val()==mchAbil){
-					this.checked = true;
-				}
-			})
-			$("input:checkbox[name='mchShoes']:input[value='"+mchShoes+"']").attr("checked",true);  
+			$("input:radio[name='mchAbil']:input[value='"+mchAbil+"']").attr("checked",true); 
+			$("input:radio[name='mchShoes']:input[value='"+mchShoes+"']").attr("checked",true);
 			
 		});
 		

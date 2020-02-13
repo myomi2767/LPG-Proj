@@ -4,6 +4,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import game.LPG.soccerteam.TeamMemberDTO;
+import game.LPG.userSports.UserSportsDTO;
+
 @Repository
 public class UserDAOImpl implements UserDAO {
 	@Autowired
@@ -60,6 +63,10 @@ public class UserDAOImpl implements UserDAO {
 		UserDTO dto = sqlSession.selectOne("game.LPG.user.myinfoPWCheck", ppc);
 		return dto;
 	}
-	
-	
+	@Override
+	public UserSportsDTO login2(UserDTO loginUserInfo) {
+		UserSportsDTO su = sqlSession.selectOne("game.LPG.user.login2", loginUserInfo);
+		System.out.println(su);
+		return su;
+	}
 }
