@@ -2,6 +2,8 @@ package game.LPG.soccerteam;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ public class TeamController {
 	@Autowired
 	TeamService service;
 	
-	//ÆÀ¸í Áßº¹°Ë»ç
+	//íŒ€ëª… ì¤‘ë³µê²€ì‚¬
 	@RequestMapping(value="/team/idCheck.do",
 					method=RequestMethod.GET,
 					produces="application/text;charset=utf-8")
@@ -23,33 +25,86 @@ public class TeamController {
 		String result = "";
 		if(teamName.length()>=2) {
 			if(state) {
-				result = "»ç¿ë ºÒ°¡´É";
+				result = "ì‚¬ìš© ë¶ˆê°€ëŠ¥";
 			}else {
-				result = "»ç¿ë °¡´É";
+				result = "ì‚¬ìš© ê°€ëŠ¥";
 			}
 		}else {
-			result = "ÃÖ¼Ò 2±ÛÀÚ ÀÌ»ó";
+			result = "ìµœì†Œ 2ê¸€ì ì´ìƒ";
 		}
 		return result;
 	}
-	//ÆÀ »ı¼ºÆäÀÌÁö
+	//íŒ€ ìƒì„±í˜ì´ì§€
 	@RequestMapping(value="/team/create.do", method=RequestMethod.GET)
 	public String teamCreateView() {
 		return "teamCreate";
 	}
-	//ÆÀ »ı¼ºÇÏ±â
+	
+	//íŒ€ ìƒì„±í•˜ê¸°
 	@RequestMapping(value="/team/create.do", method=RequestMethod.POST)
 	public String teamCreate(TeamDTO dto) {
 		service.insert(dto);
 		return "redirect:/team/search.do";
 	}
-	//ÆÀ ¼öÁ¤ÆäÀÌÁö
-	@RequestMapping(value="/team/mody.do", method=RequestMethod.GET)
-	public String teamModyView(TeamDTO dto) {
-		return "teamMody";
+	
+	//íŒ€ì› ê°€ì…ì‹ ì²­í•˜ê¸°
+	@RequestMapping(value="/team/apply.do", method=RequestMethod.POST)
+	   public String teamapply(TeamMemberDTO dto) {
+	      service.teamapply(dto);
+	      return "redirect:/team/myteam.do";
+	   }
+	
+	//íŒ€ì› ì‹ ì²­í˜„í™©
+	@RequestMapping("/team/apsearch.do")
+	   public ModelAndView tmemberView(int teamNo) {
+	      ModelAndView mav = new ModelAndView();
+	      List<TeamMemberDTO> list = service.tmemberSearchList(teamNo);
+	      mav.addObject("tmemberlist", list);
+	      mav.setViewName("tmemberSearch");
+	      return mav;
+	   }
+	
+	//íŒ€ì› ìˆ˜ë½ê±°ì ˆ í•˜ê¸°
+	   @RequestMapping(value="/team/memdelete.do", method=RequestMethod.POST)
+	   public String memUpdate(HttpServletRequest request) {
+	      String[]teamNos = request.getParameterValues("teamNo");
+	      String action = request.getParameter("action");
+	      
+	      for(int i = 0; i < teamNos.length;i++) {
+	         System.out.println("teamNo=>"+teamNos[i]);
+	      }
+	      System.out.println("action=>"+action);
+	      //ìŠ¹ì¸ì‹œ
+	      if(action.equals("approve")) {
+	         service.tmemberUpdate(teamNos);
+	      }
+	      //ê±°ì ˆì‹œ
+	      else if (action.equals("deny")) {
+	         service.tmemreject(teamNos);
+	      }
+	      return "/team/apsearch.do";
+	   }
+	
+	//íŒ€ ìˆ˜ì •í˜ì´ì§€
+	@RequestMapping(value="/team/modyview.do", method=RequestMethod.GET)
+	public ModelAndView teamModyView(TeamDTO teaminfo) {
+		System.out.println("=============>"+teaminfo);
+		ModelAndView mav = new ModelAndView();
+		TeamDTO list = service.teaminfo(teaminfo);
+		System.out.println("==============>"+list);
+		mav.addObject("teaminfo", list);
+		mav.setViewName("teamMody");
+		return mav;
 	}
 	
-	//ÆÀ ÀüÃ¼ ¸ñ·ÏÁ¶È¸ÇÏ±â
+	//íŒ€ ì •ë³´ ìˆ˜ì •í•˜ê¸°
+	@RequestMapping(value="/team/teammody.do", method=RequestMethod.POST)
+	public String teamMody(TeamDTO dto) {
+		service.teamUpdate(dto);
+		return "redirect:/team/search.do";
+	}
+	
+	//íŒ€ ì „ì²´ ëª©ë¡ì¡°íšŒí•˜ê¸°
 	@RequestMapping("/team/search.do")
 	public ModelAndView teamSearchView() {
 		ModelAndView mav = new ModelAndView();
@@ -59,26 +114,68 @@ public class TeamController {
 		return mav;
 	}
 
-	//ÆÀ ¸ñ·Ï °Ë»öÇÏ±â
+	//íŒ€ ëª©ë¡ ê²€ìƒ‰í•˜ê¸°
 	@RequestMapping("/team/detailsearch.do")
 	public ModelAndView searchTeam(TeamDTO tds) {
 		ModelAndView mav = new ModelAndView();
 		List<TeamDTO> list = service.searchTeam(tds);
+		mav.addObject("teamGender", tds.getTeamGender());
+		mav.addObject("teamAge", tds.getTeamAge());
+		mav.addObject("teamLocation", tds.getTeamLocation());
+		mav.addObject("teamName", tds.getTeamName());
+		mav.addObject("teamNo", tds.getTeamNo());
 		mav.addObject("teamlist", list);
 		mav.setViewName("teamSearch");
 		return mav;
 	}
 	
-	//³» ÆÀ Á¤º¸º¸±â
+	//ë‚´ íŒ€ ì •ë³´ë³´ê¸°
 	@RequestMapping("/team/myteam.do")
+	public ModelAndView myteam(TeamDTO teaminfo, TeamMemberDTO tminfo) {
+		ModelAndView mav = new ModelAndView();
+		TeamDTO list = service.teaminfo(teaminfo);
+		List<TeamMemberDTO> tm = service.teaminfo(tminfo);
+		mav.addObject("teaminfo", list);
+		mav.addObject("tmlist", tm);
+		mav.setViewName("teamMyteam");
+		return mav;
+	}
+	
+	
+	/*@RequestMapping("/team/myteam.do")
 	public String myteam() {
 		return "teamMyteam";
-	}
+	}*/
 	
-	//ÆÀ ¸â¹ö µî±Şº¯°æ ÆäÀÌÁö
+	
+	//íŒ€ ë©¤ë²„ ë“±ê¸‰ë³€ê²½ í˜ì´ì§€
 	@RequestMapping("/team/Mgrade.do")
-	public String mgrade() {
-		return "teamMgrade";
+	public ModelAndView mgrade(TeamMemberDTO tminfo) {
+		ModelAndView mav = new ModelAndView();
+		List<TeamMemberDTO> tm = service.teaminfo(tminfo);
+		mav.addObject("tmlist", tm);
+		mav.setViewName("teamMgrade");
+		return mav;
 	}
 	
+	//íŒ€ ë©¤ë²„ ë“±ê¸‰ë³€ê²½í•˜ê¸°   "***********count"+meminfo.getMeminfo().get(i).getCount()+
+	@RequestMapping(value="/team/teamMemMody.do", method=RequestMethod.POST)
+	public String teamGradeMody(MemInfoModyDTO meminfo) {
+		for(int i=0;i<meminfo.getMeminfo().size();i++) {
+		System.out.println("***********backnum"+meminfo.getMeminfo().get(i).getBackNum()+
+							"**********tmGrade=>"+meminfo.getMeminfo().get(i).getTmGrade()+
+							"**********tmAbil=>"+meminfo.getMeminfo().get(i).getTmAbility()+
+							"**********tmTend=>"+meminfo.getMeminfo().get(i).getTmTend());}
+		service.teamMemberUpdate(meminfo);
+		return "redirect:/team/search.do";
+	}
+	
+	//ë©¤ë²„ ì •ë³´ë³´ê¸°
+	@RequestMapping("/team/memInfo.do")
+	public ModelAndView meminfoView(TeamMemberDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		TeamMemberDTO meminfo = service.timwonjungbo(dto);
+		mav.addObject("teammeminfo", meminfo);
+		return mav;
+	}
 }

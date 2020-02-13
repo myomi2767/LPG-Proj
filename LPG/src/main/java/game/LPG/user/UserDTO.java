@@ -16,16 +16,17 @@ public class UserDTO {
 	private String userEmail;
 	private String userEmailAgree;
 	private String userPoint;
+	private String sportsno;
 
 	private int checkValue;
 
 	public UserDTO() {
 		
 	}
-
+	
 	public UserDTO(String userId, String userPwd, String userName, String userNick, String userPhone, String userBirth,
 			String userAddr, String subAddr, String userSignDate, String userGender, String userEmail,
-			String userEmailAgree, String userPoint) {
+			String userEmailAgree, String userPoint, String sportsno, int checkValue) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -40,15 +41,17 @@ public class UserDTO {
 		this.userEmail = userEmail;
 		this.userEmailAgree = userEmailAgree;
 		this.userPoint = userPoint;
+		this.sportsno = sportsno;
+		this.checkValue = checkValue;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "UserDTO [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", userNick="
 				+ userNick + ", userPhone=" + userPhone + ", userBirth=" + userBirth + ", userAddr=" + userAddr
 				+ ", subAddr=" + subAddr + ", userSignDate=" + userSignDate + ", userGender=" + userGender
-				+ ", userEmail=" + userEmail + ", userEmailAgree=" + userEmailAgree + ", userPoint=" + userPoint + "]";
+				+ ", userEmail=" + userEmail + ", userEmailAgree=" + userEmailAgree + ", userPoint=" + userPoint
+				+ ", sportsno=" + sportsno + ", checkValue=" + checkValue + "]";
 	}
 
 	public String getUserId() {
@@ -160,4 +163,14 @@ public class UserDTO {
 	public void setCheckValue(int checkValue) {
 		this.checkValue = checkValue;
 	}
+
+	public String getSportsno() {
+		return sportsno;
+	}
+
+	public void setSportsno(String sportsno) {
+		this.sportsno = sportsno;
+	}
+	
+	
 }

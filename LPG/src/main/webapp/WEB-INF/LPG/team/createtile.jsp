@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset=UTF-8">
+	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style type="text/css">
 	  	.tbutton{
@@ -15,12 +15,6 @@
 	  	}
 	  </style>
 	  
-	  <script type="text/javascript">
-	  	
-	  </script>
-	  
-	  <!-- Main Stylesheet File -->
-	  <link href="/LPG/css/style.css" rel="stylesheet">
 	  <script>
     
 	    // 입력을 제한 할 특수문자의 정규식
@@ -56,6 +50,8 @@
 			})
 		})
 	</script>
+	
+	
 </head>
 <body>
 	<div class="container mtb">
@@ -74,7 +70,7 @@
 	            	<div class="row">
 	            	<div class="col-sm-2" ><h4>팀명</h4></div>
 	               <div class="col-lg-4">
-	              		<input type="text" name="teamName" class="form-control" id="teamName" placeholder="팀명을 입력해주세요" minlength="2">
+	              		<input type="text" name="teamName" class="form-control" id="teamName" placeholder="팀명을 입력해주세요" minlength="2" maxlength="5">
 	             	</div>
 	             	<div class="col-lg-4">
 	             	<span id="checkVal" style="color: red; position: relative;top: 5px"></span>
@@ -86,6 +82,7 @@
 					<div class="col-sm-2" ><h4>팀 지역</h4></div>
 					<div class="col-lg-7">
 						<select class="form-control" name="teamLocation">
+		            			<option value="지역선택">지역선택</option>
 								<option value="강서구">강서구</option>
 								<option value="강동구">강동구</option>
 								<option value="강남구">강남구</option>
@@ -120,6 +117,7 @@
 	            	<div class="col-sm-2" ><h4>연령 제한</h4></div>
 	               		<div class="col-lg-7">
 	              		     <select class="form-control" name="teamAge">
+		              				<option value="100">연령대선택</option>
 					              	<option value="0">제한 없음</option>
 									<option value="10">10대</option>
 									<option value="20">20대</option>
@@ -135,6 +133,7 @@
 					<div class="col-sm-2" ><h4>소속 유형</h4></div>
 						<div class="col-lg-7">
 							<select class="form-control" name="teamGender">
+		              			<option value="3">성별선택</option>
 					            <option value="0">남성</option>
 								<option value="1">혼성</option>
 								<option value="2">여성</option>

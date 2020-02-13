@@ -1,5 +1,6 @@
 package game.LPG.soccerteam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,27 +13,50 @@ public class TeamServiceImpl implements TeamService {
 	@Qualifier("teamDao")
 	TeamDAO dao;
 	
-	//�� ����
+	//팀 생성
 	@Override
 	public int insert(TeamDTO dto) {
-		return dao.insert(dto);
+		System.out.println("팀생성 service들어가는거 "+dto);
+		int result = dao.insert(dto);
+		System.out.println("팀생성 service나오는거"+result);
+		return result;
 	}
 
-	//���� �ߺ��˻�
+	//팀원 신청현황
+	@Override
+	   public List<TeamMemberDTO> tmemberSearchList(int teamNo) {
+	      List<TeamMemberDTO> list = null;
+	      list = dao.tmemberList(teamNo);
+	      return list;
+	   }
+	//가입 수락하기
+	public void tmemberUpdate(String[] teamNos) {
+        dao.tmemberUpdate(teamNos);
+     }
+     //가입 거절하기
+     public void tmemreject(String[] teamNos) {
+        dao.tmemreject(teamNos);
+     }
+     //가입 신청하기
+     @Override
+     public int teamapply(TeamMemberDTO dto) {
+        return dao.teamapply(dto);
+     }
+	
+	//팀명 중복검사
 	@Override
 	public boolean idCheck(String teamName) {
 		return dao.idCheck(teamName);
 	}
 	
-	//�� ��ü �˻�
+	//팀 전체 검색
 	@Override
 	public List<TeamDTO> teamSearchList() {
-		List<TeamDTO> list = null;
-		list = dao.teamList();
+		List<TeamDTO> list = dao.teamList();
 		return list;
 	}
 	
-	//�� ���� �˻�
+	//팀 조건 검색
 	@Override
 	public List<TeamDTO> searchTeam(TeamDTO tds){
 		List<TeamDTO> list = null;
@@ -43,5 +67,39 @@ public class TeamServiceImpl implements TeamService {
 		}
 		return list;
 	}
-
+	
+	//팀 정보수정
+	public int teamUpdate(TeamDTO dto) {
+		System.out.println("service들감"+dto);
+		int result =  dao.teamUpdate(dto);
+		System.out.println("service나감"+result);
+		return result;
+	}
+		
+	//팀 정보보기
+	public TeamDTO teaminfo(TeamDTO teaminfo) {
+		System.out.println("=============service"+teaminfo);
+		TeamDTO tm = dao.teamInfo(teaminfo);
+		return tm;
+	}
+	public List<TeamMemberDTO> teaminfo(TeamMemberDTO tminfo) {
+		List<TeamMemberDTO> tm = dao.teamInfo(tminfo);
+		return tm;
+	}
+	
+	//팀원 개인정보보기
+	public TeamMemberDTO timwonjungbo(TeamMemberDTO dto) {
+		TeamMemberDTO meminfo = dao.timwonjungbo(dto);
+		return meminfo;
+	}
+	
+	//팀원 정보 수정하기
+	public ArrayList<Integer> teamMemberUpdate(MemInfoModyDTO meminfo) {
+		System.out.println("service input dto"+meminfo);
+		ArrayList<Integer> result = dao.teamMemberUpdate(meminfo);
+		System.out.println("service output"+result);
+		return result;
+	}
+		
+	
 }

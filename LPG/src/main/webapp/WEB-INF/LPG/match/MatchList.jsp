@@ -67,13 +67,16 @@ ul {
 	
 </script>
 <script type="text/javascript">
-	
 	$(document).ready(function(){
 		$("#sub").on("click", function(){
-			/* location.href="/LPG/match/list.do?mchType="+${mchType}+"&mchPlay="+${mchPlay}+"&grdArea="
-					+${grdArea}+"&mchName="+${mchName}+"&mchDate="+${mchDate}; */
-			$.get("/LPG/match/list.do", {"mchName":$("#mchName").val(),"mchDate":$("#mchDate").val(),
-				"mchPlay":$("#mchPlay").val(),"mchType":$("#mchType"),"grdArea":$("#grdArea").val()});
+			grdArea = $("#area").val();
+			mchName = $("#mchName").val();
+			mchType = $("input:radio[name='mchType']:checked").val();
+			mchPlay = $("input:radio[name='mchPlay']:checked").val();
+			location.href="/LPG/match/list.do?mchType="+mchType+"&mchPlay="+mchPlay+"&grdArea="
+					+grdArea+"&mchName="+mchName+"&mchDate="+mchDate;
+			/* $.get("/LPG/match/list.do", {"mchName":$("#mchName").val(),"mchDate":$("#mchDate").val(),
+				"mchPlay":$("#mchPlay").val(),"mchType":$("#mchType"),"grdArea":$("#grdArea").val()}); */
 		});
 	});
 </script>
@@ -83,7 +86,7 @@ ul {
 	<!-- *****************************************************************************************************************
 	 TITLE & CONTENT
 	 ***************************************************************************************************************** -->
-	<form action="/LPG/match/list.do">
+	<form action="">
 		<div class="container mtb">
 			<div class="row centered">
 				<h2>경기일자</h2>
@@ -105,8 +108,8 @@ ul {
 				</div>
 				<div class="col-lg-2">
 					<h2>경기종목</h2>
-					<div id="mchPlay" class="form-group">
-						<input type="radio" id="all" name="mchPlay" value="22" checked>
+					<div class="form-group">
+						<input type="radio" id="all" name="mchPlay" value="" checked>
 						<label for="all">전체</label> 
 						<input type="radio" id="soccer"	name="mchPlay" value="축구"> 
 						<label for="soccer">축구</label> 
@@ -129,7 +132,7 @@ ul {
 				</div>
 			</div>
 			<div class="row centered">
-				<input type="submit" id="sub" value="매치검색" class="btn btn-theme"
+				<input type="button" id="sub" value="매치검색" class="btn btn-theme"
 					style="width: 50%">
 			</div>
 		</div>

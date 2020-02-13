@@ -51,5 +51,26 @@ public class SportsMatchServiceImpl implements SportsMatchService {
 		SportsMatchDTO list = dao.MatchTeamDetail(mchNo); 
 		return list;
 	}
+	
+	@Override
+	public int backUpNumAdd(SportsMatchTeamDTO smt) {
+		System.out.println("서비스:"+smt);
+		return dao.backUpNumAdd(smt);
+	}
+
+	@Override
+	public int matchJoin(SportsMatchTeamDTO smt) {
+		System.out.println("서비스:"+smt);
+		int result = dao.matchJoin(smt);
+		System.out.println("서비스 결과:"+result);
+		return result;
+	}
+
+	@Override
+	public SportsMatchDTO matchChange(String mchNo) {
+		SportsMatchDTO sm = dao.matchChange(mchNo);
+		System.out.println(sm);
+		return sm;
+	}
 
 }

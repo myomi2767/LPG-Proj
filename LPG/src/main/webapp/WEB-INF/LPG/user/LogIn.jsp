@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
 <title>Insert title here</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-<title>Login Demo - Kakao JavaScript SDK</title>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<title>LPG - Let's Play Game</title>
+
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id"
 	content="998532528328-n7pq2nc871sqdjctj1e8ng905pcu6kkg.apps.googleusercontent.com">
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -208,19 +208,19 @@ input:focus {
 				name="userPwd" placeholder="Password" required="required" maxlength="15" />
 			<input type="submit" class="btn btn-primary btn-block btn-large" value="Login"/>
 
-			<a href="/LPG/user/findId.do" class="find"><small>¾ÆÀÌµğÃ£±â</small></a> 
+			<a href="/LPG/user/findId.do" class="find"><small>ì•„ì´ë””ì°¾ê¸°</small></a> 
 			<span class="bar" aria-hidden="true">|</span> 
-				<a href="/LPG/user/findId.do" class="find"><small>ºñ¹Ğ¹øÃ£±â</small></a> 
+				<a href="/LPG/user/findId.do" class="find"><small>ë¹„ë°€ë²ˆì°¾ê¸°</small></a> 
 				<span class="bar"aria-hidden="true">|</span> 
-				<a href="/LPG/user/signagree.do" class="find"><small>È¸¿ø°¡ÀÔ</small></a>
+				<a href="/LPG/user/signagree.do" class="find"><small>íšŒì›ê°€ì…</small></a>
 			<br />
 			<br /> <a id="kakao-login-btn"></a> <a
 				href="http://developers.kakao.com/logout"></a>
 			<script type='text/javascript'>
 				//<![CDATA[
-				// »ç¿ëÇÒ ¾ÛÀÇ JavaScript Å°¸¦ ¼³Á¤ÇØ ÁÖ¼¼¿ä.
+				// ì‚¬ìš©í•  ì•±ì˜ JavaScript í‚¤ë¥¼ ì„¤ì •í•´ ì£¼ì„¸ìš”.
 				Kakao.init('1ec6aa811dd980aedb8e3b06b0d9a223');
-				// Ä«Ä«¿À ·Î±×ÀÎ ¹öÆ°À» »ı¼ºÇÕ´Ï´Ù.
+				// ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸ ë²„íŠ¼ì„ ìƒì„±í•©ë‹ˆë‹¤.
 				Kakao.Auth.createLoginButton({
 					container : '#kakao-login-btn',
 					success : function(authObj) {

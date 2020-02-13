@@ -11,6 +11,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public UserDTO login(UserDTO loginUserInfo) {
 		UserDTO dto = sqlSession.selectOne("game.LPG.user.login", loginUserInfo);
+		System.out.println(dto);
 		return dto;
 	}
 	@Override

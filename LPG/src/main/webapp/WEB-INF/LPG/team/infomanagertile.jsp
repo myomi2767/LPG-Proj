@@ -1,3 +1,5 @@
+<%@page import="game.LPG.soccerteam.TeamMemberDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="game.LPG.soccerteam.TeamDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -7,29 +9,7 @@
 <head>
 <meta charset="utf-8">
 <title>Solid - Bootstrap Business Template</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="" name="keywords">
-<meta content="" name="description">
 
-<!-- Favicons -->
-<link href="/LPG/img/favicon.png" rel="icon">
-<link href="/LPG/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-<!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900"
-	rel="stylesheet">
-
-<!-- Bootstrap CSS File -->
-<link href="/LPG/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Libraries CSS Files -->
-<link href="/LPG/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="/LPG/lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
-<link href="/LPG/lib/hover/hoverex-all.css" rel="stylesheet">
-
-<!-- Main Stylesheet File -->
-<link href="/LPG/css/style.css" rel="stylesheet">
 
 <style type="text/css">
 table, th, td {
@@ -138,6 +118,9 @@ table, th, td {
 	margin-left: auto;
 	margin-right: auto;
 	}
+	#teamyear tr th{
+	width: 20%;
+	}
 	.year{
 	width: 100%;
 	}
@@ -150,6 +133,14 @@ table, th, td {
 	.matchteam{
 	float: left;
 	margin-left: 30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	}
+	.mrecord{
+	height: 35px;
+	}
+	#team_info, #team_manner{
+	padding-left: 20px;
 	}
 </style>
 <!-- 도넛그래프 -->
@@ -216,51 +207,113 @@ table, th, td {
 		chart.draw(data, options);
 	};
 </script>
-</head>
+<link rel="stylesheet" href="../magnific-popup/magnific-popup.css">
+<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+<!-- Magnific Popup core JS file -->
+<script src="../magnific-popup/jquery.magnific-popup.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+   $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+      disableOn: 700,
+      type: 'iframe',
+      mainClass: 'mfp-fade',
+      removalDelay: 160,
+      preloader: false,
+      
+
+      fixedContentPos: false
+   });
+});
+</script>
+
+</head>
 <body>
-<% ArrayList<TeamDTO> list = (ArrayList<TeamDTO>)request.getAttribute("teamlist");%>
+<% TeamDTO list = (TeamDTO)request.getAttribute("teaminfo");%>
+<% ArrayList<TeamMemberDTO> tmlist = (ArrayList<TeamMemberDTO>)request.getAttribute("tmlist");%>
+
+<%
+String teamage = "";
+if(list.getTeamAge().equals("0")){
+	teamage = "제한없음";
+}else if(list.getTeamAge().equals("10")){
+	teamage = "10대";
+}else if(list.getTeamAge().equals("20")){
+	teamage = "20대";
+}else if(list.getTeamAge().equals("30")){
+	teamage = "30대";
+}else if(list.getTeamAge().equals("40")){
+	teamage = "40대";
+}else if(list.getTeamAge().equals("50")){
+	teamage = "50대이상"; 	
+}
+String ts = "";
+if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
+	ts="없음";
+}else if(list.getTeamStrategy().equals("541")){
+	ts = "5-4-1";
+}else if(list.getTeamStrategy().equals("532")){
+	ts = "5-3-2";
+}else if(list.getTeamStrategy().equals("451")){
+	ts = "4-5-1";
+}else if(list.getTeamStrategy().equals("442")){
+	ts = "4-4-2";
+}else if(list.getTeamStrategy().equals("433")){
+	ts = "4-3-3";
+}else if(list.getTeamStrategy().equals("361")){
+	ts = "3-6-1";
+}else if(list.getTeamStrategy().equals("352")){
+	ts = "3-5-2";
+}else if(list.getTeamStrategy().equals("343")){
+	ts = "3-4-3";
+}
+%>
 	<div class="container mt" style="margin-bottom: 50px">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1 centered">
 				<div id="carousel-example-generic" class="carousel slide"
 					data-ride="carousel">
 					<div>
-						<a href="/LPG/team/Mgrade.do" class="btn btn-theme" style="float: right">팀원 등급 변경</a>
-						<a href="/LPG/team/mody.do" class="btn btn-theme" style="float: right">팀 정보 수정</a>
-						<a href="#" class="btn btn-theme" style="float: right">가입신청 확인</a>
+						<input type="button"  class="btn btn-theme" style="float: right" value="팀원 등급 변경" onclick="location.href='/LPG/team/Mgrade.do?teamNo=<%= list.getTeamNo()%>'">
+						<input type="button" class="btn btn-theme" style="float: right" value="팀 정보수정" onclick="location.href='/LPG/team/modyview.do?teamNo=<%= list.getTeamNo()%>'">
+						<a href="/LPG/team/apsearch.do" class="btn btn-theme" style="float: right">가입신청 확인</a>
 					</div>
 					<div style="clear: both;">
 						<div class="team_img">
-							<div class="emblum"></div>
-							<h2 class="team_info_name">팀 이름</h2>
+							<div class="emblum" id="emblum">
+							<%-- <img  class="img-circle" style="width: 60px;height: 70px"
+									src="/erp/images/<%=user.getProfile_photo() %>"  /> --%>
+							<img alt="" src="" title="사진을 넣어주세요">
+							</div>
+							<h2 class="team_info_name"><%= list.getTeamName() %></h2>
 						</div>
 						<div>
 							<table class="team_info">
 								<tr class="ttrr">
-									<td><label>지역</label> | <span>서울</span></td>
-									<td><label>팀원 수</label> | <span>00명</span></td>
+									<td><label>지역</label> | <span><%= list.getTeamLocation() %></span></td>
+									<td><label>팀원 수</label> | <span> <%= list.getCount() %>명</span></td>
 								</tr>
 								<tr class="ttrr">
-									<td><label>주 활동구장</label> | <span>어디</span></td>
-									<td><label>경기유형</label> | <span>축구</span></td>
+									<td><label>주 활동구장</label> | <span></span></td>
+									<td><label>경기유형</label> | <span><%= list.getTeamPre() %></span></td>
 								</tr>
 								<tr class="ttrr">
-									<td><label>실력</label> | <span>중</span></td>
-									<td><label>연령 제한</label> | <span>20대</span></td>
+									<td><label>실력</label> | <span><%= list.getTeamAbility() %></span></td>
+									<td><label>연령 제한</label> | <span><%= teamage %></span></td>
 								</tr>
 								<tr class="ttrr">
-									<td><label>유니폼 설명</label> | <span>검빨색</span></td>
-									<td><label>주 전술</label> | <span>3-3-4</span></td>
+									<td><label>유니폼 설명</label> | <span><%= list.getTeamUniform() %></span></td>
+									<td><label>주 전술</label> | <span><%= ts %></span></td>
 								</tr>
 								<tr class="ttr">
 									<td colspan="2">
-										<div id="team_info">팀 소개글을 입력해주세요</div>
+										<div id="team_info"><%= list.getTeamIntroduce() %></div>
 									</td>
 								</tr>
 								<tr class="ttr">
 									<td colspan="2">
-										<div id="team_manner">팀 매너를 입력해주세요</div>
+										<div id="team_manner"><%= list.getTeamManner() %></div>
 									</td>
 								</tr>
 							</table>
@@ -272,26 +325,17 @@ table, th, td {
 									<th class="ttth">등급</th>
 									<th class="ttth">포지션</th>
 								</tr>
-								<tr class="tttr" onclick="window.open('/team/html/team_member.html')">
-									<td class="tttd">김00</td>
-									<td class="tttd">매니저</td>
-									<td class="tttd">미드필더</td>
+								<%
+								for(int i=0;i<tmlist.size();i++){
+									TeamMemberDTO tml = tmlist.get(i);
+									
+								%><%-- onclick="window.open('/LPG/team/memInfo.do?tmNo=<%= tml.getTmNo() %>" --%>
+								<tr class="tttr" >
+									<td class="tttd"><a class="popup-vimeo fo" href="../team_membe.jsp"></a></td>
+									<td class="tttd"><a class="popup-vimeo fo" href="../team_membe.jsp"><%= tml.getTmGrade() %></a></td>
+									<td class="tttd"><a class="popup-vimeo fo" href="../team_membe.jsp"><%= tml.getTmTend() %></a></td>
 								</tr>
-								<tr class="tttr" onclick="window.open('/team/html/team_member.html')">
-									<td class="tttd">이00</td>
-									<td class="tttd">주장</td>
-									<td class="tttd">공격수</td>
-								</tr>
-								<tr class="tttr" onclick="window.open('/team/html/team_member.html')">
-									<td class="tttd">박00</td>
-									<td class="tttd">팀원</td>
-									<td class="tttd">수비수</td>
-								</tr>
-								<tr class="tttr" onclick="window.open('/team/html/team_member.html')">
-									<td class="tttd">최00</td>
-									<td class="tttd">팀원</td>
-									<td class="tttd">골키퍼</td>
-								</tr>
+								<% } %>
 							</table>
 						</div>
 						<div style="margin-top: 30px;">
@@ -300,7 +344,7 @@ table, th, td {
 							<div id="top_x_div"
 								style="width: 60%; height: 250px; float: left;"></div>
 						</div>
- 						
+ 				<div style="margin-top: 350px">
  						<table id="teamyear">
 		<tr>
 			<th><input type="button" class="year" value="2020년"></th>
@@ -309,11 +353,10 @@ table, th, td {
 			<th><input type="button" class="year" value="2023년"></th>
 			<th><input type="button" class="year" value="2024년"></th>
 		</tr>
-	</table>
-	<table id="team_month_result">
+	
 		<tr>
 			<td>1~3월</td>
-			<td>
+			<td  colspan="4" class="mrecord">
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs A팀" ></a>
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs B팀"></a>
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs C팀"></a>
@@ -322,14 +365,14 @@ table, th, td {
 		</tr>
 		<tr>
 			<td>4~6월</td>
-			<td>
+			<td  colspan="4" class="mrecord">
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs A팀"></a>
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs B팀"></a>
 			</td>
 		</tr>
 		<tr>
 			<td>7~9월</td>
-			<td>
+			<td  colspan="4" class="mrecord">
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs A팀"></a>
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs B팀"></a>
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs C팀"></a>
@@ -337,7 +380,7 @@ table, th, td {
 		</tr>
 		<tr>
 			<td>10~12월</td>
-			<td>
+			<td  colspan="4" class="mrecord">
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs A팀"></a>
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs B팀"></a>
 				<a href="#" target="_blank"><input type="button" class="matchteam" value="vs C팀"></a>
@@ -345,7 +388,7 @@ table, th, td {
 			</td>
 		</tr>
 	</table>
- 						
+ 	</div>		
  						
 					</div>
 					

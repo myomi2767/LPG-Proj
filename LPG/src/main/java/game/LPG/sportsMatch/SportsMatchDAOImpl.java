@@ -13,7 +13,6 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 	
 	@Override
 	public int insert(SportsMatchDTO sportsMatch) {
-		
 		System.out.println(sportsMatch);
 		int result = sqlSession.insert("game.LPG.sportsMatch.insert", sportsMatch);
 		System.out.println("insert"+result);
@@ -60,6 +59,30 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 	public SportsMatchDTO MatchTeamDetail(String mchNo) {
 		SportsMatchDTO list = (SportsMatchDTO) sqlSession.selectOne("game.LPG.sportsMatch.matchTeamDetail", mchNo);
 		return list;
+	}
+	
+	@Override
+	public int backUpNumAdd(SportsMatchTeamDTO smt) {
+		System.out.println("dao:"+smt);
+		int result = sqlSession.update("game.LPG.sportsMatch.backUpNum", smt);
+		System.out.println("dao:"+result);
+		return result;
+	}
+
+	@Override
+	public int matchJoin(SportsMatchTeamDTO smt) {
+		System.out.println("dao:"+smt);
+		int result = sqlSession.insert("game.LPG.sportsMatch.matchJoin", smt);
+		System.out.println(result);
+		return result;
+	}
+
+	@Override
+	public SportsMatchDTO matchChange(String mchNo) {
+		System.out.println("dao:"+mchNo);
+		SportsMatchDTO sm = sqlSession.selectOne("game.LPG.sportsMatch.mchNoSearch", mchNo);
+		System.out.println("dao:"+sm);
+		return sm;
 	}
 	
 }

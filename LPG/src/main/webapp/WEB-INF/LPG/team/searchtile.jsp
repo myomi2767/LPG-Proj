@@ -128,23 +128,24 @@
 		.pagination span:hover:after{position: absolute; left:0; right:0; bottom: 0; top: 0;border: 1px solid #006d14; content: ""; display: block;}
  
   </style>
-  <!-- Main Stylesheet File -->
-  <link href="/LPG/css/style.css" rel="stylesheet">
 </head>
 
 <script type="text/javascript">
 	window.onload=function(){
 		document.getElementById("tss").click();
 		
-		
-				
+		teamGender = "${teamGender}"
+		teamAge = "${teamAge}"
+		teamLocation = "${teamLocation}"
+		teamName = "${teamName}"
+
 		if(teamGender==""){
 			teamGender="3";
 		}else{
 			form.teamGender.value = "<%=request.getParameter("teamGender")%>";
 		}
 		if(teamAge==""){
-			teamAge="선택";
+			teamAge="100";
 		}else{
 			form.teamAge.value = "<%=request.getParameter("teamAge")%>";
 		}
@@ -154,7 +155,7 @@
 			form.teamLocation.value = "<%=request.getParameter("teamLocation")%>";
 		}
 		if(teamName==""){
-			teamName="";
+			teamName="팀명을 입력해주세요";
 		}else{
 			form.teamName.value = "<%=request.getParameter("teamName")%>";
 		}
@@ -181,31 +182,6 @@
 		})
 	})
 </script>
-<!-- <script type="text/javascript">
-function search(){
-teamGender = "${teamGender}"
-	teamAge = "${teamAge}"
-	teamLocation = "${teamLocation}"
-	
-	if(teamGender==""){
-		teamGender="성별"
-	}
-	$("#teamGender").val(teamGender).attr("selected", "selected")
-
-	if(teamAge==""){
-		teamAge="선택"
-	}
-	$("#teamAge").val(teamAge).attr("selected", "selected")
-	
-	if(teamLocation==""){
-		teamLocation="지역선택"
-	}
-	$("#teamLocation").val(teamLocation).attr("selected", "selected")
-	
-}
-</script> -->
-
-
 <body>
 <% ArrayList<TeamDTO> list = (ArrayList<TeamDTO>)request.getAttribute("teamlist");%>
 
@@ -223,7 +199,7 @@ teamGender = "${teamGender}"
 				<div class="form-group" style="width: 100px; float: left;">
 	              <label>소속 유형</label>
 		              <select class="form-control" name="teamGender" id="teamGender">
-		              			<option value="3">성별</option>
+		              			<option value="3" selected="selected">성별</option>
 					            <option value="0">남성</option>
 								<option value="1">혼성</option>
 								<option value="2">여성</option>
@@ -232,7 +208,7 @@ teamGender = "${teamGender}"
 				<div class="form-group" style="width: 120px; float: left; margin-left: 40px; margin-right: 40px;">
 	              <label>연령 제한</label>
 		              <select class="form-control" name="teamAge" id="teamAge">
-		              				<option value="선택">선택</option>
+		              				<option value="100" selected="selected">선택</option>
 					              	<option value="0">제한 없음</option>
 									<option value="10">10대</option>
 									<option value="20">20대</option>
@@ -244,7 +220,7 @@ teamGender = "${teamGender}"
 				<div class="form-group" style="width: 120px; float: left;">
 	            	<label>팀 지역</label>
 		            	<select class="form-control" name="teamLocation" id="teamLocation">
-		            				<option value="지역선택">선택</option>
+		            				<option value="지역선택" selected="selected">선택</option>
 									<option value="강서구">강서구</option>
 									<option value="강동구">강동구</option>
 									<option value="강남구">강남구</option>
@@ -305,7 +281,7 @@ teamGender = "${teamGender}"
 				}else if(row.getTeamAge().equals("40")){
 					teamage = "40대";
 				}else if(row.getTeamAge().equals("50")){
-					teamage = "50대이상";
+					teamage = "50대이상"; 	
 				}
 				
 				if(row.getTeamGender().equals("0")){
@@ -316,8 +292,7 @@ teamGender = "${teamGender}"
 					teamgender = "여성";
 				}
 			%>
-			<!-- location.href='http://localhost:8088/LPG/team/myteam.do' -->
-			<tr class="tttr" onclick="location.href='/LPG/team/myteam.do'">
+			<tr class="tttr" onclick="location.href='/LPG/team/myteam.do?teamNo=<%= row.getTeamNo()%>'">
 				<td class="tttd"><%= row.getTeamNo() %></td>
 		    	<td class="tttd"><%= row.getTeamName() %></td>
 		    	<td class="tttd">
@@ -328,6 +303,7 @@ teamGender = "${teamGender}"
 		    					<p>지역 : <%= row.getTeamLocation() %></p>
 		    				</div>
 		    				<div class="c">
+		    				<%-- <%= row.getCount() %> --%>
 		    					<p>팀원 수 : </p>
 		    				</div>
 		    			</div>

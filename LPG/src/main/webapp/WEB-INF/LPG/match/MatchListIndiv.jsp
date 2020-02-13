@@ -56,19 +56,12 @@ th, td {
 		<div class="portfolio-centered container">
 			<div class="recentitems" data-animate="fadeIn">
 				<table>
-					<thead>
-						<tr>
-							<th><h4>순번</h4></th>
-							<th><h4>매치</h4></th>
-						</tr>
-					</thead>
 					<tbody>
 						<% for(int i=0;i<list.size();i++){
 							SportsMatchDTO match = list.get(i);
 						%>
 						
 						<tr>
-							<td><%= i+1 %></td>
 							<td>
 								<div class="graphic-design">
 									<div class="he-wrap tpl6">
@@ -86,9 +79,10 @@ th, td {
 											</div>
 										</div>
 										<div class="he-view">
-											<div class="bg a0">
+											<div id="detailGo" class="bg a0">
 												<img src="/LPG/img/portfolio/portfolio_09.jpg" alt="구장사진"
 													class="myimg">
+												<input type="hidden" id="mchNo" name="mchNo" value="<%= match.getMchNo() %>">
 											</div>
 											<!-- he bg -->
 										</div>
@@ -109,6 +103,13 @@ th, td {
 
 	</div>
 	<!--/Portfoliowrap -->
-
+	<script type="text/javascript">
+		mchNo = $("#mchNo").val();
+		$(document).ready(function() {
+			$("#detailGo").on("click", function(){
+				location.href="/LPG/match/mchTeamDetail.do?mchNo="+mchNo;
+			});
+		});
+	</script>
 </body>
 </html>

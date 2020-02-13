@@ -1,3 +1,4 @@
+<%@page import="game.LPG.soccerteam.TeamDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,41 +15,42 @@
   		font-size: 20pt;
   	}
   </style>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-  <!-- Favicons -->
-  <link href="/LPG/img/favicon.png" rel="icon">
-  <link href="/LPG/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900" rel="stylesheet">
-
-  <!-- Bootstrap CSS File -->
-  <link href="/LPG/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="/LPG/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/LPG/lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
-  <link href="/LPG/lib/hover/hoverex-all.css" rel="stylesheet">
-
-  <!-- Main Stylesheet File -->
-  <link href="/LPG/css/style.css" rel="stylesheet">
 
 </head>
-
 <body>
+<% TeamDTO list = (TeamDTO)request.getAttribute("teaminfo");%>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		
+		teamLocation = "<%= list.getTeamLocation()%>"
+		teamAge = "<%= list.getTeamAge()%>"
+		teamPre = "<%= list.getTeamPre()%>"
+		teamGender = "<%= list.getTeamGender()%>"
+		teamStrategy = "<%= list.getTeamStrategy()%>"
+		teamAbility = "<%= list.getTeamAbility()%>"
+		memberPrivate = "<%= list.getMemberPrivate()%>"
+			$("#teamLocation").val(teamLocation).attr("selected","selected") 
+			$("#teamAge").val(teamAge).attr("selected","selected") 
+			$("#teamPre").val(teamPre).attr("selected","selected") 
+			$("#teamGender").val(teamGender).attr("selected","selected") 
+			$("#teamStrategy").val(teamStrategy).attr("selected","selected")
+			$("#teamAbility").val('teamAbility').attr("checked","checked") 
+			$("#memberPrivate").val('memberPrivate').prop("checked","checked") 
+			
+	})
+</script>
 
   <div class="container mtb">
     <div class="row">
       <div class="col-lg-12">
-        <form class="form-horizontal style-form" action="/LPG/team/mody.do" method="POST">
+        <form class="form-horizontal style-form" action="/LPG/team/teammody.do" method="post">
+        	<input type="hidden" name="teamNo" value="<%=list.getTeamNo()  %>">
             <div class="form-group">
 	            <div class="row">
 	            	<div class="col-sm-2" ><h4>팀명</h4></div>
 		            <div class="col-lg-7">
-		            	<input type="text" name="teamName" class="form-control" id="contact-name" disabled="disabled">
+		            	<input type="text" name="teamName" class="form-control" id="teamName" disabled="disabled" placeholder="<%= list.getTeamName() %>">
 		            </div>
 	            </div>
             </div>
@@ -56,7 +58,7 @@
 				<div class="row">
 				<div class="col-sm-2" ><h4>팀 지역</h4></div>
 				<div class="col-lg-7">
-					<select class="form-control" name="teamLocation">
+					<select class="form-control" name="teamLocation" id="teamLocation">
 								<option value="강서구">강서구</option>
 								<option value="강동구">강동구</option>
 								<option value="강남구">강남구</option>
@@ -90,13 +92,13 @@
             	<div class="row">
             	<div class="col-sm-2" ><h4>연령 제한</h4></div>
                		<div class="col-lg-7">
-              		     <select class="form-control" name="teamAge">
-				              	<option value="0">제한 없음</option>
-								<option value="10">10대</option>
-								<option value="20">20대</option>
-								<option value="30">30대</option>
-								<option value="40">40대</option>
-								<option value="50">50대이상</option>
+              		     <select class="form-control" name="teamAge" id="teamAge">
+					              	<option value="0" selected="selected">제한 없음</option>
+									<option value="10">10대</option>
+									<option value="20">20대</option>
+									<option value="30">30대</option>
+									<option value="40">40대</option>
+									<option value="50">50대이상</option>
 				              </select>               
              		</div>		           
               	</div>
@@ -105,11 +107,11 @@
 				<div class="row">
 				<div class="col-sm-2" ><h4>소속 유형</h4></div>
 					<div class="col-lg-7">
-						<select class="form-control" name="teamGender">
-				             <option value="0">남성</option>
-							 <option value="1">혼성</option>
-							 <option value="2">여성</option>
-				           </select>
+						<select class="form-control" name="teamGender" id="teamGender">
+					        <option value="0" selected="selected">남성</option>
+							<option value="1">혼성</option>
+							<option value="2">여성</option>
+				        </select>
 					</div>
 				</div>
 			</div>
@@ -118,8 +120,8 @@
 				<div class="row">
 					<div class="col-sm-2" ><h4>주 경기 유형</h4></div>
 					<div class="col-lg-7">
-						<select class="form-control" name="teamPre">
-						        <option value="축구">축구</option>
+						<select class="form-control" name="teamPre" id="teamPre">
+						        <option value="축구" selected="selected">축구</option>
 								<option value="풋살">풋살</option>
 					        </select>
 			        </div>
@@ -130,7 +132,8 @@
 				<div class="row">
 					<div class="col-sm-2" ><h4>주 전술</h4></div>
 					<div class="col-lg-7">
-						<select class="form-control" name="teamStrategy">
+						<select class="form-control" name="teamStrategy" id="teamStrategy">
+							<option value="000" selected="selected">선택하기</option>
 							<option value="541">5-4-1</option>
 							<option value="532">5-3-2</option>
 							<option value="451">4-5-1</option>
@@ -146,9 +149,9 @@
 			<div class="form-group">
             	<div class="row">
 	            	<div class="col-sm-2" ><h4>팀 실력</h4></div>
-	               	<div class="col-lg-7" style="position: relative; top: 8px">
+	               	<div class="col-lg-7" style="position: relative; top: 8px" id="teamAbility">
 		              	<input type="checkbox" name="teamAbility" value="상" style="margin-left: 2%" id="checkbox-1-1"><label for="checkbox-1-1">상</label>
-			            <input type="checkbox" name="teamAbility" value="중" style="margin-left: 15%" id="checkbox-1-2"><label for="checkbox-1-2">중</label>
+			            <input type="checkbox" name="teamAbility" value="중" style="margin-left: 15%" id="checkbox-1-2" checked="checked"><label for="checkbox-1-2">중</label>
 			            <input type="checkbox" name="teamAbility" value="하" style="margin-left: 15%" id="checkbox-1-3"><label for="checkbox-1-3">하</label>
 	             	</div>		           
               	</div>
@@ -165,7 +168,7 @@
 	            <div class="row">
 	            	<div class="col-sm-2" ><h4>유니폼 색상</h4></div>
 		            <div class="col-lg-7">
-		            	<input type="text" name="teamUniform" class="form-control" id="contact-name" placeholder="유니폼 색상을 입력해주세요">
+		            	<input type="text" name="teamUniform" class="form-control" id="teamUniform" placeholder="유니폼 색상을 입력해주세요" value="<%= list.getTeamUniform()%>">
 		            </div>
 	            </div>
             </div>
@@ -174,7 +177,7 @@
            	  <div class="row">
 				<div class="col-sm-2"><h4>팀 소개글</h4></div>
 				<div class="col-lg-7">
-              <textarea class="form-control" name="teamIntroduce" placeholder="팀 소개글을 입력해주세요" rows="3"></textarea>
+              <textarea class="form-control" name="teamIntroduce" id="teamIntroduce" placeholder="팀 소개글을 입력해주세요" rows="3"><%= list.getTeamIntroduce()%></textarea>
               </div>
             </div>
             </div>
@@ -183,7 +186,7 @@
            	  <div class="row">
 				<div class="col-sm-2"><h4>팀 매너</h4></div>
 				<div class="col-lg-7">
-		            <input type="text" name=teamManner class="form-control" id="contact-name">
+		            <input type="text" name=teamManner class="form-control" id="teamManner" placeholder="팀 매너를 입력해주세요" value="<%= list.getTeamManner()%>">
 		        </div>
             </div>
             </div>
@@ -192,7 +195,7 @@
 				<div class="row">
 				<div class="col-sm-2"><h4>팀 앰블럼</h4></div>
 				<div class="col-lg-7">
-					<input type="file" name="teamEmblem">
+					<input type="file" name="teamEmblem" id="teamEmblem" >
 				</div>
 				</div>
 			</div>
@@ -200,10 +203,10 @@
 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-2" ><h4>팀원 정보 공개여부</h4></div>
-					<div class="col-lg-7" style="position: relative; top: 8px">
-						<input type="radio" name="memverPrivate" id="checkbox-info-1" name="openinfo" value="공개" style="margin-left: 2%">
+					<div class="col-lg-7" style="position: relative; top: 8px" id="memberPrivate">
+						<input type="radio" name="memberPrivate" id="checkbox-info-1" value="0" style="margin-left: 2%" checked="checked">
 				 		<label for="checkbox-info-1">공개</label>
-				 		<input type="radio" name="memverPrivate" id="checkbox-info-2" name="openinfo" value="비공개" style="margin-left: 10%">
+				 		<input type="radio" name="memberPrivate" id="checkbox-info-2" value="1" style="margin-left: 10%">
 				 		<label for="checkbox-info-2">비공개</label>
 			 		</div>
 				</div>

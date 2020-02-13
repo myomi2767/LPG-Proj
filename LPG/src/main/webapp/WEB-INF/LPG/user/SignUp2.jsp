@@ -9,36 +9,10 @@
 <meta content="" name="keywords">
 <meta content="" name="description">
 
-<!-- Favicons -->
-<link href="img/favicon.png" rel="icon">
-<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-<!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900"
-	rel="stylesheet">
-
-<!-- Bootstrap CSS File -->
-<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Libraries CSS Files -->
-<link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
-<link href="lib/hover/hoverex-all.css" rel="stylesheet">
-
-<!-- Main Stylesheet File -->
-<link href="css/style.css" rel="stylesheet">
-
-<!-- =======================================================
-    Template Name: Solid
-    Template URL: https://templatemag.com/solid-bootstrap-business-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 <title>:: 다음 주소록 API ::</title>
 
-<script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<!-- <script type="text/JavaScript"
+	src="http://code.jquery.com/jquery-1.7.min.js"></script> -->
 
 <script type="text/JavaScript"
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

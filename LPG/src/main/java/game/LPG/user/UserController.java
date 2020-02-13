@@ -25,13 +25,16 @@ public class UserController {
 	public ModelAndView login(UserDTO loginUserInfo, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		UserDTO user = service.login(loginUserInfo);
+		System.out.println(user);
 		String viewName = "";
-		if(user!=null) {
+		if(user!=null&user.getSportsno()!=null) {
 			HttpSession ses = request.getSession();
 			ses.setAttribute("loginUserInfo", user);
+			viewName = "redirect:/match.do";
+		}else if(user!=null&user.getSportsno()==null){
+			//로그인 실패
 			viewName = "redirect:/match/userSports.do";
 		}else {
-			//로그인 실패
 			viewName = "login";
 		}
 		mav.setViewName(viewName);

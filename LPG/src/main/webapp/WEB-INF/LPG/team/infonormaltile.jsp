@@ -1,3 +1,5 @@
+<%@page import="game.LPG.soccerteam.TeamDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -5,29 +7,6 @@
 <head>
 <meta charset="utf-8">
 <title>Solid - Bootstrap Business Template</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="" name="keywords">
-<meta content="" name="description">
-
-<!-- Favicons -->
-<link href="/LPG/img/favicon.png" rel="icon">
-<link href="/LPG/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-<!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900"
-	rel="stylesheet">
-
-<!-- Bootstrap CSS File -->
-<link href="/LPG/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Libraries CSS Files -->
-<link href="/LPG/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="/LPG/lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
-<link href="/LPG/lib/hover/hoverex-all.css" rel="stylesheet">
-
-<!-- Main Stylesheet File -->
-<link href="/LPG/css/style.css" rel="stylesheet">
 
 <style type="text/css">
 table, th, td {
@@ -197,6 +176,7 @@ table, th, td {
 </head>
 
 <body>
+<% ArrayList<TeamDTO> list = (ArrayList<TeamDTO>)request.getAttribute("teamlist");%>
 
 	<div class="container mt" style="margin-bottom: 50px">
 		<div class="row">
@@ -204,8 +184,7 @@ table, th, td {
 				<div id="carousel-example-generic" class="carousel slide"
 					data-ride="carousel">
 					<div>
-						<input type="button" class="btn btn-theme" style="float: right" value="가입신청" 
-		onclick="window.open('/LPG/team/apply.do','window_name','width=800,height=450,left=200,top=50,status=no')">
+						<a href="/LPG/team/apply.do" class="btn btn-theme" style="float: right">지원신청</a>
 					</div>
 					<div style="clear: both;">
 						<div class="team_img">

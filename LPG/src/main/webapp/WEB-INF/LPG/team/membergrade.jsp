@@ -1,9 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="game.LPG.soccerteam.TeamDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="game.LPG.soccerteam.TeamMemberDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset=EUC-KR">
+	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style type="text/css">
 		#mgradetotal{
@@ -45,7 +48,7 @@
 	}
 .ttth {
 	background-color:#384452;
-	width: 33%;
+	width: 20%;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#6d6d6d');
 	color:#FFFFFF;
 	text-align:center;
@@ -58,59 +61,75 @@
 #total{
 width: 60%;
 }
-	</style>
-	<link href="/LPG/css/style.css" rel="stylesheet">
+</style>
 </head>
+
 <body>
+<% ArrayList<TeamMemberDTO> tmlist = (ArrayList<TeamMemberDTO>)request.getAttribute("tmlist"); %>
+
+
 	<div class="container mtb" id="total">
-		<form action="" method="post" >
+		<form action="/LPG/team/teamMemMody.do" method="post" name="form">
 			<div id="mgradetotal">
-				<h1>ÆÀ¿ø µî±Ş</h1>
+				<h1>íŒ€ì› ì •ë³´ ìˆ˜ì •</h1>
 				<table id="tttable">
-								<tr>
-									<th class="ttth">ÀÌ¸§</th>
-									<th class="ttth">µî±Ş</th>
-									<th class="ttth">Æ÷Áö¼Ç</th>
+								<tr id="theader">
+									<th class="ttth">ì´ë¦„</th>
+									<th class="ttth">ë“±ê¸‰</th>
+									<th class="ttth">í¬ì§€ì…˜</th>
+									<th class="ttth">ì‹¤ë ¥</th>
+									<th class="ttth">ë°±ë„˜ë²„</th>
 								</tr>
+								
+								<%
+								for(int i=0;i<tmlist.size();i++){
+									TeamMemberDTO tml = tmlist.get(i);
+									String tmTend = tml.getTmTend();
+									String tmGrade = tml.getTmGrade();
+									String tmAbility = tml.getTmAbility();
+										/* $("#tmTend").val(tmTend).attr("selected","selected") 
+										$("#tmGrade").val(tmGrade).attr("selected","selected") 
+										$("#tmAbility").val(tmAbility).attr("selected","selected") */
+								%>
 								<tr class="tttr">
-									<td class="tttd">±è00</td>
-									<td class="tttd">¸Å´ÏÀú</td>
-									<td class="tttd">¸Å´ÏÀú</td>
-								</tr>
-								<tr class="tttr">
-									<td class="tttd">ÀÌ00</td>
-									<td class="tttd">ÁÖÀå</td>
 									<td class="tttd">
-<select>
-							<option value="ÁÖÀå" selected="selected">ÁÖÀå</option>
-							<option value="ÆÀ¿ø">ÆÀ¿ø</option>
-						</select>
-</td>
-								</tr>
-								<tr class="tttr">
-									<td class="tttd">¹Ú00</td>
-									<td class="tttd">ÆÀ¿ø</td>
+										<input type="hidden" name="meminfo[<%= i %>].tmNo" value="<%= tml.getTmNo()%>">
+									</td>
 									<td class="tttd">
-									<select>
-							<option value="ÁÖÀå">ÁÖÀå</option>
-							<option value="ÆÀ¿ø" selected="selected">ÆÀ¿ø</option>
-						</select>
-						</td>
-								</tr>
-								<tr class="tttr">
-									<td class="tttd">ÃÖ00</td>
-									<td class="tttd">ÆÀ¿ø</td>
+										<select class="tmGrade" id="tmGrade" name="meminfo[<%= i %>].tmGrade">
+											<option value="ë§¤ë‹ˆì €">ë§¤ë‹ˆì €</option>
+											<option value="ì£¼ì¥">ì£¼ì¥</option>
+											<option value="íŒ€ì›">íŒ€ì›</option>
+										</select>
+									</td>
 									<td class="tttd">
-						<select>
-							<option value="ÁÖÀå">ÁÖÀå</option>
-							<option value="ÆÀ¿ø" selected="selected">ÆÀ¿ø</option>
-						</select>
-</td>
+										<select class="tmTend" id="tmTend" name="meminfo[<%= i %>].tmTend">
+											<option value="ê³µê²©ìˆ˜">ê³µê²©ìˆ˜</option>
+											<option value="ìˆ˜ë¹„ìˆ˜">ìˆ˜ë¹„ìˆ˜</option>
+											<option value="ê³¨í‚¤í¼">ê³¨í‚¤í¼</option>
+										</select>
+									</td>
+									<td class="tttd">
+										<select class="tmAbility" id="tmAbility" name="meminfo[<%= i %>].tmAbility">
+											<option value="ìƒ">ìƒ</option>
+											<option value="ì¤‘">ì¤‘</option>
+											<option value="í•˜">í•˜</option>
+										</select>
+									</td>
+									<td class="tttd">
+										<input type="text" name="meminfo[<%= i %>].backNum" class="backNum" id="backNum" style="width: 50px; text-align: center;">
+										<!-- placeholder="<%-- <%= tml.getBackNum() %> --%>" -->
+									</td>
+									<%-- <td class="tttd">
+										<input type="number" name="count" class="backNum" id="backNum" style="width: 50px; text-align: center;">
+										<!-- placeholder="<%= tml.getBackNum() %>" -->
+									</td> --%>
 								</tr>
+							<% } %>
 							</table>
 				
 			</div>
-			<input type="submit" value="º¯°æÇÏ±â" id="mgradesubmit">
+			<input type="submit" value="ë³€ê²½í•˜ê¸°" id="mgradesubmit" class="mgradesubmit">
 		</form>
 	</div>
 </body>

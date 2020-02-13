@@ -24,24 +24,6 @@ ul {
 <body>
 
 	<!-- *****************************************************************************************************************
-	 TITLE & CONTENT
-	 ***************************************************************************************************************** -->
-
-	<!-- 	<div class="container mtb">
-		<div class="centered">
-			<h2>경기일자</h2>
-			<div class="mbsc-page demo-week-view">
-				<div class="mbsc-form">
-					<div class="mbsc-form-group">
-						<div id="demo-one-week"></div>
-					</div>
-					<div class="hline"></div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-	<!-- *****************************************************************************************************************
 	 PORTFOLIO SECTION
 	 ***************************************************************************************************************** -->
 	<% List<SportsMatchDTO> list = (List<SportsMatchDTO>)request.getAttribute("matchlist"); %>
@@ -67,20 +49,19 @@ ul {
 						SportsMatchDTO match = list.get(i);
 				%>
 				<div class="graphic-design">
-					<div class="he-wrap tpl6">
+					<div class="he-wrap tpl6" <% if(match.getMchUrgent().equals("긴급")){%>style="border: 3px solid red;"<%} %>>
 						<img src="/LPG/img/"+<%= match.getTeamEmblem()%> alt="팀앰블럼" class="myimg"> 
 						<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg"> 
 						<img src="/LPG/img/"+<%= match.getTeamEmblem()%> alt="팀앰블럼" class="myimg">
-						
 						<div class="he-view">
-							<div class="bg a0">
-								<a href="/LPG/match/mchTeamDetail.do?mchNo=6">링크다 이자식아
+							<div id="detailGo" class="bg a0">
 								<h3 class="a1" data-animate="fadeInDown" style="word-spacing: 350px">HOME VS AWAY</h3>
 								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 735px">
 									<%= match.getTeamName() %> <%= match.getGrdName()%> <%= match.getTeamName() %></h4>
 								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 735px">
 									<%= match.getTeamName() %> <%= match.getGrdArea()%> <%= match.getTeamName() %></h4>
-								</a>
+								<input type="hidden" id="mchNo" name="mchNo" value="<%= match.getMchNo() %>">
+								<
 							</div>
 							
 							<!-- he bg -->
@@ -90,14 +71,22 @@ ul {
 					<!-- he wrap -->
 				</div>
 				<!-- end col-12 -->
+				<% } %>
 			</div>
 			<!-- portfolio -->
 			<!-- 중심 -->
-			<% } %>
+			
 		</div>
 		<!-- portfolio container -->
 	</div>
 	<!--/Portfoliowrap -->
-
+	<script type="text/javascript">
+		mchNo = $("#mchNo").val();
+		$(document).ready(function() {
+			$("#detailGo").on("click", function(){
+				location.href="/LPG/match/mchTeamDetail.do?mchNo="+mchNo;
+			});
+		});
+	</script>
 </body>
 </html>

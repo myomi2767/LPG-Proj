@@ -9,4 +9,7 @@ public interface SportsMatchDAO {
 	List<SportsMatchDTO> matchlist(MatchSelectDTO select);
 	SportsMatchDTO MatchIndvDetail(String mchNo);
 	SportsMatchDTO MatchTeamDetail(String mchNo);
+	int backUpNumAdd(SportsMatchTeamDTO smt);
+	int matchJoin(SportsMatchTeamDTO smt);
+	SportsMatchDTO matchChange(String mchNo);
 }

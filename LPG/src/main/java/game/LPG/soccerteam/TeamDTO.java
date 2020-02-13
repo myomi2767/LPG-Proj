@@ -16,6 +16,7 @@ public class TeamDTO {
 	private String teamEmblem;
 	private String memberPrivate;
 	private String teamGender;
+	private int count;
 
 	public TeamDTO() {
 
@@ -23,7 +24,7 @@ public class TeamDTO {
 
 	public TeamDTO(int teamNo, String teamName, String teamIntroduce, String teamLocation, String teamGround,
 			String teamAbility, String teamUniform, String teamManner, String teamStrategy, String teamPre,
-			String teamDate, String teamAge, String teamEmblem, String memberPrivate, String teamGender) {
+			String teamDate, String teamAge, String teamEmblem, String memberPrivate, String teamGender, int count) {
 		super();
 		this.teamNo = teamNo;
 		this.teamName = teamName;
@@ -40,6 +41,7 @@ public class TeamDTO {
 		this.teamEmblem = teamEmblem;
 		this.memberPrivate = memberPrivate;
 		this.teamGender = teamGender;
+		this.count = count;
 	}
 
 	public int getTeamNo() {
@@ -162,15 +164,24 @@ public class TeamDTO {
 		this.teamGender = teamGender;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	@Override
 	public String toString() {
 		return "TeamDTO [teamNo=" + teamNo + ", teamName=" + teamName + ", teamIntroduce=" + teamIntroduce
 				+ ", teamLocation=" + teamLocation + ", teamGround=" + teamGround + ", teamAbility=" + teamAbility
 				+ ", teamUniform=" + teamUniform + ", teamManner=" + teamManner + ", teamStrategy=" + teamStrategy
 				+ ", teamPre=" + teamPre + ", teamDate=" + teamDate + ", teamAge=" + teamAge + ", teamEmblem="
-				+ teamEmblem + ", memberPrivate=" + memberPrivate + ", teamGender=" + teamGender + "]";
+				+ teamEmblem + ", memberPrivate=" + memberPrivate + ", teamGender=" + teamGender + ", count=" + count
+				+ "]";
 	}
-	
+
 	
 	
 }

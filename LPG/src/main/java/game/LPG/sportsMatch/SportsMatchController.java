@@ -26,15 +26,9 @@ public class SportsMatchController {
 	@RequestMapping(value="/match/matchResist.do", method=RequestMethod.POST)
 	public String insert(SportsMatchIndivDTO sportsMatchIndiv, SportsMatchTeamDTO sportsMatchTeam, SportsMatchDTO sportsMatch) {
 		System.out.println("***************시작");
-		
-		
-			 System.out.println("컨트롤러:"+sportsMatch+sportsMatchIndiv+sportsMatchTeam);
-			 int result =service.insert(sportsMatchIndiv, sportsMatchTeam, sportsMatch);
-			 System.out.println("controller:"+result);
-			 
-		
-		
-		
+		System.out.println("컨트롤러:"+sportsMatch+sportsMatchIndiv+sportsMatchTeam);
+		int result =service.insert(sportsMatchIndiv, sportsMatchTeam, sportsMatch);
+		System.out.println("controller:"+result);
 		return "redirect:/match.do";
 	}
 	
@@ -78,6 +72,32 @@ public class SportsMatchController {
 		System.out.println(list);
 		mav.addObject("sportsMatchList", list);
 		mav.setViewName("mchTeamDetail");
+		return mav;
+	}
+	@RequestMapping(value="/match/backUpNumAdd.do", method=RequestMethod.GET, produces="application/text;charset=utf-8")
+	public @ResponseBody String backUpNumAdd(SportsMatchTeamDTO smt) {
+		System.out.println("컨트롤러:"+smt);
+		int result = service.backUpNumAdd(smt);
+		System.out.println(result);
+		return result+"";
+	}
+	
+	@RequestMapping("/match/join.do")
+	public String matchJoin(SportsMatchTeamDTO smt) {
+		System.out.println("컨트롤러:"+smt);
+		int result = service.matchJoin(smt);
+		System.out.println(result);
+		return "redirect:/match/mchTeamDetail.do";
+	}
+	
+	@RequestMapping("/match/change.do")
+	public ModelAndView matchChange(String mchNo) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(mchNo);
+		SportsMatchDTO smt = service.matchChange(mchNo);
+		System.out.println("컨트롤러:"+smt);
+		mav.addObject("matchChange", smt);
+		mav.setViewName("mchChange");
 		return mav;
 	}
 }
