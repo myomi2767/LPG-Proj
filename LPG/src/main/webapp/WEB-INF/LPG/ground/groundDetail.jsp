@@ -1,46 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@page import="game.LPG.ground.GroundDTO"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Solid - Bootstrap Business Template</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
 
-<!-- Favicons -->
-<link href="img/favicon.png" rel="icon">
-<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-<!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900"
-	rel="stylesheet">
-
-<!-- Bootstrap CSS File -->
-<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Libraries CSS Files -->
-<link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
-<link href="lib/hover/hoverex-all.css" rel="stylesheet">
-
-<!-- Main Stylesheet File -->
-<link href="css/style.css" rel="stylesheet">
-
-<link rel="stylesheet" type="text/css" href="./css/star.css">
-<script type="text/javascript">
-	window.onfocus = function() {
-	}
-	window.onload = function() {
-		window.resizeTo(500, 800);
-	}
-</script>
 <style type="text/css">
-.groundName{
+html, body {
+  overflow: hidden;
+}
+
+.groundName {
 	margin-left: 10px;
 }
+
 .placeName {
 	margin: 5px;
 }
@@ -53,8 +35,8 @@
 .btn-right {
 	margin: 10px;
 	position: relative;
-	left: 318px;
-	width: 220px;
+	left: 190px;
+	width: 200px;
 	height: 55px;
 	font-size: 22px;
 	background-color: #6C4F70;
@@ -62,15 +44,8 @@
 	margin-bottom: 15px;
 }
 
-.leftPage {
-	margin: 10px;
-	margin-left: 25px;
-	width: 571px;
-}
 
-.small-icon {
-	width: 5%;
-}
+
 
 .inside-content {
 	margin: 10px;
@@ -81,9 +56,11 @@
 
 .time {
 	font-size: 14pt;
-	margin: 1pt; white-space : normal;
+	margin: 1pt;
+	white-space: normal;
 	width: 90px;
-	white-space: normal; width : 90px;
+	white-space: normal;
+	width: 90px;
 	height: 90px;
 }
 
@@ -91,78 +68,122 @@
 	margin: 10pt;
 }
 
-.groundImg{
+.groundImg {
 	height: 300px;
 	width: 571px;
 	margin-bottom: 5px;
 }
 
+.search-box {
+	width: 430px;
+	margin-left: 15px;
+	font-size: 25px;
+	border: none;
+	background-color: #FAFAFA;
+	display: inline;
+	vertical-align: middle;
+	margin-top: 10px;
+}
+
+.search-btn {
+	height: 32px;
+	width: 35px;
+	border: none;
+	display: inline;
+	vertical-align: middle;
+	margin-top: 10px;
+}
+
+.search {
+	height: 50px;
+	width: 500px;
+	margin: 15px;
+	margin-left: 30px;
+	background-color: #FAFAFA;
+	border-radius: 5px;
+}
+
 </style>
+
 </head>
 <body>
-	<div class="leftPage">
+	<%
+		int starAvg = (int)request.getAttribute("starAvg");
+		GroundDTO ground = (GroundDTO)request.getAttribute("ground");
+	
+	%>
+	<div class=" leftPage">
 		<div class="content">
 			<img src="" name="groundImg">
 			<!-- img from db -->
 			<div class="outer">
 				<div class="groundImg">
-					<img class="groundImg" alt="" src="./img/my/soccer.jpg" >
+					<img class="groundImg" alt="" src="/LPG/img/my/soccer.jpg">
 				</div>
 				<br />
 				<div class="groundName">
 					<h1 class="placeName">
-						º€∆ƒ √º¿∞∞¯ø¯
+						<%=ground.getGrdName() %>
 						<!-- ground name from db -->
 					</h1>
 					<h3 class="placeType">
-						√‡±∏¿Â
+						<%=ground.getGrdType() %>
 						<!-- ground type from db -->
 					</h3>
 				</div>
-				<input type="button" class="btn btn-large btn-right"
-					name="groundReserve" value="øπæ‡«œ±‚">
+				<div>
+					<span class="groundName">
+						<img alt="" src="/LPG/img/my/star.png" class="small-icon">&nbsp;
+						<img alt="" src="/LPG/img/my/star.png" class="small-icon">&nbsp;<img alt="" src="/LPG/img/my/star.png" class="small-icon">&nbsp;<img alt="" src="/LPG/img/my/star.png"
+						class="small-icon">&nbsp;<img alt="" src="/LPG/img/my/star.png"
+						class="small-icon"></span> <input type="button"
+						class="btn btn-large btn-right" name="groundReserve" value="ÏòàÏïΩÌïòÍ∏∞">
+				</div>
 				<div class="hline"></div>
 				<br />
-				
+
 				<div class="inside-content">
-					<span><img class="small-icon" alt="" src="./img/my/map.png"></span>
-					<span class="inner-text"><% /* ground address */ %>º≠øÔ º€∆ƒ±∏ ø√∏≤«»∑Œ 25 º≠øÔ¡æ«’øÓµø¿Â</span>
+					<span><img class="small-icon" alt="" src="/LPG/img/my/map.png"></span>
+					<span class="inner-text"> <%=ground.getGrdAddr() %>
+					</span>
 				</div>
 				<hr />
 
 				<div class="inside-content">
-					<span><img alt="" src="./img/my/won.png" class="small-icon"></span>
-					<span class="inner-text"> <%-- <%=/* ground cost */ %> --%>50000ø¯
+					<span><img alt="" src="/LPG/img/my/won.png" class="small-icon"></span>
+					<span class="inner-text"> <%=ground.getGrdCost() %>Ïõê
 					</span>
 				</div>
 
 				<!-- calendar -->
 				<hr />
 				<div class="inside-content">
-					<span><img alt="" src="./img/my/calendar.png"
+					<span><img alt="" src="/LPG/img/my/calendar.png"
 						class="small-icon"></span><span class="inner-text">2020.1.16.(thur)</span>
 				</div>
 				<!-- date from calendar -->
 				<hr />
 				<div class="inside-content">
-					<span><img alt="" src="./img/my/clock.png" class="small-icon"> ¡¢ºˆ±‚∞£</span>
-					
-					<div class="inner-text"> 2020.01.01 ~ 2020.01.31</div>				
+					<span><img alt="" src="/LPG/img/my/clock.png"
+						class="small-icon">&nbsp;&nbsp;Ï†ëÏàòÍ∏∞Í∞Ñ</span>
+					<div class="inner-text">2020.01.01 ~ 2020.01.31</div>
 				</div>
 				<hr />
+				<div class="inside-content">ÎÇ†Ïî®..?</div>
+
 				<div class="inside-content">
-					≥Øææ..?
-				</div>
-				
-				<div class="inside-content">
-					<div class="inner-text">ªÛºº¡§∫∏</div>
+					<div class="inner-text">ÏÉÅÏÑ∏Ï†ïÎ≥¥</div>
 					<div class="inner-text">~~~~</div>
-					
+
 				</div>
-				
+
 
 			</div>
 		</div>
 	</div>
+	<!-- <div class="hidebtn">
+		<button class="hbtn"></button>
+	</div> -->
+
 </body>
 </html>

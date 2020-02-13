@@ -1,46 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@page import="game.LPG.user.UserDTO"%>
+<%@page import="game.LPG.ground.GroundDTO"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Solid - Bootstrap Business Template</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
 
-<!-- Favicons -->
-<link href="img/favicon.png" rel="icon">
-<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
-<!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Lato:400,900"
-	rel="stylesheet">
+<!--jQuery js-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
 
-<!-- Bootstrap CSS File -->
-<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-<!-- Libraries CSS Files -->
-<link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="lib/prettyphoto/css/prettyphoto.css" rel="stylesheet">
-<link href="lib/hover/hoverex-all.css" rel="stylesheet">
+<!--Simple Cale Calender CSS-->
+<link rel="stylesheet" href="/LPG/css/simple-calendar.css">
 
-<!-- Main Stylesheet File -->
-<link href="css/style.css" rel="stylesheet">
+<!--Simple Calender Js-->
+<script src="/LPG/js/simple-calendar.js"></script>
 
-<link rel="stylesheet" type="text/css" href="./css/star.css">
 <script type="text/javascript">
-	window.onfocus = function() {
-	}
-	window.onload = function() {
-		window.resizeTo(500, 800);
-	}
+	$(document).ready(function() {
+
+		$("#container").simpleCalendar();
+
+	});
 </script>
 <style type="text/css">
-.groundName{
+.groundName {
 	margin-left: 10px;
 }
+
 .placeName {
 	margin: 5px;
 }
@@ -48,28 +45,6 @@
 .placeType {
 	margin: 5px;
 	color: gray;
-}
-
-.btn-right {
-	margin: 10px;
-	position: relative;
-	left: 318px;
-	width: 220px;
-	height: 55px;
-	font-size: 22px;
-	background-color: #6C4F70;
-	color: white;
-	margin-bottom: 15px;
-}
-
-.leftPage {
-	margin: 10px;
-	margin-left: 25px;
-	width: 571px;
-}
-
-.small-icon {
-	width: 5%;
 }
 
 .inside-content {
@@ -80,78 +55,94 @@
 }
 
 .time {
-	font-size: 14pt;
-	margin: 1pt; white-space : normal;
-	width: 90px;
-	white-space: normal; width : 90px;
-	height: 90px;
+	width: 150px;
+	height: 30px;
+	display: inline;
 }
 
 .inner-text {
 	margin: 10pt;
+	font-size: 15pt;
 }
 
-.groundImg{
-	height: 300px;
-	width: 571px;
+.inside-text {
+	margin: 10pt;
+	font-size: 13pt;
+}
+
+.groundImg {
+	height: auto;
+	max-width: 100%;
 	margin-bottom: 5px;
 }
 
+#container {
+	margin-top: 20px;
+}
 </style>
 </head>
 <body>
-	<div class="leftPage">
-		<div class="content">
-			<img src="" name="groundImg">
-			<!-- img from db -->
-			<div class="outer">
-				<div class="groundImg">
-					<img class="groundImg" alt="" src="./img/my/soccer.jpg" >
-				</div>
-				<br />
-				<div class="groundName">
-					<h1 class="placeName">
-						º€∆ƒ √º¿∞∞¯ø¯
-						<!-- ground name from db -->
-					</h1>
-					<h3 class="placeType">
-						√‡±∏¿Â
-						<!-- ground type from db -->
-					</h3>
-				</div>
-				<input type="button" class="btn btn-large btn-right"
-					name="groundReserve" value="øπæ‡«œ±‚">
-				<div class="hline"></div>
-				<br />
-				<div class="inside-content">
-					<span><img alt="" src="./img/won.png" class="small-icon"></span>
-					<span class="inner-text"> <%-- <%=/* ground cost */ %> --%>50000ø¯
-					</span>
-				</div>
+<%
+	GroundDTO ground=(GroundDTO)request.getAttribute("ground");
+	UserDTO user = (UserDTO)session.getAttribute("loginUserInfo");
+%>
+	<div class="container mtb">
+		<div class=row>
+			<div class="col-md-6">
+				<div class="content">
+					<img src="" name="groundImg">
+					<!-- img from db -->
+					<div class="outer">
+						<div class="groundImg">
+							<img class="groundImg" alt="" src="/LPG/img/my/soccer.jpg">
+						</div>
+						<br />
+						<div class="groundName">
+							<h1 class="placeName">
+								<%=ground.getGrdName() %>
+								<!-- ground name from db -->
+							</h1>
+							<h3 class="placeType">
+								<%=ground.getGrdType() %>
+								<!-- ground type from db -->
 
-				<!-- calendar -->
-				<hr />
-				<div class="inside-content">
-					<span><img alt="" src="./img/calendar.png"
-						class="small-icon"></span><span class="inner-text">2020.1.16.(thur)</span>
-				</div>
-				<!-- date from calendar -->
-				<hr />
-				<div class="inside-content">
-					<span><img alt="" src="./img/clock.png" class="small-icon">
-					</span> <span class="inner-text">
-						<button class="time">9:00&#x00A;~11:00</button>
-						<button class="time">12:00&#x00A;~14:00</button>
-						<button class="time">15:00&#x00A;~17:00</button>
-						<button class="time">18:00&#x00A;~20:00</button>
-						<button class="time">21:00&#x00A;~23:00</button>
-					</span>
-				</div>
-				<hr />
-				<div class="inside-content">
-					≥Øææ..?
-				</div>
+							</h3>
+							<br>
+						</div>
+						<hr>
 
+						<div class="inside-content">
+							<h4>Ïù¥Ïö©Î£å</h4>
+							<span> <%-- <%=/* ground cost */ %> --%><%=ground.getGrdCost() %>Ïõê
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="content">
+					<div id="container" class="calendar-container"></div>
+				</div>
+				<hr>
+				<form role="form" action="/LPG/ground/review.do" method="POST">
+					<div class="col-md-4">
+						<div class="inner-text">ÏòàÏïΩÏûê</div>
+						<div class="inner-text">ÎÇ†Ïßú</div>
+						<div class="inner-text" style="display: inline">ÏãúÍ∞Ñ</div>
+					</div>
+					<div class="col-md-8">
+						<div class="inside-text"><%=user.getUserName() %></div>
+						<div class="inside-text" id="rsvDate" name="grdrsvUseDate">2020.1.16 (thur)</div>
+						<div class="inside-text">
+							<select class="form-control time" name="grdrsvtime">
+								<option>9:00~11:00</option>
+								<option>12:00~14:00</option>
+								<option>15:00~17:00</option>
+								<option>18:00~20:00</option>
+							</select>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
