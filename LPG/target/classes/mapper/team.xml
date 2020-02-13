@@ -108,11 +108,13 @@
    <!-- 팀 가입신청하기 -->
 	<insert id="teammember">
       insert into teammember values(tmno_seq.nextval,sysdate,'팀원',#{teamNo},#{sportsNo},#{tmTend},#{teamAbility},#{backNum},0)
-   </insert>
-	
-	<!-- select t.*,( select count(tmNo) as count
-                     from teamMember
-                     where teamNo=#{teamNo})
-		from team t
-		where teamNo=${teamNo}; -->
+    </insert>
+	<!-- 이름 구하는거 조인 -->
+   <select id="id" resultType="teammember" parameterType="teammember">
+      select u.userid as userid
+      from lpguser u, usersports us, teammember tm
+      where u.userid = us.userid and
+           us.sportsno = tm.sportsno and
+           tm.tmno = #{tmno}
+   </select>
 </mapper>

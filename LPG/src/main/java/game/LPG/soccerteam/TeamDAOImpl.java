@@ -125,11 +125,27 @@ public class TeamDAOImpl implements TeamDAO {
 		return gain;
 	}
 	
-	//팀원 수 
-	public List<TeamMemberDTO> teamInfo(TeamMemberDTO tminfo) {
-		List<TeamMemberDTO> tm = sqlSession.selectList("game.LPG.soccerteam.teammemberinfo", tminfo);
-		return tm;
-	}
+	//팀원 정보
+    public List<TeamMemberDTO> teamInfo(TeamMemberDTO tminfo) {
+       List<TeamMemberDTO> tm = sqlSession.selectList("game.LPG.soccerteam.teammemberinfo", tminfo);
+       List<TeamMemberDTO> tmId = sqlSession.selectList("game.LPG.soccerteam.id", tminfo);
+       for(int i=0;i<tmId.size();i++) {
+          
+          System.out.println(tmId.get(i).getSportsNo());
+          System.out.println(tmId.get(i).getUserName());
+       }
+       for(int i = 0; i<tm.size();i++) {
+          for(int j = 0 ; j<tmId.size();j++) {
+             String str1=tm.get(i).getSportsNo();
+             String str2 = tmId.get(j).getSportsNo();
+             if((str1).equals(str2)) {
+                tm.get(i).setUserName(tmId.get(j).getUserName());
+             }
+          }
+       }
+       
+       return tm;
+    }
 	
 	//팀원 정보 수정
 	public ArrayList<Integer> teamMemberUpdate(MemInfoModyDTO memInfo) {

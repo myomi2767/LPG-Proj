@@ -11,8 +11,8 @@
 
 <title>:: 다음 주소록 API ::</title>
 
-<!-- <script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-1.7.min.js"></script> -->
+<script type="text/JavaScript"
+	src="http://code.jquery.com/jquery-1.7.min.js"></script>
 
 <script type="text/JavaScript"
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -28,7 +28,7 @@
 			
 			var global_form = $("#global_form").serialize();
 			$.ajax({
-				url: '../user/joinIdCheck.do',
+				url: '/LPG/user/joinIdCheck.do',
 				type: 'POST',
 				cache: false,
 				data: global_form,
@@ -66,7 +66,7 @@
 			if($("#hidden_idChk").val() != 'Y'){ alert("아이디 중복검사가 필요합니다."); return; }
 			
 			//비밀번호 유효성 검사.
-			//영문, 특수문자, 숫자가 무조건 포함되는 조합으로 10자~20자 가능
+			//영문, 특수문자, 숫자가 무조건 포함되는 조합으로 8자~20자 가능
 			var pwd = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,}$/;
 			if(!fn_check(pwd, userPwd, "비밀번호를 올바르게 작성해주세요.")){return;}
 			
@@ -79,7 +79,7 @@
 			
 			//별명 유효성 검사.
 			var kor = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z|0-9]{2,15}$/;
-			if(!fn_check(kor, userNick, "별명을 올바르게 작성해주세요.")){return;}
+			if(!fn_check(kor, userNick, "별명을 올바르게 작성해주세요.[2글자이상작성확인]")){return;}
 			
 			//휴대전화 유효성 검사.
 			var num = /^[0-9]{6,}$/;
@@ -96,10 +96,10 @@
 			var chk_email =/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 			if(!fn_check(chk_email, userEmail, "이메일 형식을 올바르게 작성해주세요.")){return;}
 			
-			alert()
 			
 			var form = $("#global_form");
 			form.submit();
+			alert("회원가입 완료")
 		})
 	})
 	
@@ -180,16 +180,14 @@
 							<div class="col-lg-7">
 								<input type="text" id="userId" name="userId" class="form-control id-form" id="contact-name" placeholder="아이디입력" maxlength="15">
 							</div>
-							<div id="notice_id" class="col-lg-7" style="display:none;">
-								<span id="canuse" style="color:blue; font-weight:bold;">* 사용가능한 아이디입니다.</span>
-								<span id="cannotuse" style="color:red; font-weight:bold;">* 사용 불가능한 아이디입니다.</span>
-							</div>
-							<div id="notice_txt" class="col-lg-7">
-								<!-- <span id="id_txt" style="color:red; font-weight:bold;">* 영문, 특수문자, 숫자가 무조건 포함되며, 10자~20자로 작성해주세요.</span> -->
-							</div>
 							<div class="col-lg-2">
 								<input type="button" id="btn_idCheck" class="btn-theme" value="중복체크" style="float: left; position: relative; top: -5px;">
 							</div>
+							<div id="notice_id" class="col-lg-7" style="display:none;">
+								<span id="canuse" style="color:blue; font-weight:bold; margin-left: 200px">* 사용가능한 아이디입니다.</span>
+								<span id="cannotuse" style="color:red; font-weight:bold; margin-left: 200px">* 사용 불가능한 아이디입니다.</span>
+							</div>
+							<div class="col-lg-2"></div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -198,10 +196,14 @@
 								<h4>패스워드</h4>
 							</div>
 							<div class="col-lg-7">
-								<input type="password" id="userPwd" name="userPwd" class="form-control"
-									id="contact-pw" placeholder="패스워드입력" maxlength="20">
+								<input type="password" id="userPwd" name="userPwd" class="form-control" id="contact-pw" placeholder="패스워드입력" maxlength="20">
 								<div class="col-lg-2"></div>
 							</div>
+							<div class="col-sm-2"></div>
+							<div id="" class="col-lg-7">
+								 <font id="" style="color:red; font-weight:bold; margin-left: 200px">* 영문, 특수문자, 숫자가 무조건 포함되며, 8자~20자로 작성해주세요.</font>
+							</div>
+							<div class="col-sm-2"></div>
 						</div>
 					</div>
 
@@ -292,7 +294,7 @@
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-2">
@@ -320,24 +322,9 @@
 								<input type="text" id="userEmail" name="userEmail" class="form-control" id="contact-email" placeholder="이메일 입력" data-rule="email" data-msg="Please enter a valid email" maxlength="35">
 							</div>
 							<div class="col-lg-2">
-<!-- 								<input type="button" value="인증보내기" class="btn-theme" /> -->
 							</div>
 						</div>
 					</div>
-
-<!-- 					<div class="form-group"> -->
-<!-- 						<div class="row"> -->
-<!-- 							<div class="col-sm-2"> -->
-<!-- 								<h4>인증번호입력</h4> -->
-<!-- 							</div> -->
-<!-- 							<div class="col-lg-7"> -->
-<!-- 								<input type="text" name="certification" class="form-control" -->
-<!-- 									id="contact-cf" placeholder="인증번호입력" maxlength="10" -->
-<!-- 									style="width: 200px;" /> -->
-<!-- 								<div class="col-lg-2"></div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
 				</div>
 			<div class="form-group">
 					<br /> <br /> <br />

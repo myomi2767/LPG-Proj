@@ -3,6 +3,8 @@ package game.LPG.soccerteam;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface TeamService {
 
 	//팀 생성
@@ -37,4 +39,7 @@ public interface TeamService {
 	
 	//팀원 개인정보보기
 	TeamMemberDTO timwonjungbo(TeamMemberDTO dto);
+	
+	//팀 엠블럼 수정
+	void upload(MultipartFile file,String path,String fileName);
 }

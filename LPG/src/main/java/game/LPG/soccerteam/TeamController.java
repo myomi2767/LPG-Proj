@@ -3,13 +3,16 @@ package game.LPG.soccerteam;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 @Controller
 public class TeamController {
@@ -101,10 +104,22 @@ public class TeamController {
 	
 	//팀 정보 수정하기
 	@RequestMapping(value="/team/teammody.do", method=RequestMethod.POST)
-	public String teamMody(TeamDTO dto) {
-		service.teamUpdate(dto);
-		return "redirect:/team/search.do";
-	}
+	public String teamMody(TeamDTO dto, HttpSession session) throws Exception{
+      System.out.println("fileinfo===========>"+dto);
+      MultipartFile file = dto.getUpFile();
+      String path = WebUtils.getRealPath(session.getServletContext(), "/WEB-INF/LPG/team/upload");
+      String fileName = file.getOriginalFilename();
+      System.out.println(path+"=============="+fileName);
+      if(fileName.length()>=1) {
+         System.out.println("filename!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+fileName);
+         service.upload(file,path,fileName);
+      }else {
+         fileName = "../img/2.PNG";
+      }
+      dto.setTeamEmblem(fileName);
+      service.teamUpdate(dto);
+      return "redirect:/team/search.do";
+   }
 	
 	//팀 전체 목록조회하기
 	@RequestMapping("/team/search.do")
@@ -132,16 +147,16 @@ public class TeamController {
 	}
 	
 	//내 팀 정보보기
-	@RequestMapping("/team/myteam.do")
-	public ModelAndView myteam(TeamDTO teaminfo, TeamMemberDTO tminfo) {
-		ModelAndView mav = new ModelAndView();
-		TeamDTO list = service.teaminfo(teaminfo);
-		List<TeamMemberDTO> tm = service.teaminfo(tminfo);
-		mav.addObject("teaminfo", list);
-		mav.addObject("tmlist", tm);
-		mav.setViewName("teamMyteam");
-		return mav;
-	}
+    @RequestMapping("/team/myteam.do")
+    public ModelAndView myteam(TeamDTO teaminfo, TeamMemberDTO tminfo) {
+       ModelAndView mav = new ModelAndView();
+       TeamDTO list = service.teaminfo(teaminfo);
+       List<TeamMemberDTO> tm = service.teaminfo(tminfo);
+       mav.addObject("teaminfo", list);
+       mav.addObject("tmlist", tm);
+       mav.setViewName("teamMyteam");
+       return mav;
+    }
 	
 	
 	/*@RequestMapping("/team/myteam.do")
@@ -173,11 +188,15 @@ public class TeamController {
 	}
 	
 	//멤버 정보보기
-	@RequestMapping("/team/memInfo.do")
-	public ModelAndView meminfoView(TeamMemberDTO dto) {
-		ModelAndView mav = new ModelAndView();
-		TeamMemberDTO meminfo = service.timwonjungbo(dto);
-		mav.addObject("teammeminfo", meminfo);
-		return mav;
-	}
+   @RequestMapping("/team_membe.do")
+   public ModelAndView meminfoView(TeamMemberDTO dto) {
+      System.out.println("=================1"+dto);
+      ModelAndView mav = new ModelAndView();
+      TeamMemberDTO meminfo = service.timwonjungbo(dto);
+      System.out.println("=================2"+meminfo);
+      mav.addObject("teammeminfo", meminfo);
+      System.out.println("=================3"+mav);
+      mav.setViewName("tr");
+      return mav;
+   }
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,12 +54,12 @@
 		$("#btn_find_id").click(function(){
 			var form_serialize = $("#id_form").serialize();
  			$.ajax({
- 				url: '../user/findIdSearch.do',
+ 				url: '/LPG/user/findIdSearch.do',
  				data: form_serialize,
  				type: 'POST',
  				cache: false,
  				success: function(data){
- 					alert("¾ÆÀÌµð´Â ["+ data +"] ÀÔ´Ï´Ù.");
+ 					alert("ì•„ì´ë””ëŠ” ["+ data +"] ìž…ë‹ˆë‹¤.");
  				}
 			})
 		})
@@ -67,16 +67,15 @@
 		$("#btn_find_pw").click(function(){
 			var form_serialize = $("#pw_form").serialize();
  			$.ajax({
- 				url: '../user/findPass.do',
+ 				url: '/LPG/user/findPass.do',
  				data: form_serialize,
  				type: 'POST',
  				cache: false,
  				success: function(data){
- 					alert(data);
  					if(data == 'success'){
  						location.href="/LPG/user/find_IDPass_modify.do?userId="+$("#userId").val();
  					}else{
- 						alert("ÀÔ·ÂÇÑ Á¤º¸¸¦ ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.");
+ 						alert("ìž…ë ¥í•œ ì •ë³´ë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.");
  					}
  				}
 			})
@@ -319,65 +318,49 @@ textarea {
 	 ***************************************************************************************************************** -->
 	<div class="form">
 		<ul class="tab-group">
-			<li class="tab active"><a href="#signup">¾ÆÀÌµð Ã£±â</a></li>
-			<li class="tab"><a href="#login">ºñ¹Ð¹øÈ£ Ã£±â</a></li>
+			<li class="tab active"><a href="#signup">ì•„ì´ë”” ì°¾ê¸°</a></li>
+			<li class="tab"><a href="#login">ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a></li>
 		</ul>
 
 		<div class="tab-content">
 			<div id="signup">
-				<h1>¾ÆÀÌµð Ã£±â</h1>
-<!-- 				<form action="/LPG/user/findId.do" method="post"> -->
+				<h1>ì•„ì´ë”” ì°¾ê¸°</h1>
 				<form id="id_form" name="id_form" method="post">
 					<div class="top-row">
 						<div class="field-wrap">
-							<label> ÀÌ¸§<span class="req">*</span>
+							<label> ì´ë¦„<span class="req">*</span>
 							</label> <input type="text" required autocomplete="off" style="width: 415px;" name="userName" />
 						</div>
 
 						<div class="field-wrap"></div>
 					</div>
 
-					<!-- <div class="field-wrap">
-						<label> ÀÌ¸ÞÀÏ<span class="req">*</span>
-						</label> <input type="email" required autocomplete="off" />
-					</div> -->
-
 					<div class="field-wrap">
-						<label> ÀüÈ­¹øÈ£<span class="req">*</span>
-						</label> <input type="tel" required autocomplete="off"  name="userPhone"/>
+						<label> ì „í™”ë²ˆí˜¸<span class="req">*</span>
+						</label> <input type="tel" required autocomplete="off"  name="userPhone" maxlength="11"/>
 					</div>
-<!-- 					<button type="submit" class="button button-block">¾ÆÀÌµðÃ£±â</button> -->
-					<button id="btn_find_id" class="button button-block">¾ÆÀÌµð Ã£±â</button>
+					<button id="btn_find_id" class="button button-block">ì•„ì´ë”” ì°¾ê¸°</button>
 				</form>
 
 			</div>
 			<div id="login">
-				<h1>ºñ¹Ð¹øÈ£Ã£±â</h1>
+				<h1>ë¹„ë°€ë²ˆí˜¸ì°¾ê¸°</h1>
 				<form id="pw_form" name="pw_form" method="post">
 					<div class="field-wrap">
-						<label> ¾ÆÀÌµð<span class="req">*</span>
+						<label> ì•„ì´ë””<span class="req">*</span>
 						</label> <input type="text" required autocomplete="off" maxlength="15" id="userId" name="userId" value="" />
 					</div>
 
 					<div class="field-wrap" style="display: inline-block;">
-						<label> ÀÌ¸ÞÀÏ<span class="req">*</span>
+						<label> ì´ë©”ì¼<span class="req">*</span>
 						</label><input type="email" required autocomplete="off" maxlength="35" style="width: 415px;" name="userEmail" value=""/>
 					</div>
-<!-- 						<button class="btn" value="ÀÎÁõ¸ÞÀÏ º¸³»±â" style="height: 50px">ÀÎÁõº¸³»±â</button> -->
 						<br/><br/>
-<!-- 					<div class="field-wrap"> -->
-<!-- 						<label>ÀÎÁõ¹øÈ£<span class="req">*</span> -->
-<!-- 						</label><input type="text" maxlength="10"> -->
-<!-- 					</div> -->
-					<button id="btn_find_pw" class="button button-block">ºñ¹Ð¹øÈ£ Ã£±â</button>
+					<button id="btn_find_pw" class="button button-block">ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</button>
 				</form>
 
 			</div>
 		</div>
 	</div>
-	<!-- tab-content -->
-
-	<!-- /form -->
-
 </body>
 </html>

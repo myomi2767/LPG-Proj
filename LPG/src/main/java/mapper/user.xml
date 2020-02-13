@@ -14,7 +14,7 @@
   	<insert id="signup" parameterType="user">
   	insert into lpguser values(#{userId},#{userPwd},#{userName},
   							#{userNick},#{userPhone},to_date(#{userBirth}),
-  							#{userAddr},sysdate,#{userGender},#{userEmail},#{userEmailAgree},0,#{subAddr})
+  							#{userAddr},sysdate,#{userGender},#{userEmail},#{userEmailAgree},50000,#{subAddr})
   	</insert>
   
   	<!-- 회원가입(joinForm.jsp) - 아이디 중복체크   -->

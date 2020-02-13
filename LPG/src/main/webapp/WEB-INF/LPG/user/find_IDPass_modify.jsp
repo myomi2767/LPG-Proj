@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,31 +13,61 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#btn_modify_pw").click(function(){
-			var form_serialize = $("#pw_form").serialize();
- 			$.ajax({
- 				url: '../user/modifyPassword.do',
- 				data: form_serialize,
- 				type: 'POST',
- 				cache: false,
- 				success: function(data){
- 					alert(data);
- 					if(data == 'success'){
- 						alert("��й�ȣ ���濡 �����߽��ϴ�.");
- 						location.href="/LPG/user/login.do";
- 					}
- 				}
-			})
+		$('.form').find('input, textarea').on('keyup blur focus', function(e) {
+
+			var $this = $(this), label = $this.prev('label');
+
+			if (e.type === 'keyup') {
+				if ($this.val() === '') {
+					label.removeClass('active highlight');
+				} else {
+					label.addClass('active highlight');
+				}
+			} else if (e.type === 'blur') {
+				if ($this.val() === '') {
+					label.removeClass('active highlight');
+				} else {
+					label.removeClass('highlight');
+				}
+			} else if (e.type === 'focus') {
+
+				if ($this.val() === '') {
+					label.removeClass('highlight');
+				} else if ($this.val() !== '') {
+					label.addClass('highlight');
+				}
+			}
+		});
+		$("#btn_join").click(function(){
+			var userPwd = $("#userPwd").val();
+			var userPwd_chk = $("#userPwd_chk").val();
+			
+			//비밀번호 유효성 검사.
+			//영문, 특수문자, 숫자가 무조건 포함되는 조합으로 8자~20자 가능
+			var pwd = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,}$/;
+			if(!fn_check(pwd, userPwd, "비밀번호를 올바르게 작성해주세요.")){return;}
+			
+			//비밀번호와 비밀번호 확인란 일치 여부 검사
+			if(userPwd != userPwd_chk){ 
+				alert("비밀번호가 일치하지 않습니다.");
+				return;
+			}
+			var form = $("#pw_form");
+			 form.submit(); 
+			 alert("수정완료")
+			 location.href="/LPG/user/login.do";
 		})
-	})
+	}) 
+	//생년월일 외 나머지 정규식 검사
+	function fn_check(re, what, message) {
+		if(re.test(what)) {
+			return true;
+		}else{
+		alert(message);
+		}
+	}
 </script>
 
-<!-- =======================================================
-    Template Name: Solid
-    Template URL: https://templatemag.com/solid-bootstrap-business-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 <style type="text/css">
 *, *:before, *:after {
 	box-sizing: border-box;
@@ -274,32 +304,28 @@ textarea {
 	<div class="form">
 		<div class="tab-content">
 			<div id="signup">
-				<h1>��й�ȣ ����</h1>
-<!-- 				<form action="/LPG/user/findId.do" method="post"> -->
-				<form id="pw_form" name="pw_form" method="post">
+				<h1>비밀번호 수정</h1>
+				<form id="pw_form" name="pw_form" action="/LPG/user/modifyPassword.do"  method="post">
 				<input type="hidden" id="hidden_userId" name="hidden_userId" value="${hidden_userId}"/>
 					<div class="top-row">
 						<div class="field-wrap">
-							<label>* ����й�ȣ</label><input type="password" required autocomplete="off" style="width: 415px;" id="userPwd" name="userPwd" />
+							<label>* 새비밀번호</label><input type="password" required autocomplete="off" style="width: 415px;" id="userPwd" name="userPwd" />
 						</div>
 					</div>
-					<br/>
+					<br/><br/>
 					<div class="top-row">
 						<div class="field-wrap">
-							<label>* ����й�ȣ Ȯ��</label><input type="password" required autocomplete="off" style="width: 415px;" id="userPwd_chk" name="userPwd_chk" />
+							<label>* 새비밀번호 확인</label><input type="password" required autocomplete="off" style="width: 415px;" id="userPwd_chk" name="userPwd_chk" />
 						</div>
 					</div>
 					<br/>
 					<br/>
-					<button id="btn_modify_pw" class="button button-block">��й�ȣ ����</button>
+s					<input type="button"  id="btn_join" class="button button-block" value="비밀번호 수정">
 				</form>
 
 			</div>
 		</div>
 	</div>
-	<!-- tab-content -->
-
-	<!-- /form -->
 
 </body>
 </html>

@@ -10,6 +10,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
+<script type="text/javascript">
+
+</script>
 <style type="text/css">
 .btn-theme {
 	color: #fff;
@@ -35,14 +38,13 @@
 	 ***************************************************************************************************************** -->
 	<%
   	UserDTO user = (UserDTO) session.getAttribute("loginUserInfo");
-	UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
   	%>
 	<div class="container mtb">
 			<form action="/LPG/user/myinfoPWCheck.do" method="post">
 			<div class="col-lg-8">
 				<h3>비밀번호 입력</h3>
 				<input type="hidden" id="userId" name="userId" value="<%=user.getUserId()%>"> 
-				<span><input type="password" id="userPwd" name="userPwd" placeholder="비밀번호 입력" maxlength="15" >
+				<span><input type="password" id="userPwd" name="userPwd" placeholder="비밀번호 입력" maxlength="20">
 				<input type="submit" class="btn-theme" value="인증하기"></span>
 			</div>
 			</form>
