@@ -1,3 +1,5 @@
+<%@page import="game.LPG.userSports.UserSportsDTO"%>
+<%@page import="game.LPG.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -149,6 +151,8 @@ input.btn-modal.btn-close {
 
 </head>
 <body>
+	<% UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
+	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports"); %>
 	<div ><h2>매치 신청 현황</h2></div>
 	<select name="contentnum" id="contentnum" >
  

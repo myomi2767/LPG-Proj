@@ -42,6 +42,7 @@
             	background: #FFB2F5;
             }
 	</style>
+	
 </head>
 <body>
 <% TeamMemberDTO member = (TeamMemberDTO)request.getAttribute("teammeminfo"); %>

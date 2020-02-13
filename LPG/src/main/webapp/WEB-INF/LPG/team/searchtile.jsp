@@ -303,8 +303,7 @@
 		    					<p>Áö¿ª : <%= row.getTeamLocation() %></p>
 		    				</div>
 		    				<div class="c">
-		    				<%-- <%= row.getCount() %> --%>
-		    					<p>ÆÀ¿ø ¼ö : </p>
+		    					<p>ÆÀ ½Ç·Â : <%= row.getTeamAbility() %></p>
 		    				</div>
 		    			</div>
 		    			<div class="b">

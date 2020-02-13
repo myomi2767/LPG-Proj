@@ -142,6 +142,15 @@ table, th, td {
 	#team_info, #team_manner{
 	padding-left: 20px;
 	}
+	.imm{
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 170px;
+	height: 170px;
+	border-radius: 100px;
+	position: relative;bottom: 30px;
+	}
 </style>
 <!-- 도넛그래프 -->
 <script type="text/javascript"
@@ -166,7 +175,7 @@ table, th, td {
 		chart.draw(data, options);
 	}
 </script>
-
+<link rel="stylesheet" href="../magnific-popup/magnific-popup.css">
 <!-- 막대그래프 -->
 <script type="text/javascript">
 	google.charts.load('current', {
@@ -207,32 +216,12 @@ table, th, td {
 		chart.draw(data, options);
 	};
 </script>
-<link rel="stylesheet" href="../magnific-popup/magnific-popup.css">
-<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<!-- Magnific Popup core JS file -->
-<script src="../magnific-popup/jquery.magnific-popup.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-   $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-      disableOn: 700,
-      type: 'iframe',
-      mainClass: 'mfp-fade',
-      removalDelay: 160,
-      preloader: false,
-      
-
-      fixedContentPos: false
-   });
-});
-</script>
 
 </head>
 <body>
 <% TeamDTO list = (TeamDTO)request.getAttribute("teaminfo");%>
 <% ArrayList<TeamMemberDTO> tmlist = (ArrayList<TeamMemberDTO>)request.getAttribute("tmlist");%>
-
+<% TeamMemberDTO tminfo = (TeamMemberDTO)request.getAttribute("teammeminfo"); %>
 <%
 String teamage = "";
 if(list.getTeamAge().equals("0")){
@@ -274,17 +263,26 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 			<div class="col-lg-10 col-lg-offset-1 centered">
 				<div id="carousel-example-generic" class="carousel slide"
 					data-ride="carousel">
+					
+					<%if(tminfo.getTmGrade()=="매니저"){
+						
+					 %>
 					<div>
 						<input type="button"  class="btn btn-theme" style="float: right" value="팀원 등급 변경" onclick="location.href='/LPG/team/Mgrade.do?teamNo=<%= list.getTeamNo()%>'">
 						<input type="button" class="btn btn-theme" style="float: right" value="팀 정보수정" onclick="location.href='/LPG/team/modyview.do?teamNo=<%= list.getTeamNo()%>'">
 						<a href="/LPG/team/apsearch.do" class="btn btn-theme" style="float: right">가입신청 확인</a>
+					<% }else if(tminfo.getTmGrade()=="팀원" || tminfo.getTmGrade()=="주장"){ %>
+					
+					<% }else{ %>
+					<div>
+						<a href="/LPG/team/apply.do" class="btn btn-theme" style="float: right">가입신청</a>
+					<% } %>
+					</div>
 					</div>
 					<div style="clear: both;">
 						<div class="team_img">
 							<div class="emblum" id="emblum">
-							<%-- <img  class="img-circle" style="width: 60px;height: 70px"
-									src="/erp/images/<%=user.getProfile_photo() %>"  /> --%>
-							<img alt="" src="" title="사진을 넣어주세요">
+								<img class="imm" alt="" src="../img/2.PNG" title="사진을 넣어주세요"><%-- <%= list.getTeamEmblem() %> --%>
 							</div>
 							<h2 class="team_info_name"><%= list.getTeamName() %></h2>
 						</div>
@@ -318,6 +316,7 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 								</tr>
 							</table>
 						</div>
+						<%if(list.getMemberPrivate()=="0"){ %>
 						<div class="footer">
 							<table id="tttable">
 								<tr>
@@ -329,15 +328,18 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 								for(int i=0;i<tmlist.size();i++){
 									TeamMemberDTO tml = tmlist.get(i);
 									
-								%><%-- onclick="window.open('/LPG/team/memInfo.do?tmNo=<%= tml.getTmNo() %>" --%>
+								%>
 								<tr class="tttr" >
-									<td class="tttd"><a class="popup-vimeo fo" href="../team_membe.jsp"></a></td>
-									<td class="tttd"><a class="popup-vimeo fo" href="../team_membe.jsp"><%= tml.getTmGrade() %></a></td>
-									<td class="tttd"><a class="popup-vimeo fo" href="../team_membe.jsp"><%= tml.getTmTend() %></a></td>
+									<td class="tttd"><a href="/LPG/team_membe.do?tmNo=<%= tml.getTmNo()%>"><%= tml.getUserName() %></a></td>
+									<td class="tttd"><a href="/LPG/team_membe.do?tmNo=<%= tml.getTmNo()%>"><%= tml.getTmGrade() %></a></td>
+									<td class="tttd"><a href="/LPG/team_membe.do?tmNo=<%= tml.getTmNo()%>"><%= tml.getTmTend() %></a></td>
 								</tr>
 								<% } %>
 							</table>
 						</div>
+						<% }else{ %>
+						
+						<% } %>
 						<div style="margin-top: 30px;">
 							<div id="donutchart"
 								style="width: 40%; height: 250px; float: left;"></div>
@@ -347,11 +349,8 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
  				<div style="margin-top: 350px">
  						<table id="teamyear">
 		<tr>
-			<th><input type="button" class="year" value="2020년"></th>
-			<th><input type="button" class="year" value="2021년"></th>
-			<th><input type="button" class="year" value="2022년"></th>
-			<th><input type="button" class="year" value="2023년"></th>
-			<th><input type="button" class="year" value="2024년"></th>
+			<th colspan="5" style="text-align: center;"><h2>경기 결과</h2></th>
+			
 		</tr>
 	
 		<tr>
@@ -397,4 +396,5 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 		</div>
 	</div>
 </body>
+
 </html>

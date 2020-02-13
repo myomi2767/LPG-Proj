@@ -1,3 +1,5 @@
+<%@page import="game.LPG.userSports.UserSportsDTO"%>
+<%@page import="game.LPG.user.UserDTO"%>
 <%@page import="game.LPG.sportsMatch.SportsMatchDTO"%>
 <%@page import="java.util.List"%>
 
@@ -21,7 +23,10 @@
 
 
 <body>
-<% SportsMatchDTO dto= (SportsMatchDTO)request.getAttribute("sportsMatchList");%>
+<% 
+UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
+UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
+SportsMatchDTO dto= (SportsMatchDTO)request.getAttribute("sportsMatchList");%>
 <div class="container mtb">
     <div class="row">
       <div class="col-sm-8">

@@ -1,3 +1,5 @@
+<%@page import="game.LPG.userSports.UserSportsDTO"%>
+<%@page import="game.LPG.user.UserDTO"%>
 <%@page import="game.LPG.soccerteam.TeamDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="game.LPG.ground.GroundDTO"%>
@@ -50,7 +52,9 @@
 	 TITLE & CONTENT
 	 ***************************************************************************************************************** -->
 	<% 
-  if((MatchDetailDTO)request.getAttribute("mchTeamDetail")!=null){
+	UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
+	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
+	if((MatchDetailDTO)request.getAttribute("mchTeamDetail")!=null){
   MatchDetailDTO dto = (MatchDetailDTO)request.getAttribute("mchTeamDetail"); 
   	 SportsMatchDTO sm = dto.getSportsMatch();
   	 /* GroundDTO grd = dto.getGround(); */

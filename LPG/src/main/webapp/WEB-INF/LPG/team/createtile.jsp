@@ -1,5 +1,3 @@
-<%@page import="game.LPG.userSports.UserSportsDTO"%>
-<%@page import="game.LPG.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,13 +54,10 @@
 	
 </head>
 <body>
-	<% UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
-	   UserSportsDTO userSports = (UserSportsDTO) session.getAttribute("userSports");%>
 	<div class="container mtb">
 	    <div class="row">
 	      <div class="col-lg-12">
 	        <form class="form-horizontal style-form"  action="/LPG/team/create.do" method="POST">
-	        	 <input type="hidden" id="sportsNo" name="sportsNo" value="<%= userSports.getSportsNo() %>">
 		         <div class="form-group">
 		            <div class="row">
 		            	<div class="col-sm-2" ></div>

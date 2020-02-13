@@ -35,8 +35,9 @@
 			$("#teamPre").val(teamPre).attr("selected","selected") 
 			$("#teamGender").val(teamGender).attr("selected","selected") 
 			$("#teamStrategy").val(teamStrategy).attr("selected","selected")
-			$("#teamAbility").val('teamAbility').attr("checked","checked") 
-			$("#memberPrivate").val('memberPrivate').prop("checked","checked") 
+			$("input:checkbox[name='teamAbility']:input[value='"+teamAbility+"']").attr("checked",true);
+			$("input:radio[name='memberPrivate']:input[value='"+memberPrivate+"']").attr("checked",true);
+
 			
 	})
 </script>
@@ -44,7 +45,7 @@
   <div class="container mtb">
     <div class="row">
       <div class="col-lg-12">
-        <form class="form-horizontal style-form" action="/LPG/team/teammody.do" method="post">
+        <form class="form-horizontal style-form" action="/LPG/team/teammody.do" method="post" enctype="multipart/form-data">
         	<input type="hidden" name="teamNo" value="<%=list.getTeamNo()  %>">
             <div class="form-group">
 	            <div class="row">
@@ -151,7 +152,7 @@
 	            	<div class="col-sm-2" ><h4>팀 실력</h4></div>
 	               	<div class="col-lg-7" style="position: relative; top: 8px" id="teamAbility">
 		              	<input type="checkbox" name="teamAbility" value="상" style="margin-left: 2%" id="checkbox-1-1"><label for="checkbox-1-1">상</label>
-			            <input type="checkbox" name="teamAbility" value="중" style="margin-left: 15%" id="checkbox-1-2" checked="checked"><label for="checkbox-1-2">중</label>
+			            <input type="checkbox" name="teamAbility" value="중" style="margin-left: 15%" id="checkbox-1-2"><label for="checkbox-1-2">중</label>
 			            <input type="checkbox" name="teamAbility" value="하" style="margin-left: 15%" id="checkbox-1-3"><label for="checkbox-1-3">하</label>
 	             	</div>		           
               	</div>
@@ -195,7 +196,7 @@
 				<div class="row">
 				<div class="col-sm-2"><h4>팀 앰블럼</h4></div>
 				<div class="col-lg-7">
-					<input type="file" name="teamEmblem" id="teamEmblem" >
+					<input type="file" name="upFile" id="upFile" >
 				</div>
 				</div>
 			</div>
@@ -204,7 +205,7 @@
 				<div class="row">
 					<div class="col-sm-2" ><h4>팀원 정보 공개여부</h4></div>
 					<div class="col-lg-7" style="position: relative; top: 8px" id="memberPrivate">
-						<input type="radio" name="memberPrivate" id="checkbox-info-1" value="0" style="margin-left: 2%" checked="checked">
+						<input type="radio" name="memberPrivate" id="checkbox-info-1" value="0" style="margin-left: 2%">
 				 		<label for="checkbox-info-1">공개</label>
 				 		<input type="radio" name="memberPrivate" id="checkbox-info-2" value="1" style="margin-left: 10%">
 				 		<label for="checkbox-info-2">비공개</label>

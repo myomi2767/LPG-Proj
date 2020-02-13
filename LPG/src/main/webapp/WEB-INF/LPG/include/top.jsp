@@ -51,8 +51,8 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 
 					data-toggle="dropdown">Ground<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="/ground/add.do">구장등록</a></li>
-						<li><a href="#">구장검색</a></li>
+						<li><a href="/LPG/ground/add.do">구장등록</a></li>
+						<li><a href="/LPG/ground/map/main.do">구장검색</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 
@@ -71,14 +71,6 @@
 						<li><a href="/LPG/team/myteam.do">내 팀보기</a></li>
 					</ul>
 				</li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" 
-					data-toggle="dropdown">Championship<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">대회등록</a></li>
-						<li><a href="#">대회목록</a></li>
-						<li><a href="#">매치신청현황</a></li>
-					</ul>
-				</li>				
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 
 					data-toggle="dropdown">Mypage<b class="caret"></b></a>
 					<ul class="dropdown-menu">

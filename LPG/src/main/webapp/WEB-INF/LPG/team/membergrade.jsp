@@ -1,4 +1,3 @@
-<%@page import="game.LPG.soccerteam.TeamDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="game.LPG.soccerteam.TeamMemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -67,7 +66,6 @@ width: 60%;
 <body>
 <% ArrayList<TeamMemberDTO> tmlist = (ArrayList<TeamMemberDTO>)request.getAttribute("tmlist"); %>
 
-
 	<div class="container mtb" id="total">
 		<form action="/LPG/team/teamMemMody.do" method="post" name="form">
 			<div id="mgradetotal">
@@ -87,9 +85,8 @@ width: 60%;
 									String tmTend = tml.getTmTend();
 									String tmGrade = tml.getTmGrade();
 									String tmAbility = tml.getTmAbility();
-										/* $("#tmTend").val(tmTend).attr("selected","selected") 
-										$("#tmGrade").val(tmGrade).attr("selected","selected") 
-										$("#tmAbility").val(tmAbility).attr("selected","selected") */
+									
+									
 								%>
 								<tr class="tttr">
 									<td class="tttd">
