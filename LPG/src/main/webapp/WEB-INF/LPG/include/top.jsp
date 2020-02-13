@@ -33,7 +33,7 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-	<% UserDTO user = (UserDTO)session.getAttribute("user");
+	<% UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
 	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");%>
 	<div class="container">
 		<div class="navbar-header">
@@ -58,8 +58,9 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 
 					data-toggle="dropdown">Match<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="/LPG/match/matchResist.do">매치등록</a></li>
-						<li><a href="/LPG/match.do">매치검색</a></li>
+						<li><a href="#">매치등록</a></li>
+						<li><a href="#">팀매치검색</a></li>
+						<li><a href="#">개인매치검색</a></li>
 						<li><a href="#">매치신청현황</a></li>
 					</ul>
 				</li>
@@ -78,7 +79,7 @@
 						<li><a href="#">대회목록</a></li>
 						<li><a href="#">매치신청현황</a></li>
 					</ul>
-				</li>	
+				</li>				
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 
 					data-toggle="dropdown">Mypage<b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -87,14 +88,15 @@
 					</ul>
 				</li>				
 				<li><a href="#">QA</a></li>
-			<% //처음 접속하는 사용자에게 보여줄 컨텐츠
+				
+				<% //처음 접속하는 사용자에게 보여줄 컨텐츠
 					if(user==null){ %>
 				<li class="icon-bar" style="border: 1px solid white; height: 48px;"><a href="/LPG/user/login.do" class="icon-bar">로그인</a></li>
 			</ul>
 				<%//로그인 성공한 사용자에게 보여줄 컨텐츠
 					}else{ %>
 				<li class="icon-bar" style="border: 1px solid white; height: 48px;"><a href="/LPG/user/logout.do" class="icon-bar">로그아웃</a></li>
-			</ul>
+				</ul>
 				<%} %>
 		</div>
 		<!--/.nav-collapse -->
