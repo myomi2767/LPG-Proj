@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="game.LPG.ground.GroundAPIDTO"%>
 <%@page import="game.LPG.ground.GroundDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -121,17 +123,20 @@
 	border-radius: 5px;
 }
 
-.outer:HOVER{
+.outer:HOVER {
 	cursor: pointer;
+}
+
+.noImg {
+	width: 200px;
 }
 </style>
 </head>
 <body>
 	<%
 		System.out.println("groundListSideBar 1");
-		List<GroundDTO> groundList = (List<GroundDTO>) request.getAttribute("groundList");
+
 		String baseType = (String) request.getAttribute("base");
-		System.out.println("groundListSideBar 2");
 	%>
 	<div class="leftPage">
 		<div class="content">
@@ -139,48 +144,100 @@
 			<hr />
 			<%
 				System.out.println("groundListSideBar 3");
-				for (int i = 0; i < groundList.size(); i++) {
+				if (((List<GroundDTO>) request.getAttribute("groundList")).size() != 0) {
+					List<GroundDTO> groundList = (List<GroundDTO>) request.getAttribute("groundList");
+					for (int i = 0; i < groundList.size()-1; i++) {
 			%>
-				<input type="hidden" name="ground" value="<%=groundList.get(i) %>">
-				<div class="outer" onclick="location.href='/LPG/ground/<% if(baseType.equals("map")){%>map<% }else if(baseType.equals("calendar")){ %>calendar<%}%>/detail.do?grdNo=<%=groundList.get(i).getGrdNo() %>'">
-					<div class="groundName col-md-12">
-						<div class="col-md-6 padzero">
-							<h1 class="placeName">
-								<%=groundList.get(i).getGrdName()%>
-								<!-- ground name from db -->
-							</h1>
-							<h3 class="placeType">
-								<%=groundList.get(i).getGrdType()%>
-								<!-- ground type from db -->
-							</h3>
+			<input type="hidden" name="ground" value="<%=groundList.get(i)%>">
+			<div class="outer"
+				onclick="location.href='/LPG/ground/<%if (baseType.equals("map")) {%>map<%} else if (baseType.equals("calendar")) {%>calendar<%}%>/detail.do?grdNo=<%=groundList.get(i).getGrdNo()%>'">
+				<div class="groundName col-md-12">
+					<div class="col-md-6 padzero">
+						<h1 class="placeName">
+							<%=groundList.get(i).getGrdName()%>
+							<!-- ground name from db -->
+						</h1>
+						<h3 class="placeType">
+							<%=groundList.get(i).getGrdType()%>
+							<!-- ground type from db -->
+						</h3>
 
-							<div class="inner-text colname in">접수 기간</div>
-							<div class="inner-text inner-font in">2020.01.01 ~
-								2020.01.31</div>
-						</div>
 						<div class="col-md-6">
-							<img class="thumbImg" alt="" src="/LPG/img/my/soccer.jpg">
-							<%-- 					<img class="thumbImg" alt="" src="<%=groundList.get(i).getGrdImg() %>"> --%>
+							<img class="noImg" alt="/LPG/img/my/noImg.png"
+								src="/LPG/img/my/noImg.png">
 						</div>
 					</div>
 
-
-					<div class="inside-content">
-						<div class="inner-text">
-							<button class="time">9:00&#x00A;~11:00</button>
-							<button class="time">12:00&#x00A;~14:00</button>
-							<button class="time">15:00&#x00A;~17:00</button>
-							<button class="time">18:00&#x00A;~20:00</button>
-							<button class="time">21:00&#x00A;~23:00</button>
-						</div>
-					</div>
-					<hr />
 				</div>
+				<hr />
+				<br>
+				<br>
+			</div>
 			<%
-				System.out.println("groundListSideBar 4");
+				}
+				}
+				if (((ArrayList<GroundDTO>) request.getAttribute("apiGroundList")).size() != 0) {
+					ArrayList<GroundAPIDTO> apiGroundList = (ArrayList<GroundAPIDTO>) request.getAttribute("apiGroundList");
+					System.out.println("groundApiSize:" + apiGroundList.size());
+					for (int i = 0; i < apiGroundList.size()-1; i++) {
+						System.out.println(i+"번째 구장");
+			%>
+			<input type="hidden" name="ground" value="<%=apiGroundList.get(i)%>">
+			<div class="outer"
+				onclick="location.href='/LPG/ground/<%if (baseType.equals("map")) {%>map<%} else if (baseType.equals("calendar")) {%>calendar<%}%>/detail.do?grdNo=<%=apiGroundList.get(i).getGrdNo()%>'">
+				<div class="groundName col-md-12">
+					<div class="col-md-6 padzero">
+						<h1 class="placeName">
+							<%=apiGroundList.get(i).getGrdName()%>
+							<!-- ground name from db -->
+						</h1>
+						<h3 class="placeType">
+							<%=apiGroundList.get(i).getGrdType()%>
+							<!-- ground type from db -->
+						</h3>
+
+						<div class="inner-text colname in">접수 기간</div>
+						<div class="inner-text inner-font in"><%=apiGroundList.get(i).getStartRsvDate()%>
+							~
+							<%=apiGroundList.get(i).getEndRsvDate()%>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<img class="thumbImg" alt="/LPG/img/my/noImg.png"
+							src="/LPG/img/my/soccer.jpg">
+						<%-- 					<img class="thumbImg" alt="/LPG/img/my/noImg.png" src="<%=groundList.get(i).getGrdImg() %>"> --%>
+					</div>
+				</div>
+
+
+				<div class="inside-content">
+					<div class="inner-text">
+						<%
+							String startTimeStr = apiGroundList.get(i).getStartServiceTime();
+									String[] startTimeStrArr = startTimeStr.split(":");
+									int startTime = Integer.parseInt(startTimeStrArr[0]);
+
+									String endTimeStr = apiGroundList.get(i).getEndServiceTime();
+									String[] endTimeStrArr = endTimeStr.split(":");
+									int endTime = Integer.parseInt(endTimeStrArr[0]);
+
+									for (int j = startTime; j < endTime - 2; j += 2) {
+										int time = j;
+						%>
+						<button class="time"><%=time%>:00&#x00A;~<%=time + 2%>:00
+						</button>
+						<%
+							}
+						%>
+					</div>
+				</div>
+				<hr />
+			</div>
+			<%
+				}
 				}
 			%>
+
 		</div>
-	</div>
 </body>
 </html>

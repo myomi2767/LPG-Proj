@@ -24,6 +24,13 @@ public class GroundReserveDTO {
 		
 	}
 	
+	//set null to ""
+	public void setNull(){
+		if(getGrdrsvUseDate()==null){
+		//	setGrdrsvUseDate();
+		}
+	}
+	
 	//getter setter
 	public int getGrdrsvNo() {
 		return grdrsvNo;

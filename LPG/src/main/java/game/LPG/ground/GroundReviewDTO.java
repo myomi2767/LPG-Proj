@@ -17,6 +17,12 @@ public class GroundReviewDTO {
 		
 	}
 	
+	public void setNull(){
+		if(getGrdrevContext()==null){
+			setGrdrevContext("");
+		}
+	}
+	
 	//toString
 	@Override
 	public String toString() {

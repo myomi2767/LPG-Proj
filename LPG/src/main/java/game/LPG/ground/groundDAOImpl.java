@@ -29,12 +29,15 @@ public class groundDAOImpl implements groundDAO {
 	@Override
 	public int addGround(GroundDTO ground) {
 		System.out.println("add ground=>"+ground.toString());
+		ground.setNull();
+		System.out.println("add ground set null=>"+ground.toString());
 		int result = sqlSession.insert("game.LPG.ground.addGround", ground);
 		return result;
 	}
 
 	@Override
 	public int insertReview(GroundReviewDTO review) {
+		review.setNull();
 		int result=sqlSession.insert("game.LPG.ground.insertReview", review);
 		return result;
 	}
@@ -47,6 +50,7 @@ public class groundDAOImpl implements groundDAO {
 
 	@Override
 	public int insertReserve(GroundReserveDTO reserve) {
+		
 		int result = sqlSession.insert("game.LPG.ground.insertReserve",reserve);
 		return result;
 	}

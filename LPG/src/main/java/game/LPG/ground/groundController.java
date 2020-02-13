@@ -1,5 +1,6 @@
 package game.LPG.ground;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,157 +9,214 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import game.LPG.userSports.UserSportsDTO;
 
 @Controller
 public class groundController {
-	
+
 	@Autowired
 	groundService service;
-	
-	/*search*/	
-	/*main*/
+
+	/* search */
+	/* main */
 	@RequestMapping("/ground/map/main.do")
-	public ModelAndView mapMain(){
+	public ModelAndView mapMain() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pageType", "main");
 		mav.addObject("base", "map");
 		mav.setViewName("mapMain");
 		return mav;
 	}
+
 	@RequestMapping("/ground/calendar/main.do")
-	public ModelAndView calMain(){
+	public ModelAndView calMain() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pageType", "main");
 		mav.addObject("base", "calendar");
 		mav.setViewName("calMain");
 		return mav;
 	}
-	/*list*/
+
+	/* list */
 	@RequestMapping("/ground/map/list.do")
-	public ModelAndView mapList(String search){
+	public ModelAndView mapList(String search) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("search=>"+search);
-		List<GroundDTO> groundList=service.searchGround(search);
-		
-		/*for (int i=0;i<groundList.size();i++) {
-			System.out.println("maplist ground List=>"+groundList.get(i).toString());
-		}*/
-		
+		System.out.println("search=>" + search);
+
+		connectToAPI api = new connectToAPI();
+
+		jsonParser jp = new jsonParser();
+
+		String jsonResult = "";
+		if (search.contains("풋살") || search.contains("축구")) {
+			jsonResult = api.getJson(search, 5);
+		} else {
+			jsonResult = api.getJson("", 5);
+		}
+
+		ArrayList<GroundAPIDTO> apiArr = jp.parseJson(jsonResult);
+		System.out.println("apiArr size" + apiArr.size());
+		List<GroundDTO> groundList = service.searchGround(search);
+		System.out.println("groundList size" + groundList.size());
+
+		/*
+		 * for (int i=0;i<groundList.size();i++) {
+		 * System.out.println("maplist ground List=>"+groundList.get(i).toString
+		 * ()); }
+		 */
+
 		mav.addObject("groundList", groundList);
-		
+		mav.addObject("apiGroundList", apiArr);
+
 		mav.addObject("pageType", "result");
 		mav.addObject("base", "map");
 		mav.setViewName("mapList");
 		return mav;
 	}
+
 	@RequestMapping("/ground/calendar/list.do")
-	public ModelAndView calList(String search){
+	public ModelAndView calList(String search) {
 		ModelAndView mav = new ModelAndView();
-		
-		List<GroundDTO> groundList=service.searchGround(search);
-		
+
+		List<GroundDTO> groundList = service.searchGround(search);
+
 		mav.addObject("groundList", groundList);
-		
+
 		mav.addObject("pageType", "result");
 		mav.addObject("base", "calendar");
 		mav.setViewName("calList");
 		return mav;
 	}
-	/*detail*/
+
+	/* detail */
 	@RequestMapping("/ground/map/detail.do")
-	public ModelAndView mapDetail(String grdNo){
+	public ModelAndView mapDetail(String grdNo) {
+		System.out.println("grdNo detail: " + grdNo);
 		ModelAndView mav = new ModelAndView();
-		
-		GroundDTO ground = service.groundDetail(grdNo);
+
+		String jsonResult = "";
+		if (grdNo.contains("P")) {
+			GroundDTO ground = service.groundDetail(grdNo);
+			mav.addObject("ground", ground);
+		} else {
+			GroundAPIDTO apiG;
+			connectToAPI api = new connectToAPI();
+			jsonParser jp = new jsonParser();
+
+			jsonResult = api.getJson("", 40);
+
+			ArrayList<GroundAPIDTO> apiArr = jp.parseJson(jsonResult);
+			for (int i = 0; i < apiArr.size(); i++) {
+				if (grdNo == apiArr.get(i).getGrdNo()) {
+					apiG = apiArr.get(i);
+					System.out.println("grdNo in apiArr: " + grdNo);
+					mav.addObject("apiGround", apiG);
+					break;
+				}
+			}
+		}
+
 		int starAvg = service.reviewAvg(grdNo);
 		int count = service.countReview(grdNo);
-		
-		System.out.println("data loaded****starAvg:"+starAvg+"***count"+count);
-		
+
+		System.out.println("data loaded****starAvg:" + starAvg + "***count" + count);
+
 		mav.addObject("starAvg", starAvg);
-		mav.addObject("ground",ground);
 		mav.addObject("count", count);
-		
+
 		mav.addObject("pageType", "result");
 		mav.addObject("base", "map");
 		mav.setViewName("mapDetail");
 		return mav;
 	}
+
 	@RequestMapping("/ground/calendar/detail.do")
-	public ModelAndView calDetail(String grdNo){
+	public ModelAndView calDetail(String grdNo) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		GroundDTO ground = service.groundDetail(grdNo);
 		int starAvg = service.reviewAvg(grdNo);
 		int count = service.countReview(grdNo);
-		
+
 		mav.addObject("starAvg", starAvg);
-		mav.addObject("ground",ground);
+		mav.addObject("ground", ground);
 		mav.addObject("count", count);
-		
+
 		mav.addObject("pageType", "result");
 		mav.addObject("base", "calendar");
 		mav.setViewName("calDetail");
 		return mav;
 	}
 
-	
-	/*add*/	
-	@RequestMapping(value="/ground/add.do", method=RequestMethod.GET)
-	public String addGroundPage(){
-		
+	/* add */
+	@RequestMapping(value = "/ground/add.do", method = RequestMethod.GET)
+	public String addGroundPage() {
+
 		return "addGround";
 	}
-	@RequestMapping(value="/ground/add.do", method=RequestMethod.POST)
-	public String saveGround(GroundDTO ground){
-		System.out.println("add ground in controller=>"+ground.toString());
+
+	@RequestMapping(value = "/ground/add.do", method = RequestMethod.POST)
+	public String saveGround(GroundDTO ground, HttpSession session) throws Exception {
+		System.out.println("add ground in controller=>" + ground.toString());
+		if (ground.getGrdImg() != null) {
+			MultipartFile file = ground.getUpload();
+			String path = WebUtils.getRealPath(session.getServletContext(), "/WEB-INF/LPG/img/groundImg");
+			String fileName = file.getOriginalFilename();
+			if (fileName.length() >= 1) {
+				System.out.println("filename!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + fileName);
+				service.upload(file, path, fileName);
+			} else {
+				fileName = "../img/my/noImg.png";
+			}
+		}
 		int result = service.addGround(ground);
-		System.out.println("saveGround result=>"+result);
-		return "redirect:/ground/review.do";
+		System.out.println("saveGround result=>" + result);
+		return "/ground/add.do";
 	}
-	
-	
-	/*review*/	
-	@RequestMapping(value="/ground/review.do", method=RequestMethod.GET)
-	public ModelAndView reviewPage(String mch_no){
+
+	/* review */
+	@RequestMapping(value = "/ground/review.do", method = RequestMethod.GET)
+	public ModelAndView reviewPage(String mch_no) {
 		ModelAndView mav = new ModelAndView();
 		GroundDTO ground = service.showReviewPage(mch_no);
 		mav.addObject("ground", ground);
 		mav.setViewName("reviewGround");
-		System.out.println("reviewPage result=>"+ground);
+		System.out.println("reviewPage result=>" + ground);
 		return mav;
 	}
-	@RequestMapping(value="/ground/review.do", method=RequestMethod.POST)
-	public String saveReview(GroundReviewDTO review, HttpSession session){
-		
-		//session�� �߰��ɶ� ���� usersportsinfo �̸����� ��ü�Ұ�!!
-		UserSportsDTO userSports = (UserSportsDTO)session.getAttribute("userSportsInfo");
+
+	@RequestMapping(value = "/ground/review.do", method = RequestMethod.POST)
+	public String saveReview(GroundReviewDTO review, HttpSession session) {
+
+		// session�� �߰��ɶ� ���� usersportsinfo �̸����� ��ü�Ұ�!!
+		UserSportsDTO userSports = (UserSportsDTO) session.getAttribute("userSportsInfo");
 		review.setSportsNo(userSports.getSportsNo());
-		
+
 		int result = service.insertReview(review);
-		System.out.println("saveReview result=>"+result);
+		System.out.println("saveReview result=>" + result);
 		return "reviewGround";
 	}
 
-	//��ġ��Ͻ� ��ġ ��ȣ �޾Ƽ� ���� controller���� insert���־���ϳ�
-	/*reserve*/	
-	@RequestMapping(value="/ground/reserve.do", method=RequestMethod.GET)
-	public ModelAndView reservePage(GroundDTO ground){
+	// ��ġ��Ͻ� ��ġ ��ȣ �޾Ƽ� ���� controller���� insert���־���ϳ�
+	/* reserve */
+	@RequestMapping(value = "/ground/reserve.do", method = RequestMethod.GET)
+	public ModelAndView reservePage(GroundDTO ground) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("ground", ground);
 		mav.setViewName("reserveGround");
 		return mav;
 	}
-	@RequestMapping(value="/ground/reserve.do", method=RequestMethod.POST)
-	public String reserveGround(GroundReserveDTO reserve){
+
+	@RequestMapping(value = "/ground/reserve.do", method = RequestMethod.POST)
+	public String reserveGround(GroundReserveDTO reserve) {
 		int result = service.insertReserve(reserve);
-		System.out.println("reserveGround result=>"+result);
-		//������ ��ġ ��� ������ �����ִ� ���·� ���ư�����..? AJAX?
-		return "redirect:��ġ ��� ������.do";
+		System.out.println("reserveGround result=>" + result);
+		// ������ ��ġ ��� ������ �����ִ� ���·� ���ư�����..? AJAX?
+		return "redirect:/ground/map/main.do";
 	}
-	
-	
+
 }

@@ -81,7 +81,7 @@ function openDaumZipAddress() {
 				<h4>구장 정보 입력</h4>
 				<div class="hline"></div>
 				<form class="contact-form php-mail-form" role="form"
-					action="/LPG/ground/add.do" method="POST">
+					action="/LPG/ground/add.do" method="POST" enctype="multiport/form-data">
 					<br />
 					
 					<div class = "form-group">
@@ -179,7 +179,7 @@ function openDaumZipAddress() {
 						<div class="row">
 							<div class="col-sm-2"><h4>구장이미지:</h4></div>	
 								<div class="col-sm-9">
-								<input type="file" name="grdImg" accept="image/*" />
+								<input type="file" name="upload" accept="image/*" />
 								</div>
 						</div>
 					</div>
