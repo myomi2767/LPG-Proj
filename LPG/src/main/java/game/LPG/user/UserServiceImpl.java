@@ -59,6 +59,12 @@ public class UserServiceImpl implements UserService {
 		System.out.println(su);
 		return su;
 	}
+	/*@Override
+	public UserSportsDTO login3(UserDTO loginUserInfo) {
+		UserSportsDTO su = dao.login3(loginUserInfo);
+		System.out.println(su);
+		return su;
+	}*/
 	
 	
 }

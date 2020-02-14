@@ -43,7 +43,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.html">SOLID.</a>
+			<a class="navbar-brand" href="index.html">LPG.</a>
 		</div>
 		<div class="navbar-collapse collapse navbar-right">
 			<ul class="nav navbar-nav">
@@ -60,7 +60,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="/LPG/match/matchResist.do">매치등록</a></li>
 						<li><a href="/LPG/match.do">매치검색</a></li>
-						<li><a href="#">매치신청현황</a></li>
+						<li><a href="/LPG/match/mgrMatchList.do?pagenum=1&contentnum=10">매치신청현황</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 

@@ -2,10 +2,14 @@ package game.LPG.paging;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import game.LPG.userSports.UserSportsDTO;
 
 @Controller
 public class PagingController {	
@@ -22,17 +26,19 @@ public class PagingController {
 	
 	
 	@RequestMapping(value="/match/mgrMatchList.do")
-	public ModelAndView mgrMchList(String pagenum, String contentnum) {
+	public ModelAndView mgrMchList(HttpSession session, String pagenum, String contentnum) {
+		UserSportsDTO su = (UserSportsDTO)session.getAttribute("userSports");
 		System.out.println(pagenum);
 		System.out.println(contentnum);
 		ModelAndView mav = new ModelAndView();
-		PagingDTO pagingDTO = service.set(pagenum, contentnum);	
+		PagingDTO pagingDTO = service.set(su, pagenum, contentnum);	
 		System.out.println(pagingDTO.getPagenum());
 		System.out.println(pagenum);
 		System.out.println(contentnum);
 		if(pagingDTO.getPagenum()==0) {
 		List<Integer> testlist = service.testlist(pagingDTO.getPagenum()*pagingDTO.getContentnum(), pagingDTO.getPagenum()*pagingDTO.getContentnum()+pagingDTO.getContentnum());
 		System.out.println(testlist);
+		mav.addObject("sportsNo", su.getSportsNo());
 		mav.addObject("contentnum",pagingDTO.getContentnum());
 		mav.addObject("list",testlist);
 		mav.addObject("page",pagingDTO);
@@ -41,6 +47,7 @@ public class PagingController {
 		}else {
 			List<Integer> testlist = service.testlist((pagingDTO.getPagenum()*pagingDTO.getContentnum())+1, pagingDTO.getPagenum()*pagingDTO.getContentnum()+pagingDTO.getContentnum());
 			System.out.println(testlist);
+			mav.addObject("sportsNo", su.getSportsNo());
 			mav.addObject("contentnum",pagingDTO.getContentnum());
 			mav.addObject("list",testlist);
 			mav.addObject("page",pagingDTO);
@@ -55,11 +62,11 @@ public class PagingController {
 	}
 	
 	@RequestMapping(value="/match/IndivMatchList.do")
-	public ModelAndView IndivMchList(String pagenum, String contentnum) {
+	public ModelAndView IndivMchList(UserSportsDTO su, String pagenum, String contentnum) {
 		System.out.println(pagenum);
 		System.out.println(contentnum);
 		ModelAndView mav = new ModelAndView();
-		PagingDTO pagingDTO = service.set(pagenum, contentnum);	
+		PagingDTO pagingDTO = service.set(su, pagenum, contentnum);	
 		System.out.println(pagingDTO.getPagenum());
 		System.out.println(pagenum);
 		System.out.println(contentnum);

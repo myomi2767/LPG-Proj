@@ -16,7 +16,7 @@ public class UserDTO {
 	private String userEmail;
 	private String userEmailAgree;
 	private String userPoint;
-	private String sportsno;
+	private int sportsNo;
 
 	private int checkValue;
 
@@ -26,7 +26,7 @@ public class UserDTO {
 	
 	public UserDTO(String userId, String userPwd, String userName, String userNick, String userPhone, String userBirth,
 			String userAddr, String subAddr, String userSignDate, String userGender, String userEmail,
-			String userEmailAgree, String userPoint, String sportsno, int checkValue) {
+			String userEmailAgree, String userPoint, int sportsNo, int checkValue) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -41,7 +41,7 @@ public class UserDTO {
 		this.userEmail = userEmail;
 		this.userEmailAgree = userEmailAgree;
 		this.userPoint = userPoint;
-		this.sportsno = sportsno;
+		this.sportsNo = sportsNo;
 		this.checkValue = checkValue;
 	}
 
@@ -51,7 +51,7 @@ public class UserDTO {
 				+ userNick + ", userPhone=" + userPhone + ", userBirth=" + userBirth + ", userAddr=" + userAddr
 				+ ", subAddr=" + subAddr + ", userSignDate=" + userSignDate + ", userGender=" + userGender
 				+ ", userEmail=" + userEmail + ", userEmailAgree=" + userEmailAgree + ", userPoint=" + userPoint
-				+ ", sportsno=" + sportsno + ", checkValue=" + checkValue + "]";
+				+ ", sportsNo=" + sportsNo + ", checkValue=" + checkValue + "]";
 	}
 
 	public String getUserId() {
@@ -164,12 +164,12 @@ public class UserDTO {
 		this.checkValue = checkValue;
 	}
 
-	public String getSportsno() {
-		return sportsno;
+	public int getSportsNo() {
+		return sportsNo;
 	}
 
-	public void setSportsno(String sportsno) {
-		this.sportsno = sportsno;
+	public void setSportsNo(int sportsNo) {
+		this.sportsNo = sportsNo;
 	}
 	
 	

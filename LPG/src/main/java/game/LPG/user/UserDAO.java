@@ -18,4 +18,5 @@ public interface UserDAO {
 	UserDTO myinfoPWCheck(UserDTO ppc);
 	
 	UserSportsDTO login2(UserDTO loginUserInfo);
+	/*UserSportsDTO login3(UserDTO loginUserInfo);*/
 }

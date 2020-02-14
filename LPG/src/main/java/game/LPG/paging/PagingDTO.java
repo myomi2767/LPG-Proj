@@ -11,6 +11,7 @@ public class PagingDTO {
 	private boolean next;
 	private int currentblock;
 	private int lastblock;
+	private int sportsNo;
 	
 	public void prevnext(int pagenum) {
 		if(pagenum>0&&pagenum<6) {
@@ -125,6 +126,16 @@ public class PagingDTO {
 		if(totalcount%(5*this.contentnum)>0) {
 			this.lastblock++;
 		}
+	}
+
+
+	public int getSportsNo() {
+		return sportsNo;
+	}
+
+
+	public void setSportsNo(int sportsNo) {
+		this.sportsNo = sportsNo;
 	}
 	
 	

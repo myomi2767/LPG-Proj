@@ -55,9 +55,9 @@ public class groundController {
 
 		String jsonResult = "";
 		if (search.contains("풋살") || search.contains("축구")) {
-			jsonResult = api.getJson(search, 5);
+			jsonResult = api.getJson(search, 40);
 		} else {
-			jsonResult = api.getJson("", 5);
+			jsonResult = api.getJson("", 40);
 		}
 
 		apiArr = jp.parseJson(jsonResult);

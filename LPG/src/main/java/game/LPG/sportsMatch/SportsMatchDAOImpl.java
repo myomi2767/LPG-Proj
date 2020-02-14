@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import game.LPG.ground.GroundDTO;
 import game.LPG.soccerteam.TeamDTO;
+import game.LPG.soccerteam.TeamMemberDTO;
+import game.LPG.userSports.UserSportsDTO;
 
 @Repository("sportsMatchDAO")
 public class SportsMatchDAOImpl implements SportsMatchDAO {
@@ -77,9 +79,22 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 	}
 
 	@Override
-	public int matchJoin(SportsMatchTeamDTO smt) {
+	public TeamMemberDTO teamNoSearch(UserSportsDTO su) {
+		return sqlSession.selectOne("game.LPG.sportsMatch.TeamNoSearch", su);
+	}
+	
+	@Override
+	public int matchJoinTeam(SportsMatchTeamDTO smt) {
 		System.out.println("dao:"+smt);
-		int result = sqlSession.insert("game.LPG.sportsMatch.matchJoin", smt);
+		int result = sqlSession.insert("game.LPG.sportsMatch.matchJoinTeam", smt);
+		System.out.println(result);
+		return result;
+	}
+	
+	@Override
+	public int matchJoinIndiv(SportsMatchTeamDTO smt) {
+		System.out.println("dao:"+smt);
+		int result = sqlSession.insert("game.LPG.sportsMatch.matchJoinIndiv", smt);
 		System.out.println(result);
 		return result;
 	}
@@ -91,5 +106,17 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 		System.out.println("dao:"+sm);
 		return sm;
 	}
-	
+
+	@Override
+	public int matchChangeOk(SportsMatchDTO sportsMatch) {
+		System.out.println(sportsMatch);
+		int result = sqlSession.update("game.LPG.sportsMatch.matchChage", sportsMatch);
+		System.out.println(result);
+		return result;
+	}
+
+	@Override
+	public int matchDelete(String mchNo) {
+		return sqlSession.delete("game.LPG.sportsMatch.matchDelete", mchNo);
+	}
 }

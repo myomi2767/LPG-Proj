@@ -68,13 +68,35 @@
 	<context:component-scan base-package="game"/>
 	<!-- ===================================================================================== -->
 	<interceptors>
-	<interceptor>
-		<mapping path="/user/myinfoPWCheck.do"/>
-		<mapping path="/user/myinfo.do"/>
-		<mapping path="/point/**"/>
-		<!-- <mapping path="/board/**"/> -->
-		<beans:bean class="game.LPG.user.LoginCheckInterceptor"/>
-	</interceptor>
+		<interceptor>
+			<mapping path="/user/myinfoPWCheck.do"/>
+			<mapping path="/user/myinfo.do"/>
+			<mapping path="/point/**"/>
+			<mapping path="/ground/**"/>
+			<mapping path="/match/matchResist.do"/>
+			<mapping path="/match/mchTeamYong.do"/>
+			<mapping path="/match/mchIndvDetail.do"/>
+			<mapping path="/match/mchTeamDetail.do"/>
+			<mapping path="/match/backUpNumAdd.do"/>
+			<mapping path="/match/join.do"/>
+			<mapping path="/match/change.do"/>
+			<mapping path="/mgrPaging.do"/>
+			<mapping path="/match/mgrMatchList.do"/>
+			<mapping path="/IndivPaging.do"/>
+			<mapping path="/match/IndivMatchList.do"/>
+			<mapping path="/team/create.do"/>
+			<mapping path="/team/apply.do"/>
+			<mapping path="/team/apsearch.do"/>
+			<mapping path="/team/memdelete.do"/>
+			<mapping path="/team/modyview.do"/>
+			<mapping path="/team/teammody.do"/>
+			<mapping path="/team/myteam.do"/>
+			<mapping path="/team/Mgrade.do"/>
+			<mapping path="/team/teamMemMody.do"/>
+			<mapping path="/team_membe.do"/>
+			<!-- <mapping path="/board/**"/> -->
+			<beans:bean class="game.LPG.user.LoginCheckInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 </beans:beans>

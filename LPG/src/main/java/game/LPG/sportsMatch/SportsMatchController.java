@@ -2,12 +2,17 @@ package game.LPG.sportsMatch;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import game.LPG.soccerteam.TeamMemberDTO;
+import game.LPG.userSports.UserSportsDTO;
 
 @Controller
 public class SportsMatchController {
@@ -20,8 +25,15 @@ public class SportsMatchController {
 	}
 	
 	@RequestMapping(value="/match/matchResist.do", method=RequestMethod.GET)
-	public String viewMatchResist() {
-		return "matchResist";
+	public ModelAndView viewMatchResist(HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		UserSportsDTO su = (UserSportsDTO)session.getAttribute("userSports");
+		TeamMemberDTO teamNoSearch = service.teamNoSearch(su);
+		System.out.println(teamNoSearch.getSportsNo());
+		mav.addObject("teamNoSearch", teamNoSearch);
+		mav.setViewName("matchResist");
+		return mav;
 	}
 	
 	@RequestMapping(value="/match/matchResist.do", method=RequestMethod.POST)
@@ -84,12 +96,20 @@ public class SportsMatchController {
 		return result+"";
 	}
 	
-	@RequestMapping("/match/join.do")
-	public String matchJoin(SportsMatchTeamDTO smt) {
+	@RequestMapping("/match/joinTeam.do")
+	public String matchJoinTeam(SportsMatchTeamDTO smt) {
 		System.out.println("컨트롤러:"+smt);
-		int result = service.matchJoin(smt);
+		int result = service.matchJoinTeam(smt);
 		System.out.println(result);
 		return "redirect:/match/mchTeamDetail.do";
+	}
+	
+	@RequestMapping("/match/joinIndiv.do")
+	public String matchJoinIndiv(SportsMatchTeamDTO smt) {
+		System.out.println("컨트롤러:"+smt);
+		int result = service.matchJoinIndiv(smt);
+		System.out.println(result);
+		return "redirect:/match/mchIndvDetail.do";
 	}
 	
 	@RequestMapping("/match/change.do")
@@ -101,5 +121,18 @@ public class SportsMatchController {
 		mav.addObject("matchChange", smt);
 		mav.setViewName("mchChange");
 		return mav;
+	}
+	
+	@RequestMapping("/match/changeOk.do")
+	public String matchChangeOk(SportsMatchDTO sportsMatch) {
+		System.out.println("컨트롤러:"+sportsMatch);
+		int result = service.matchChangeOk(sportsMatch);
+		System.out.println(result);
+		return "redirect:/match/mchTeamDetail.do?mchNo="+sportsMatch.getMchNo();
+	}
+	
+	public String matchDelete(String mchNo) {
+		service.matchDelete(mchNo);
+		return "redirect:/match.do";
 	}
 }

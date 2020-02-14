@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import game.LPG.userSports.UserSportsDTO;
+
 @Service
 public class PagingServiceImpl implements PagingService {
 	@Autowired
@@ -19,17 +21,17 @@ public class PagingServiceImpl implements PagingService {
 	}
 
 	@Override
-	public int testcount() {
+	public int testcount(UserSportsDTO su) {
 		
-		return dao.testcount();
+		return dao.testcount(su);
 	}
 
 	@Override
-	public PagingDTO set(String pagenum, String contentnum) {
+	public PagingDTO set(UserSportsDTO su, String pagenum, String contentnum) {
 		PagingDTO pagingDTO = new PagingDTO();
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum=Integer.parseInt(contentnum);
-		pagingDTO.setTotalcount(dao.testcount());
+		pagingDTO.setTotalcount(dao.testcount(su));
 		pagingDTO.setPagenum(cpagenum-1);
 		pagingDTO.setContentnum(ccontentnum);
 		pagingDTO.setCurrentblock(cpagenum);

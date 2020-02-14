@@ -11,7 +11,9 @@
 </head>
  <body>
   <% UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
-	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports"); %>
+	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
+	   TeamMemberDTO teamNoSearch = (TeamMemberDTO)request.getAttribute("teamNoSearch");
+	   %>
   <div class="container mtb">
     <div class="row">
       <div class="col-sm-8">
@@ -20,7 +22,9 @@
         <p>살어리 살어리랐다 청산에 살어리랐다</p>
         <form class="form-horizontal style-from" action="/LPG/match/matchResist.do" method="POST">
 			<input type="hidden" name="sportsNo" value="<%= userSprots.getSportsNo() %>">
-			<input type="hidden" id="teamNo" name="teamNo" value="<%= userSprots.getTeamNo() %>">
+			<% if( teamNoSearch.getTeamNo()!=0){ %>
+			<input type="hidden" id="teamNo" name="teamNo" value="<%= teamNoSearch.getTeamNo() %>">
+			<% }%>
             <div class="form-group">
             	<div class="row">
             	<div class="col-sm-2" ><h4>매치제목:</h4></div>
@@ -118,10 +122,10 @@
               		<input type="text" class="form-control" disabled="disabled">
              	</div>
 	              <div class="col-sm-2">
-	              	<button type="button" class="btn btn-theme" onclick="">구장 검색</button>
+	              	<button type="button" id="search" class="btn btn-theme">구장 검색</button>
 	              </div>
 	              <div class="col-sm-1">
-	              	<button type="button" class="btn btn-theme"  onclick="">예약하기</button>
+	              	<button type="button" id="reserve" class="btn btn-theme">예약하기</button>
 	              </div>		           
               	</div>
             </div>
@@ -177,8 +181,9 @@
 				<button type="submit" class="btn btn-theme">정보입력</button>
 				</div>
 				<div class="col-sm-7">
-					<button type="reset" class="btn btn-theme" >입력취소</button>
-					</div>
+					<button type="reset" id="matchGo" class="btn btn-theme" >입력취소</button>
+				</div>
+				
 			</div>
           </form>
       </div>
@@ -189,7 +194,18 @@
 	      </div>
     </div>
   </div>
-
+  <script type="text/javascript">
+  	$(document).ready(function() {
+		$("#search").on("click", function() {
+			location.href="/LPG/ground/map/main.do";
+		})
+		$("#reserve").on("click", function() {
+			location.href="/LPG/ground/reserve.do";
+		})
+	});
+  	
+  	
+  </script>
 
  </body>
 </html>

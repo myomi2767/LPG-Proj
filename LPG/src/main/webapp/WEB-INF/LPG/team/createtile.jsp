@@ -1,3 +1,5 @@
+<%@page import="game.LPG.userSports.UserSportsDTO"%>
+<%@page import="game.LPG.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -54,10 +56,13 @@
 	
 </head>
 <body>
+	<% UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
+	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");   %>
 	<div class="container mtb">
 	    <div class="row">
 	      <div class="col-lg-12">
 	        <form class="form-horizontal style-form"  action="/LPG/team/create.do" method="POST">
+	        	 <input type="hidden" id="sportsNo" name="sportsNo" value="<%= userSprots.getSportsNo() %>">
 		         <div class="form-group">
 		            <div class="row">
 		            	<div class="col-sm-2" ></div>
@@ -168,7 +173,7 @@
 					<div class="row">
 					<div class="col-sm-2"><h4>활동구장</h4></div>
 					<div class="col-lg-7">
-						<a href="#" class="btn btn-theme">구장 검색</a>
+						<a href="/LPG/ground/map/main.do" class="btn btn-theme">구장 검색</a>
 					</div>
 					</div>
 				</div>
@@ -191,10 +196,14 @@
 		            	</div>
 		            </div>
 	            </div>
-	
+				
 	          </form>
 	      </div>
 	    </div>
   	</div>
+  	<script type="text/javascript">
+  	
+  	
+  </script>
 </body>
 </html>

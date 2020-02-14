@@ -51,7 +51,7 @@ input {
 	font-size: 15px;
 	color: #222;
 	letter-spacing: -1px;
-	background: url(../images/Football_2-57_icon-icons.com_72103.png)
+	background: url(/LPG/img/Football_2-57_icon-icons.com_72103.png)
 		no-repeat 0 1px;
 	background-size: 22px auto;
 	text-align: left;

@@ -20,36 +20,41 @@ public class TeamDTO {
    private String teamGender;
    private int count;
    private MultipartFile upFile;
+   private String sportsNo;
+   
 
    public TeamDTO() {
 
    }
+   
 
    public TeamDTO(int teamNo, String teamName, String teamIntroduce, String teamLocation, String teamGround,
-         String teamAbility, String teamUniform, String teamManner, String teamStrategy, String teamPre,
-         String teamDate, String teamAge, String teamEmblem, String memberPrivate, String teamGender, int count,
-         MultipartFile upFile) {
-      super();
-      this.teamNo = teamNo;
-      this.teamName = teamName;
-      this.teamIntroduce = teamIntroduce;
-      this.teamLocation = teamLocation;
-      this.teamGround = teamGround;
-      this.teamAbility = teamAbility;
-      this.teamUniform = teamUniform;
-      this.teamManner = teamManner;
-      this.teamStrategy = teamStrategy;
-      this.teamPre = teamPre;
-      this.teamDate = teamDate;
-      this.teamAge = teamAge;
-      this.teamEmblem = teamEmblem;
-      this.memberPrivate = memberPrivate;
-      this.teamGender = teamGender;
-      this.count = count;
-      this.upFile = upFile;
-   }
+		String teamAbility, String teamUniform, String teamManner, String teamStrategy, String teamPre, String teamDate,
+		String teamAge, String teamEmblem, String memberPrivate, String teamGender, int count, MultipartFile upFile,
+		String sportsNo) {
+	super();
+	this.teamNo = teamNo;
+	this.teamName = teamName;
+	this.teamIntroduce = teamIntroduce;
+	this.teamLocation = teamLocation;
+	this.teamGround = teamGround;
+	this.teamAbility = teamAbility;
+	this.teamUniform = teamUniform;
+	this.teamManner = teamManner;
+	this.teamStrategy = teamStrategy;
+	this.teamPre = teamPre;
+	this.teamDate = teamDate;
+	this.teamAge = teamAge;
+	this.teamEmblem = teamEmblem;
+	this.memberPrivate = memberPrivate;
+	this.teamGender = teamGender;
+	this.count = count;
+	this.upFile = upFile;
+	this.sportsNo = sportsNo;
+}
 
-   public int getTeamNo() {
+
+public int getTeamNo() {
       return teamNo;
    }
 
@@ -184,16 +189,27 @@ public class TeamDTO {
    public void setUpFile(MultipartFile upFile) {
       this.upFile = upFile;
    }
+   
+   public String getSportsNo() {
+	return sportsNo;
+	}
+	
+	
+	public void setSportsNo(String sportsNo) {
+		this.sportsNo = sportsNo;
+	}
 
-   @Override
-   public String toString() {
-      return "TeamDTO [teamNo=" + teamNo + ", teamName=" + teamName + ", teamIntroduce=" + teamIntroduce
-            + ", teamLocation=" + teamLocation + ", teamGround=" + teamGround + ", teamAbility=" + teamAbility
-            + ", teamUniform=" + teamUniform + ", teamManner=" + teamManner + ", teamStrategy=" + teamStrategy
-            + ", teamPre=" + teamPre + ", teamDate=" + teamDate + ", teamAge=" + teamAge + ", teamEmblem="
-            + teamEmblem + ", memberPrivate=" + memberPrivate + ", teamGender=" + teamGender + ", count=" + count
-            + ", upFile=" + upFile + "]";
-   }
 
+	@Override
+	public String toString() {
+		return "TeamDTO [teamNo=" + teamNo + ", teamName=" + teamName + ", teamIntroduce=" + teamIntroduce
+				+ ", teamLocation=" + teamLocation + ", teamGround=" + teamGround + ", teamAbility=" + teamAbility
+				+ ", teamUniform=" + teamUniform + ", teamManner=" + teamManner + ", teamStrategy=" + teamStrategy
+				+ ", teamPre=" + teamPre + ", teamDate=" + teamDate + ", teamAge=" + teamAge + ", teamEmblem="
+				+ teamEmblem + ", memberPrivate=" + memberPrivate + ", teamGender=" + teamGender + ", count=" + count
+				+ ", upFile=" + upFile + ", sportsNo=" + sportsNo + "]";
+	}
+
+	
    
 }

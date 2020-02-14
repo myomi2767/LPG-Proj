@@ -14,6 +14,7 @@
 <script src="https://ajax.googleapis.c
 om/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+	sportsNo = "${sportsNo}";
 	contentnum="${contentnum}";
 	pagenum="${pagenum}";
 	$(document).ready(function(){
@@ -168,7 +169,7 @@ input.btn-modal.btn-close {
 				<th>매치제목</th>
 				<th>날짜</th>
 				<th>구장</th>
-				<th>평가</th>
+				<th>내용</th>
 			</tr>	
 		</thead>
 		<tbody>
@@ -177,7 +178,7 @@ input.btn-modal.btn-close {
 					<td>${k.mchName}</td>
 					<td>${k.mchDate}</td>
 					<td>${k.mchGrd}</td>
-					<td><a href="matchResist.do">Click</a></td>
+					<td>${k.mchContent }</td>
 				</tr>
 				
 			</c:forEach>	
@@ -196,6 +197,15 @@ input.btn-modal.btn-close {
 					</c:if>
 		
 	</table>
-	
+				<div class="col-sm-2">
+					<button type="button" id="mgr" class="btn btn-theme" >나가기</button>
+				</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#mgr").on("click", function() {
+				location.href="/LPG/match.do"
+			})
+		});
+	</script>
 </body>
 </html>

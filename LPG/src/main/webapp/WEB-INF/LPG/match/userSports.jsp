@@ -73,7 +73,7 @@
 					<button type="submit" class="btn btn-theme">정보입력</button>
 					</div>
 					<div class="col-sm-7">
-					<button type="reset" class="btn btn-theme" >입력취소</button>
+					<button type="button" id="matchGo" class="btn btn-theme" >입력취소</button>
 					</div>
 			</div>			
   					<input type="hidden" class="" name="userId" value="<%=user.getUserId()%>"> 
@@ -86,7 +86,13 @@
 	      </div>
     </div>
   </div>
-
+  <script type="text/javascript">
+  	$(document).ready(function() {
+		$("#matchGo").on("click", function() {
+			location.href="/LPG/match.do"
+		})
+	});
+  </script>
 
   
 

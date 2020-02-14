@@ -5,37 +5,24 @@
 <mapper namespace="game.LPG.paging">
 	<!-- 총 게시글 갯수 출력 -->
 <select id="testlist" resultType="sportsMatch">
-	<!-- select * from test order by tid desc limit #{pagenum}, #{contentnum} -->
-						   	<!-- pk  -->
-   <!--  select * from(select row_number() over (order by sportsno) num, u.* from usersports u order by sportsno) where num between #{pagenum} and #{contentnum} --> 			   	
- <!-- select * 
- from(select row_number() over (order by mchno) num, m.* from sportsmatch m where <![CDATA[ mchdate < sysdate	]]>	 order by mchno)
- where num between #{pagenum} and #{contentnum} -->		
- 
-	  select * from(select row_number() over (order by m.mchNo) num, m.* from sportsMatch m, userSports u, teammember tm, teamjoin tj, sportsmatchteam mt
-	  where <![CDATA[ mchdate < sysdate	]]> and #{sportsno} = m.sportsno
-	 										and m.sportsno = u.sportsno
-	 										and u.sportsno = tm.sportsno
-	 										and tm.sportsno = tj.sportsno
-	 										and tj.mchno = m.mchno
-	 										and mt.mchno = m.mchno
-	 order by m.mchno)
-	 where num between #{pagenum} and #{contentnum}		
+	select * 
+	 from(select row_number() over (order by mchno) num, m.sportsNo, m.mchName,to_char(m.mchdate,'YYYY-MM-DD') as mchDate,m.mchGrd,m.mchContent from sportsmatch m 
+	 where <![CDATA[ mchdate < sysdate ]]> and sportsNo = m.sportsno	 
+	 order by mchno)
+	 where num between #{pagenum} and #{contentnum}	
  
  
 </select>
 <select id="testcount" resultType="int">
-	select count(*) from(select row_number() over (order by m.mchNo) num, m.* from sportsMatch m, userSports u, teammember tm, teamjoin tj, sportsmatchteam mt
-	  where <![CDATA[ mchdate < sysdate	]]> and #{sportsno} = m.sportsno
-	 										and mt.sportsno = u.sportsno
-	 										and u.sportsno = tm.sportsno
-	 										and tm.sportsno = tj.sportsno
-	 										and tj.mchno = m.mchno
-	 										and mt.mchno = m.mchno
-	 order by m.mchno)
+select count(*) 
+	 from(select row_number() over (order by mchno) num, m.sportsNo, m.mchName,to_char(m.mchdate,'YYYY-MM-DD') as mchDate,m.mchGrd,m.mchContent from sportsmatch m 
+	 where <![CDATA[ mchdate < sysdate ]]> and sportsNo = m.sportsno	 
+	 order by mchno)
 
-	
-	 <!-- select count(*) from (select row_number() over (order by mchno) num, m.* from sportsmatch m where <![CDATA[ mchdate < sysdate	]]> order by mchno) --> 
+	<!-- select count(*) 
+	 from(select row_number() over (order by mchno) num, m.* from sportsmatch m 
+	 where <![CDATA[ mchdate < sysdate ]]> and sportsNo = m.sportsno	 
+	 order by mchno) -->
 	 
 	 
 </select>

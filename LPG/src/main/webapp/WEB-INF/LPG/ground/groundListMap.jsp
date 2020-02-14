@@ -17,8 +17,8 @@ margin:0;
 </head>
 <body>
 <div id = map></div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=79387b8feae33b6a286b8231084c518c"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=79387b8feae33b6a286b8231084c518c&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ff6292d388b8389fcdae5f2f7431f63"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ff6292d388b8389fcdae5f2f7431f63&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션

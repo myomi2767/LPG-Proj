@@ -38,7 +38,7 @@ SportsMatchDTO dto= (SportsMatchDTO)request.getAttribute("sportsMatchList");%>
 				<div class="row">
 				<div class="col-sm-7">경기시간<input type="text" class="form-control"  disabled="disabled" value="<%=dto.getMchDate()%>,<%=dto.getMchDateStart() %>,<%=dto.getMchDateEnd()%>" ></div>     
 				<div class="col-sm-7">구장명<input type="text" class="form-control"  disabled="disabled" value=<%= dto.getMchGrd() %>></div>
-				<div class="col-sm-7">구장주소<input type="text" class="form-control"  disabled="disabled" value=<%= "조인 해서 써야할 것" %>></div>
+				<div class="col-sm-7">구장주소<input type="text" class="form-control"  disabled="disabled" value=<%= dto.getGrdAddr() %>></div>
 				<div class="col-sm-7">참가비(구장비)<input type="text" class="form-control" disabled="disabled" value=<%= dto.getMchPrice() %>></div>
 				<div class="col-sm-7">필요인원<input type="text" class="form-control" disabled="disabled" value=<%= dto.getMchPlay() %>></div>
 				<div class="col-sm-7">내용<input type="text" class="form-control" disabled="disabled" value=<%= dto.getMchContent() %>></div>
@@ -52,31 +52,28 @@ SportsMatchDTO dto= (SportsMatchDTO)request.getAttribute("sportsMatchList");%>
 				<div class="col-sm-7">매치성별<input type="text" class="form-control"  disabled="disabled" value=<%= dto.getMchGender() %>></div>
 				<div class="col-sm-7">요구실력<input type="text" class="form-control"  disabled="disabled" value=<%= dto.getMchAbil() %>></div>
 				<div class="col-sm-7">착용가능한 슈즈<input type="text" class="form-control"  disabled="disabled" value=<%= dto.getMchShoes() %>></div>
-				<div class="col-sm-7">현재 참여인원<input type="text" class="form-control" disabled="disabled" value=<%= "조인 해서 써야할 것" %>></div>
 				<div class="col-sm-7">내용<input type="text" class="form-control"  disabled="disabled" value=<%= dto.getMchContent() %>></div>
 				</div>
 			</div>
-			
-		
-        
-           
-			
-     
-
+			<input type="hidden" id="mchNo" value="<%= dto.getMchNo() %>">
           </form>
       </div>
-
 	      <div class="col-sm-4">
-	                              
 	      </div>
     </div>
   </div>
-  <div id="myfix">
+ <div id="myfix">
 		<form action="">
-			<input type="submit" value="매치신청" class="btn btn-block btn-theme">
+			<input type="button" id="matchJoin" value="매치신청" class="btn btn-block btn-theme">
 		</form>
-	</div>
-
-  
+  </div>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+  		mchNo = $("#mchNo").val();
+		$("#matchJoin").on("click", function(){
+			location.href="/LPG/match/joinTeam.do?mchNo="+mchNo+"&sportsno=64"
+		});
+	});
+  </script>
 </body>
 </html>

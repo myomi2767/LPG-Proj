@@ -162,10 +162,8 @@
 							<!-- ground type from db -->
 						</h3>
 						<div class="inner-text colname in">접수 기간</div>
-						<div class="inner-text inner-font in">2020.02.01
-							~
-							2020.03.01
-						</div>
+						<div class="inner-text inner-font in">2020.02.01 ~
+							2020.03.01</div>
 					</div>
 					<div class="col-md-6">
 						<img class="thumbImg" alt="/LPG/img/my/noImg.png"
@@ -186,12 +184,15 @@
 						System.out.println(i+"번째 구장");
 			%>
 			<input type="hidden" name="ground" value="<%=apiGroundList.get(i)%>">
+
 			<div class="outer"
 				onclick="location.href='/LPG/ground/<%if (baseType.equals("map")) {%>map<%} else if (baseType.equals("calendar")) {%>calendar<%}%>/detail.do?grdNo=<%=apiGroundList.get(i).getGrdNo()%>'">
+
 				<div class="groundName col-md-12">
 					<div class="col-md-6 padzero">
 						<h1 class="placeName">
 							<%=apiGroundList.get(i).getGrdName()%>
+
 							<!-- ground name from db -->
 						</h1>
 						<h3 class="placeType">
@@ -203,6 +204,7 @@
 						<div class="inner-text inner-font in"><%=apiGroundList.get(i).getStartRsvDate()%>
 							~
 							<%=apiGroundList.get(i).getEndRsvDate()%>
+
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -217,16 +219,28 @@
 					<div class="inner-text">
 						<%
 							String startTimeStr = apiGroundList.get(i).getStartServiceTime();
-									String[] startTimeStrArr = startTimeStr.split(":");
-									int startTime = Integer.parseInt(startTimeStrArr[0]);
-
-									String endTimeStr = apiGroundList.get(i).getEndServiceTime();
-									String[] endTimeStrArr = endTimeStr.split(":");
-									int endTime = Integer.parseInt(endTimeStrArr[0]);
-
-									for (int j = startTime; j < endTime - 2; j += 2) {
-										int time = j;
+							String[] startTimeStrArr = startTimeStr.split(":");
+									
+							int startTime = 0;
+							int endTime = 0;
+							String endTimeStr = apiGroundList.get(i).getEndServiceTime();
+							String[] endTimeStrArr = endTimeStr.split(":");
+							System.out.println("startTimeStrArr[0]"+startTimeStrArr[0]);
+							System.out.println("endTimeStrArr[0]"+endTimeStrArr[0]);
+							if(!(startTimeStrArr[0].isEmpty()) && !(endTimeStrArr[0].isEmpty()))
+							{								
+								System.out.println("in if");
+								startTime =	Integer.parseInt(startTimeStrArr[0]);
+								endTime = Integer.parseInt(endTimeStrArr[0]);
+							}
+							System.out.println("out if");
+							
+							for (int j = startTime; j < endTime - 2; j += 2) {
+								int time = j;
 						%>
+						<% 
+						System.out.println(6);
+			%>
 						<button class="time"><%=time%>:00&#x00A;~<%=time + 2%>:00
 						</button>
 						<%

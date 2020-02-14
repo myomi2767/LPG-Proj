@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import game.LPG.soccerteam.TeamMemberDTO;
+import game.LPG.userSports.UserSportsDTO;
+
 @Service
 public class SportsMatchServiceImpl implements SportsMatchService {
 	@Autowired
@@ -59,9 +62,21 @@ public class SportsMatchServiceImpl implements SportsMatchService {
 	}
 
 	@Override
-	public int matchJoin(SportsMatchTeamDTO smt) {
+	public TeamMemberDTO teamNoSearch(UserSportsDTO su) {
+		return dao.teamNoSearch(su);
+	}
+	@Override
+	public int matchJoinTeam(SportsMatchTeamDTO smt) {
 		System.out.println("서비스:"+smt);
-		int result = dao.matchJoin(smt);
+		int result = dao.matchJoinTeam(smt);
+		System.out.println("서비스 결과:"+result);
+		return result;
+	}
+	
+	@Override
+	public int matchJoinIndiv(SportsMatchTeamDTO smt) {
+		System.out.println("서비스:"+smt);
+		int result = dao.matchJoinIndiv(smt);
 		System.out.println("서비스 결과:"+result);
 		return result;
 	}
@@ -71,6 +86,17 @@ public class SportsMatchServiceImpl implements SportsMatchService {
 		SportsMatchDTO sm = dao.matchChange(mchNo);
 		System.out.println(sm);
 		return sm;
+	}
+
+	@Override
+	public int matchChangeOk(SportsMatchDTO sportsMatch) {
+		int result = dao.matchChangeOk(sportsMatch);
+		return result;
+	}
+
+	@Override
+	public int matchDelete(String mchNo) {
+		return dao.matchDelete(mchNo);
 	}
 
 }

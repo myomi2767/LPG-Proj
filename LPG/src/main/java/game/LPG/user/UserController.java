@@ -29,14 +29,15 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		UserDTO user = service.login(loginUserInfo);
 		UserSportsDTO su = service.login2(loginUserInfo);
+		/*UserSportsDTO su2 = service.login3(loginUserInfo);*/
 		System.out.println(user);
+		System.out.println(su);
 		String viewName = "";
 		if(user!=null) {
 			HttpSession ses = request.getSession();
 			ses.setAttribute("loginUserInfo", user);
 			if(su!=null) {
-				HttpSession ses2 = request.getSession();
-				ses2.setAttribute("userSports", su);
+				ses.setAttribute("userSports", su);
 				viewName = "redirect:/match.do";
 			}else {
 				viewName = "redirect:/match/userSports.do";

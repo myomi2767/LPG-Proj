@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import game.LPG.userSports.UserSportsDTO;
+
 @Repository("pagingDAO")
 public class PagingDAOImpl implements PagingDAO {
 	@Autowired
@@ -24,7 +26,7 @@ public class PagingDAOImpl implements PagingDAO {
 	}
 
 	@Override
-	public int testcount() {
+	public int testcount(UserSportsDTO su) {
 		
 		return sqlSession.selectOne("game.LPG.paging.testcount");
 	}

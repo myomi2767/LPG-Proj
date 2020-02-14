@@ -11,7 +11,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Solid - Bootstrap Business Template</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
@@ -57,7 +56,7 @@
 	if((MatchDetailDTO)request.getAttribute("mchTeamDetail")!=null){
   MatchDetailDTO dto = (MatchDetailDTO)request.getAttribute("mchTeamDetail"); 
   	 SportsMatchDTO sm = dto.getSportsMatch();
-  	 /* GroundDTO grd = dto.getGround(); */
+  	 GroundDTO grd = dto.getGround(); 
   	 List<TeamDTO> teamlist = dto.getTeam();%>
 	<div class="container mt">
 		<div class="row">
@@ -75,13 +74,13 @@
 					<!-- 구장사진 -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="/LPG/img/portfolio/single01.jpg" alt="구장사진 1">
+							<img src="/LPG/img/<%= grd.getGrdImg() %>" alt="구장사진 1">
 						</div>
 						<div class="item">
-							<img src="/LPG/img/portfolio/single02.jpg" alt="구장사진 2">
+							<img src="/LPG/img/<%= grd.getGrdImg() %>" alt="구장사진 2">
 						</div>
 						<div class="item">
-							<img src="/LPG/img/portfolio/single03.jpg" alt="구장사진 3">
+							<img src="/LPG/img/<%= grd.getGrdImg() %>" alt="구장사진 3">
 						</div>
 					</div>
 				</div>
@@ -94,11 +93,11 @@
 						<%= sm.getMchDate()%>
 						<%= sm.getMchDateStart() %></h4>
 					<h3>
-						<a>구장명 : <%-- <%= grd.getGrdName() %> --%></a>
+						<a>구장명 :  <%= grd.getGrdName() %></a>
 					</h3>
 					<p>
 						구장주소 :
-						<%-- <%= grd.getGrdAddr() %> --%>
+						 <%= grd.getGrdAddr() %> 
 					</p>
 					<h4>
 						참가비 :
@@ -126,18 +125,19 @@
 
 			<div class="col-lg-4 col-lg-offset-1">
 				<div class="spacing"></div>
+				<% if(sm.getHomeaway().equals("0")){ %>
 				<h3>HOME TEAM</h3>
+				<% }else{ %>
+				<h3>AWAY TEAM</h3>
+				<% } %>
 				<div class="hline"></div>
 				<img alt="팀앰블럼" src="">
 				<h4><%= team.getTeamName() %></h4>
 				<p>
-					<b>팀 연령대 : </b>
+					<b>팀 연령대 : <%= team.getTeamAge() %></b>
 				</p>
 				<p>
 					<b>팀 실력 : <%= team.getTeamAbility() %></b>
-				</p>
-				<p>
-					<b>팀 최근전적 : </b>
 				</p>
 				<p>
 					<b>유니폼 색상 : <%= team.getTeamUniform() %></b>
@@ -208,13 +208,27 @@
   		$("#backupOk").on("click", function(){
   			$("#backup2").empty();
   			$("#backup2").append(mydata);
+  			$("#backUpAdd").on("click", function(){
+  	  			backUpNum = $("#backupNum").val();
+  	  			alert("용병인원 업데이터");
+  	  			$.ajax({
+  	  				url:"/LPG/match/backUpNumAdd.do",
+  	  				type: "get",
+  	  				data: {"backupNum":backUpNum,
+  	  					   "mchNo":mchNo,
+  	  					   "teamNo":teamNo},
+  	  				success:function(data){
+  	  					alert(data);
+  	  				}
+  	  			});
+  			});
   		});
   		$("#backupNoK").on("click", function(){
   			$("#backup2").empty();
   		});
   		
   		$("#matchjoin").on("click", function() {
-			location.href="/LPG/match/join.do?mchNo="+mchNo+"&teamNo=64";
+			location.href="/LPG/match/join.do?mchNo="+mchNo+"&teamNo="+teamNo;
 		})
 		$("#matchChange").on("click", function() {
 			location.href="/LPG/match/change.do?mchNo="+mchNo;

@@ -50,16 +50,14 @@ ul {
 				%>
 				<div class="graphic-design">
 					<div class="he-wrap tpl6" <% if(match.getMchUrgent().equals("긴급")){%>style="border: 3px solid red;"<%} %>>
-						<img src="/LPG/img/"+<%= match.getTeamEmblem()%> alt="팀앰블럼" class="myimg"> 
+						<img src="/LPG/img/<%= match.getTeamEmblem()%>" alt="팀앰블럼" class="myimg"> 
 						<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg"> 
-						<img src="/LPG/img/"+<%= match.getTeamEmblem()%> alt="팀앰블럼" class="myimg">
+						<img src="/LPG/img/<%= match.getTeamEmblem()%>" alt="팀앰블럼" class="myimg">
 						<div class="he-view">
 							<div id="detailGo" class="bg a0">
 								<h3 class="a1" data-animate="fadeInDown" style="word-spacing: 350px">HOME VS AWAY</h3>
 								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 735px">
 									<%= match.getTeamName() %> <%= match.getGrdName()%> <%= match.getTeamName() %></h4>
-								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 735px">
-									<%= match.getTeamName() %> <%= match.getGrdArea()%> <%= match.getTeamName() %></h4>
 								<input type="hidden" id="mchNo" name="mchNo" value="<%= match.getMchNo() %>">
 							</div>
 							

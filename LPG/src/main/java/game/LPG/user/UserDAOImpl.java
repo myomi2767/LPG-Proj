@@ -69,4 +69,10 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println(su);
 		return su;
 	}
+	/*@Override
+	public UserSportsDTO login3(UserDTO loginUserInfo) {
+		UserSportsDTO su = sqlSession.selectOne("game.LPG.user.login3", loginUserInfo);
+		System.out.println(su);
+		return null;
+	}*/
 }
