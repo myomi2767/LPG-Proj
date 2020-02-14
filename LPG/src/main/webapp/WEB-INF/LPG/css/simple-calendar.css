@@ -21,6 +21,7 @@
   .calendar header .btn:hover {
     background: #CBD1D2;
     color: white; }
+    
   .calendar header .btn-prev {
     left: 0;
     top: 0; }
@@ -48,6 +49,9 @@
     border: 2px solid transparent; }
   .calendar .day:hover {
     border: 2px solid #6691CC; }
+  .calendar .day:active {
+  	border: 2px solid #6691FF;
+  }
   .calendar .day.today {
     background: #6691CC;
     color: white; }
@@ -55,6 +59,10 @@
     color: #CBD1D2; }
   .calendar .day.wrong-month:hover {
     border: 2px solid transparent; }
+    
+  .calendar .day.wrong-month:active {
+    border: 2px solid transparent; }
+    
   .calendar .event-container {
     display: none;
     position: absolute;

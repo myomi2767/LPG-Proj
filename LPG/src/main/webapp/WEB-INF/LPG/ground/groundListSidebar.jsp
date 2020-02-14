@@ -161,17 +161,20 @@
 							<%=groundList.get(i).getGrdType()%>
 							<!-- ground type from db -->
 						</h3>
-
-						<div class="col-md-6">
-							<img class="noImg" alt="/LPG/img/my/noImg.png"
-								src="/LPG/img/my/noImg.png">
+						<div class="inner-text colname in">접수 기간</div>
+						<div class="inner-text inner-font in">2020.02.01
+							~
+							2020.03.01
 						</div>
+					</div>
+					<div class="col-md-6">
+						<img class="thumbImg" alt="/LPG/img/my/noImg.png"
+							src="/LPG/img/my/noImg.png">
 					</div>
 
 				</div>
 				<hr />
-				<br>
-				<br>
+				<br> <br>
 			</div>
 			<%
 				}

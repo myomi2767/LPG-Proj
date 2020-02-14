@@ -50,7 +50,7 @@ public class groundDAOImpl implements groundDAO {
 
 	@Override
 	public int insertReserve(GroundReserveDTO reserve) {
-		
+		System.out.println(reserve.toString());
 		int result = sqlSession.insert("game.LPG.ground.insertReserve",reserve);
 		return result;
 	}

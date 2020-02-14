@@ -60,7 +60,7 @@ public class groundServiceImpl implements groundService {
 	public int insertReserve(GroundReserveDTO reserve) {
 		String[] array = reserve.getGrdrsvtime().split(":");
 		reserve.setGrdrsvStartTime(array[0]);
-		reserve.setGrdrsvEndTime(array[1]);
+		reserve.setGrdrsvEndTime((array[1].split("~"))[1]);
 		int result= dao.insertReserve(reserve);
 		return result;
 	}

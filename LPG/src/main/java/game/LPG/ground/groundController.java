@@ -3,6 +3,7 @@ package game.LPG.ground;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import game.LPG.user.UserDTO;
 import game.LPG.userSports.UserSportsDTO;
 
 @Controller
@@ -46,7 +48,7 @@ public class groundController {
 	public ModelAndView mapList(String search) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("search=>" + search);
-
+		ArrayList<GroundAPIDTO> apiArr=new ArrayList<GroundAPIDTO>();
 		connectToAPI api = new connectToAPI();
 
 		jsonParser jp = new jsonParser();
@@ -58,7 +60,7 @@ public class groundController {
 			jsonResult = api.getJson("", 5);
 		}
 
-		ArrayList<GroundAPIDTO> apiArr = jp.parseJson(jsonResult);
+		apiArr = jp.parseJson(jsonResult);
 		System.out.println("apiArr size" + apiArr.size());
 		List<GroundDTO> groundList = service.searchGround(search);
 		System.out.println("groundList size" + groundList.size());
@@ -193,7 +195,7 @@ public class groundController {
 	public String saveReview(GroundReviewDTO review, HttpSession session) {
 
 		// session�� �߰��ɶ� ���� usersportsinfo �̸����� ��ü�Ұ�!!
-		UserSportsDTO userSports = (UserSportsDTO) session.getAttribute("userSportsInfo");
+		UserSportsDTO userSports = (UserSportsDTO) session.getAttribute("userSports");
 		review.setSportsNo(userSports.getSportsNo());
 
 		int result = service.insertReview(review);
@@ -204,19 +206,34 @@ public class groundController {
 	// ��ġ��Ͻ� ��ġ ��ȣ �޾Ƽ� ���� controller���� insert���־���ϳ�
 	/* reserve */
 	@RequestMapping(value = "/ground/reserve.do", method = RequestMethod.GET)
-	public ModelAndView reservePage(GroundDTO ground) {
+	public ModelAndView reservePage(String grdNo, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		UserDTO user = new UserDTO();
+		user.setUserId("abc");
+		user.setUserName("박누리");
+		session.setAttribute("loginUserInfo", user);
+		
+		GroundDTO ground = service.groundDetail(grdNo);
+		System.out.println("reserve ground controller:"+ground.toString());
 		mav.addObject("ground", ground);
 		mav.setViewName("reserveGround");
 		return mav;
 	}
 
 	@RequestMapping(value = "/ground/reserve.do", method = RequestMethod.POST)
-	public String reserveGround(GroundReserveDTO reserve) {
-		int result = service.insertReserve(reserve);
+		public ModelAndView reserveGround(GroundReserveDTO reserve, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		UserSportsDTO sportsDto = (UserSportsDTO)session.getAttribute("userSports");
+		reserve.setSportsNo(sportsDto.getSportsNo());
+/*		System.out.println("Controller"+reserve.toString());
+*/		int result = service.insertReserve(reserve);
 		System.out.println("reserveGround result=>" + result);
+		mav.addObject("grdName",reserve.getGrdName());
+		mav.setViewName("redirect:/match/matchResist.do");
 		// ������ ��ġ ��� ������ �����ִ� ���·� ���ư�����..? AJAX?
-		return "redirect:/ground/map/main.do";
+		return mav;
 	}
 
 }

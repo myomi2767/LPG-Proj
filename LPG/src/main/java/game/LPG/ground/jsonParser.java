@@ -10,7 +10,6 @@ import org.json.simple.parser.ParseException;
 public class jsonParser {
 	public ArrayList<GroundAPIDTO> parseJson(String jsonData){
 		ArrayList<GroundAPIDTO> dtoArr = new ArrayList<GroundAPIDTO>();
-		GroundAPIDTO dto= new GroundAPIDTO();
 		try {
 			JSONParser jParser = new JSONParser();
 			
@@ -29,6 +28,7 @@ public class jsonParser {
 			
 			JSONArray rows = (JSONArray)lprsObj.get("row");
 			for(int i=0;i<rows.size();i++){
+				GroundAPIDTO dto= new GroundAPIDTO();
 				//System.out.println("========== ground : ("+i+" )==========");
 				JSONObject ground =(JSONObject)rows.get(i);
 				dto.setGrdNo((String)ground.get("SVCID"));//grdno

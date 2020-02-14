@@ -1,20 +1,20 @@
 package game.LPG.ground;
 
 
-import java.sql.Date;
 
 public class GroundReserveDTO {
 
 	private int grdrsvNo;
 	private String grdNo;
-	private Date grdrsvUseDate;
+	private String grdrsvUseDate;
 	private String grdrsvStartTime;
 	private String grdrsvEndTime;
-	private Date grdrsvDate;
-	private Date grdrsvCancStartDate;
-	private Date grdrsvCancEndDate;
-	private String sportsNo;
-	private String mchNo;
+	private String grdrsvDate;
+	private String grdrsvCancStartDate;
+	private String grdrsvCancEndDate;
+	private int sportsNo;
+	private int mchNo;
+	private String grdName;
 	
 	//jsp���� �ð� ������ ���
 	private String grdrsvtime;
@@ -48,11 +48,11 @@ public class GroundReserveDTO {
 		this.grdNo = grdNo;
 	}
 
-	public Date getGrdrsvUseDate() {
+	public String getGrdrsvUseDate() {
 		return grdrsvUseDate;
 	}
 
-	public void setGrdrsvUseDate(Date grdrsvUseDate) {
+	public void setGrdrsvUseDate(String grdrsvUseDate) {
 		this.grdrsvUseDate = grdrsvUseDate;
 	}
 
@@ -72,43 +72,43 @@ public class GroundReserveDTO {
 		this.grdrsvEndTime = grdrsvEndTime;
 	}
 
-	public Date getGrdrsvDate() {
+	public String getGrdrsvDate() {
 		return grdrsvDate;
 	}
 
-	public void setGrdrsvDate(Date grdrsvDate) {
+	public void setGrdrsvDate(String grdrsvDate) {
 		this.grdrsvDate = grdrsvDate;
 	}
 
-	public Date getGrdrsvCancStartDate() {
+	public String getGrdrsvCancStartDate() {
 		return grdrsvCancStartDate;
 	}
 
-	public void setGrdrsvCancStartDate(Date grdrsvCancStartDate) {
+	public void setGrdrsvCancStartDate(String grdrsvCancStartDate) {
 		this.grdrsvCancStartDate = grdrsvCancStartDate;
 	}
 
-	public Date getGrdrsvCancEndDate() {
+	public String getGrdrsvCancEndDate() {
 		return grdrsvCancEndDate;
 	}
 
-	public void setGrdrsvCancEndDate(Date grdrsvCancEndDate) {
+	public void setGrdrsvCancEndDate(String grdrsvCancEndDate) {
 		this.grdrsvCancEndDate = grdrsvCancEndDate;
 	}
 
-	public String getSportsNo() {
+	public int getSportsNo() {
 		return sportsNo;
 	}
 
-	public void setSportsNo(String sportsNo) {
+	public void setSportsNo(int sportsNo) {
 		this.sportsNo = sportsNo;
 	}
 
-	public String getMchNo() {
+	public int getMchNo() {
 		return mchNo;
 	}
 
-	public void setMchNo(String mchNo) {
+	public void setMchNo(int mchNo) {
 		this.mchNo = mchNo;
 	}
 	
@@ -121,12 +121,27 @@ public class GroundReserveDTO {
 		
 	}
 
+	
+	
+	public String getGrdName() {
+		return grdName;
+	}
+
+	public void setGrdName(String grdName) {
+		this.grdName = grdName;
+	}
+
 	//toString
 	@Override
 	public String toString() {
 		return "GroundReserveDTO [grdrsvNo=" + grdrsvNo + ", grdNo=" + grdNo + ", grdrsvUseDate=" + grdrsvUseDate
 				+ ", grdrsvStartTime=" + grdrsvStartTime + ", grdrsvEndTime=" + grdrsvEndTime + ", grdrsvDate="
 				+ grdrsvDate + ", grdrsvCancStartDate=" + grdrsvCancStartDate + ", grdrsvCancEndDate="
-				+ grdrsvCancEndDate + ", sportsNo=" + sportsNo + ", mchNo=" + mchNo + ", grdrsvtime=" + grdrsvtime + "]";
+				+ grdrsvCancEndDate + ", sportsNo=" + sportsNo + ", mchNo=" + mchNo + ", grdName=" + grdName
+				+ ", grdrsvtime=" + grdrsvtime + "]";
 	}
+
+	
+
+	
 }

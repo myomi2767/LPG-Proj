@@ -91,7 +91,7 @@
                 var tr = $('<tr></tr>');
                 //For each row
                 for(var i = 0; i<7; i++) {
-                    var td = $('<td><a href="#" class="day">'+day.getDate()+'</a></td>');
+                    var td = $('<td><div class="day" id="'+day.getMonth()+'-'+day.getDate()+'" value='+day.getMonth()+'-'+day.getDate()+'>'+day.getDate()+'</div></td>');
                     //if today is this day
                     if(day.toDateString() === (new Date).toDateString()){
                         td.find(".day").addClass("today");
@@ -103,9 +103,6 @@
                    //Binding day event
                     td.on('click', function(e) {
                         /*$("#rsvDate").empty();*/
-                    	console.log("print date");
-                    	console.log(moment(day).format('YYYY.MM.DD')+"("+moment(day).format('dddd')+")");
-                        $('#rsvDate').text(moment(day).format('YYYY.MM.DD')+"("+moment(day).format('dddd')+")");
                     });
                     
                     tr.append(td);

@@ -27,7 +27,7 @@
 		insert into groundReview values(groundreview_seq.nextval, #{grdNo}, #{grdrevContext}, #{grdRevQ4}, #{grdRevQ1}, #{grdRevQ2}, #{grdRevQ3}, #{sportsNo})
 	</insert>
 	<insert id="insertReserve" parameterType="groundReserve">
-		insert into groundReserve values(groundreserve_seq.nextval, #{grdNo}, #{grdrsvUseDate}, #{grdrsvStartTime}, #{grdrsvEndTime}, #{grdRsvDate}, #{grdRsvCancStartDate}, #{grdRsvCancEndDate}, #{sportsNo}, sportsmatch_seq.nextval)
+		insert into groundReserve values(groundreserve_seq.nextval, #{grdNo}, #{grdrsvUseDate}, #{grdrsvStartTime}, #{grdrsvEndTime}, sysdate, '', '', #{sportsNo}, sportsmatch_seq.nextval)
 	</insert>
 	<select id="reviewAvg" parameterType="String" resultType="int">
 		select avg(grdrevq1+grdrevq2+grdrevq3+grdrevq4)

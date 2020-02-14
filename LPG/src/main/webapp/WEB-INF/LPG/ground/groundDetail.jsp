@@ -153,9 +153,7 @@ b{
 					</span> 
 					<!-- mch 생성에서 넘어온 페이지일때만 보여주기 -->
 					<%-- <% if(){ %> --%>
-					<form action="">
-					<input type="submit" class="btn btn-large btn-right" name="groundReserve" value="예약하기">
-					</form>
+					<input type="button" class="btn btn-large btn-right" onclick="location.href='/LPG/ground/reserve.do?grdNo=<%=ground.getGrdNo() %>'" name="groundReserve" value="예약하기">
 					<%-- <% } %> --%>
 				</div>
 				<div class="hline"></div>
