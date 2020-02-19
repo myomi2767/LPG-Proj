@@ -38,7 +38,7 @@ public class SportsMatchServiceImpl implements SportsMatchService {
 	}
 	
 	@Override
-	public List<SportsMatchDTO> matchlist(MatchSelectDTO ms) {
+	public List<MatchDetailDTO> matchlist(MatchSelectDTO ms) {
 		System.out.println("service:"+ms);
 		return dao.matchlist(ms);
 	}

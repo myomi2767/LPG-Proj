@@ -6,7 +6,7 @@
 <!-- ======================================= insert문 ======================================== -->
 	<insert id="insert" parameterType="sportsMatch">
 		insert into sportsMatch
-		values(sportsMatch_seq.currVal,#{mchName},to_date(#{mchDate}),#{mchPlay},null,#{mchPrice},#{mchUrgent},#{mchContent},#{mchGender},#{mchShoes},#{mchAbil},#{mchType},#{sportsNo},#{mchDateStart},#{mchDateEnd})
+		values(sportsMatch_seq.nextVal,#{mchName},to_date(#{mchDate}),#{mchPlay},'부천체육관',#{mchPrice},#{mchUrgent},#{mchContent},#{mchGender},#{mchShoes},#{mchAbil},#{mchType},#{sportsNo},#{mchDateStart},#{mchDateEnd})
 	</insert>
 	<insert id="insertIndiv" parameterType="sportsMatchIndiv">
 		insert into sportsMatchIndiv
@@ -25,68 +25,85 @@
 		
 	</select>
 <!-- =============================================================================================== -->
-<!-- ======================================= matchTeam select문 ======================================== -->
+<!-- ======================================= matchList select문 ======================================== -->
 	<select id="matchListTeam" resultType="sportsMatch" parameterType="ms">
-		select m.*,t.teamname, g.grdname, g.grdarea
-		from sportsmatch m, sportsmatchteam tm, ground g, groundreserve gr, team t
-		where m.mchno=tm.mchno
+		select m.*
+		from sportsmatch m, sportsmatchteam tm, ground g, team t
+		<where>
+			m.mchno=tm.mchno
 			and tm.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
+			and m.mchgrd = g.grdname
 			and m.mchtype=#{mchType}
-			<!-- and m.mchdate=#{mchDate} -->
-			and m.mchplay like '%' || #{mchPlay}
-			and g.grdarea like '%' || #{grdArea} || '%'
-			and m.mchname like '%' || #{mchName} || '%'
+			<if test="mchPlay!=''">
+				and m.mchplay like '%' || #{mchPlay}
+			</if>
+			<if test="mchDate!='null'">
+				and m.mchdate=to_date(#{mchDate})
+			</if>
+			<if test="grdArea!=''">
+				and g.grdarea like '%' || #{grdArea} || '%'
+			</if>
+			<if test="mchName!=''">
+				and m.mchname like '%' || #{mchName} || '%'
+			</if>
+		</where>
 	</select>
-	
+	<select id="matchListIndiv" resultType="sportsMatch" parameterType="ms">
+		select m.*, g.grdaddr
+		from sportsmatch m, usersports su, sportsmatchindiv im, ground g, groundreserve gr
+		<where>
+			im.mchno=m.mchno 
+			and im.sportsno=su.sportsno
+			and m.mchgrd = g.grdname
+			and m.mchtype=#{mchType}
+			<if test="mchPlay!=''">
+				and m.mchplay like '%' || #{mchPlay}
+			</if>
+			<if test="mchDate!='null'">
+				and m.mchdate=to_date(#{mchDate})
+			</if>
+			<if test="grdArea!=''">
+				and g.grdarea like '%' || #{grdArea} || '%'
+			</if>
+			<if test="mchName!=''">
+				and m.mchname like '%' || #{mchName} || '%'
+			</if>
+		</where>
+	</select>
+<!-- =============================================================================================== -->
+<!-- ======================================= matchTeam select문 ======================================== -->	
 	<select id="matchTeamDetailM" resultType="sportsMatch" parameterType="String">
-		select m.*, tm.tmgrade, smt.homeaway
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
+		select m.*
+		from sportsmatch m, sportsmatchteam smt, ground g, team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
+			and m.mchgrd=g.grdname
 			and t.teamno = tm.teamno
 			and m.mchNo = #{mchNo}
 	</select>
 	
 	<select id="matchTeamDetailG" resultType="ground" parameterType="String">
 		select g.*
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
+		from sportsmatch m, sportsmatchteam smt, ground g, team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
+			and m.mchgrd=g.grdname
 			and t.teamno = tm.teamno
 			and m.mchNo = #{mchNo}
 	</select>
 	
 	<select id="matchTeamDetailT" resultType="team" parameterType="String">
-		select t.*
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
+		select t.*, tm.tmgrade, smt.homeaway
+		from sportsmatch m, sportsmatchteam smt, ground g, team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
+			and m.mchgrd=g.grdname
 			and t.teamno = tm.teamno
 			and m.mchNo = #{mchNo}
 	</select>
-<!-- =============================================================================================== -->
+
 <!-- ======================================= matchIndiv select문 ======================================== -->
-	<select id="matchListIndiv" resultType="sportsMatch" parameterType="ms">
-		select m.*, g.grdname, g.grdaddr
-		from sportsmatch m, usersports su, sportsmatchindiv im, ground g, groundreserve gr
-		where m.mchno=gr.mchno 
-			and g.grdno=gr.grdno
-			and im.mchno=m.mchno
-			and im.sportsno=su.sportsno
-			and m.mchtype=#{mchType}
-			<!-- and m.mchdate=#{mchDate} -->
-			and m.mchplay like '%' || #{mchPlay}
-			and g.grdarea like '%' || #{grdArea} || '%'
-			and m.mchname like '%' || #{mchName} || '%'
-	</select>
+	
 	<select id="matchIndivDetailM" resultType="sportsMatch" parameterType="String">
 		select m.*
 		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm

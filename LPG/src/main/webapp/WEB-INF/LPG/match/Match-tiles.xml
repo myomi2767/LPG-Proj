@@ -17,6 +17,7 @@
 	</definition>
 	
 	<definition name="mchTeamDetail" extends="MatchTemplate">
+		<put-attribute name="header" value="/WEB-INF/LPG/match/MatchDetailHeader.jsp"/>
 		<put-attribute name="content" value="/WEB-INF/LPG/match/MatchTeamDetail.jsp"/>
 	</definition>
 	

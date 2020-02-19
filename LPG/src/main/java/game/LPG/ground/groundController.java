@@ -177,7 +177,7 @@ public class groundController {
 		}
 		int result = service.addGround(ground);
 		System.out.println("saveGround result=>" + result);
-		return "/ground/add.do";
+		return "redirect:/match.do";
 	}
 
 	/* review */

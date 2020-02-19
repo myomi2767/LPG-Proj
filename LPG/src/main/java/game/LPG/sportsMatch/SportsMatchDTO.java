@@ -1,7 +1,5 @@
 package game.LPG.sportsMatch;
 
-import java.sql.Date;
-
 public class SportsMatchDTO {
 	private String mchNo;
 	private String sportsNo;
@@ -18,17 +16,17 @@ public class SportsMatchDTO {
 	private String mchShoes;
 	private String mchAbil;
 	private String mchType;
-	private String homeaway;
-	/*	team DTO */
+	/*private String homeaway;
+		team DTO*/ 
 	private String teamNo;
-	private String teamName;
+	/*private String teamName;
 	private String teamEmblem;
-	/*	teamMember - tmgrade*/
+		teamMember - tmgrade
 	private String tmGrade;
-	/*	ground DTO */
+		ground DTO 
 	private String grdName;
 	private String grdArea;
-	private String grdAddr;
+	private String grdAddr;*/
 	
 	public SportsMatchDTO() {
 		
@@ -36,8 +34,7 @@ public class SportsMatchDTO {
 
 	public SportsMatchDTO(String mchNo, String sportsNo, String mchName, String mchDate, String mchDateStart,
 			String mchDateEnd, String mchPlay, String mchGrd, String mchPrice, String mchUrgent, String mchContent,
-			String mchGender, String mchShoes, String mchAbil, String mchType, String homeaway, String teamNo,
-			String teamName, String teamEmblem, String tmGrade, String grdName, String grdArea, String grdAddr) {
+			String mchGender, String mchShoes, String mchAbil, String mchType, String teamNo) {
 		super();
 		this.mchNo = mchNo;
 		this.sportsNo = sportsNo;
@@ -54,25 +51,16 @@ public class SportsMatchDTO {
 		this.mchShoes = mchShoes;
 		this.mchAbil = mchAbil;
 		this.mchType = mchType;
-		this.homeaway = homeaway;
 		this.teamNo = teamNo;
-		this.teamName = teamName;
-		this.teamEmblem = teamEmblem;
-		this.tmGrade = tmGrade;
-		this.grdName = grdName;
-		this.grdArea = grdArea;
-		this.grdAddr = grdAddr;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "SportsMatchDTO [mchNo=" + mchNo + ", sportsNo=" + sportsNo + ", mchName=" + mchName + ", mchDate="
 				+ mchDate + ", mchDateStart=" + mchDateStart + ", mchDateEnd=" + mchDateEnd + ", mchPlay=" + mchPlay
 				+ ", mchGrd=" + mchGrd + ", mchPrice=" + mchPrice + ", mchUrgent=" + mchUrgent + ", mchContent="
 				+ mchContent + ", mchGender=" + mchGender + ", mchShoes=" + mchShoes + ", mchAbil=" + mchAbil
-				+ ", mchType=" + mchType + ", homeaway=" + homeaway + ", teamNo=" + teamNo + ", teamName=" + teamName
-				+ ", teamEmblem=" + teamEmblem + ", tmGrade=" + tmGrade + ", grdName=" + grdName + ", grdArea="
-				+ grdArea + ", grdAddr=" + grdAddr + "]";
+				+ ", mchType=" + mchType + ", teamNo=" + teamNo + "]";
 	}
 
 	public String getMchNo() {
@@ -195,68 +183,12 @@ public class SportsMatchDTO {
 		this.mchType = mchType;
 	}
 
-	public String getTeamName() {
-		return teamName;
-	}
-
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
-	}
-
-	public String getTeamEmblem() {
-		return teamEmblem;
-	}
-
-	public void setTeamEmblem(String teamEmblem) {
-		this.teamEmblem = teamEmblem;
-	}
-
-	public String getTmGrade() {
-		return tmGrade;
-	}
-
-	public void setTmGrade(String tmGrade) {
-		this.tmGrade = tmGrade;
-	}
-
-	public String getGrdName() {
-		return grdName;
-	}
-
-	public void setGrdName(String grdName) {
-		this.grdName = grdName;
-	}
-
-	public String getGrdArea() {
-		return grdArea;
-	}
-
-	public void setGrdArea(String grdArea) {
-		this.grdArea = grdArea;
-	}
-
-	public String getGrdAddr() {
-		return grdAddr;
-	}
-
-	public void setGrdAddr(String grdAddr) {
-		this.grdAddr = grdAddr;
-	}
-
 	public String getTeamNo() {
 		return teamNo;
 	}
 
 	public void setTeamNo(String teamNo) {
 		this.teamNo = teamNo;
-	}
-
-	public String getHomeaway() {
-		return homeaway;
-	}
-
-	public void setHomeaway(String homeaway) {
-		this.homeaway = homeaway;
 	}
 
 	

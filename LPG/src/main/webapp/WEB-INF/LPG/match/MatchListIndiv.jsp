@@ -1,3 +1,5 @@
+<%@page import="game.LPG.ground.GroundDTO"%>
+<%@page import="game.LPG.sportsMatch.MatchDetailDTO"%>
 <%@page import="game.LPG.sportsMatch.SportsMatchDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -37,7 +39,7 @@ th, td {
 	<!-- *****************************************************************************************************************
 	 PORTFOLIO SECTION
 	 ***************************************************************************************************************** -->
-	<% List<SportsMatchDTO> list = (List<SportsMatchDTO>)request.getAttribute("matchlist"); %>
+	<% List<MatchDetailDTO> list = (List<MatchDetailDTO>)request.getAttribute("matchlist"); %>
 	<div class="container centered">
 		<div>
 			<div class="hline"></div>
@@ -58,7 +60,9 @@ th, td {
 				<table>
 					<tbody>
 						<% for(int i=0;i<list.size();i++){
-							SportsMatchDTO match = list.get(i);
+							MatchDetailDTO match = list.get(i);
+							SportsMatchDTO sm = match.getSportsMatch();
+							GroundDTO ground = match.getGround();
 						%>
 						
 						<tr>
@@ -67,22 +71,22 @@ th, td {
 									<div class="he-wrap tpl6">
 										<div class="row">
 											<div class="col-lg-2">
-												<h2>경기시간: <%= match.getMchDate() %></h2>
+												<h2>경기시간: <%= sm.getMchDate() %></h2>
 											</div>
 											<div class="col-lg-6">
-												<h2><%= match.getGrdName() %>></h2>
-												<h3><%= match.getGrdAddr() %>></h3>
-												<p>매치성별:<%= match.getMchGender() %> 및 매치수준 : <%= match.getMchAbil() %> </p>
+												<h2><%= sm.getMchName() %>></h2>
+												<h3><%= ground.getGrdAddr() %>></h3>
+												<p>매치성별:<%= sm.getMchGender() %> 및 매치수준 : <%= sm.getMchAbil() %> </p>
 											</div>
 											<div class="col-lg-4">
 												<h2>매치신청</h2>
 											</div>
 										</div>
 										<div class="he-view">
-											<div id="detailGo" class="bg a0">
+											<div class="bg a0 detailGo">
 												<img src="/LPG/img/portfolio/portfolio_09.jpg" alt="구장사진"
 													class="myimg">
-												<input type="hidden" id="mchNo" name="mchNo" value="<%= match.getMchNo() %>">
+												<input type="hidden" id="mchNo" name="mchNo" value="<%= sm.getMchNo() %>">
 											</div>
 											<!-- he bg -->
 										</div>
@@ -104,12 +108,12 @@ th, td {
 	</div>
 	<!--/Portfoliowrap -->
 	<script type="text/javascript">
-		mchNo = $("#mchNo").val();
-		$(document).ready(function() {
-			$("#detailGo").on("click", function(){
-				location.href="/LPG/match/mchTeamDetail.do?mchNo="+mchNo;
-			});
+	$(document).ready(function() {
+		$(".detailGo").on("click", function(){
+			mchNo = $(this).children().last().attr("value");
+			location.href="/LPG/match/mchTeamDetail.do?mchNo="+mchNo;
 		});
+	});
 	</script>
 </body>
 </html>

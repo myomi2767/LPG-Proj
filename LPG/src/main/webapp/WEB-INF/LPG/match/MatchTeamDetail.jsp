@@ -51,13 +51,14 @@
 	 TITLE & CONTENT
 	 ***************************************************************************************************************** -->
 	<% 
-	UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
-	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
-	if((MatchDetailDTO)request.getAttribute("mchTeamDetail")!=null){
-  MatchDetailDTO dto = (MatchDetailDTO)request.getAttribute("mchTeamDetail"); 
-  	 SportsMatchDTO sm = dto.getSportsMatch();
-  	 GroundDTO grd = dto.getGround(); 
-  	 List<TeamDTO> teamlist = dto.getTeam();%>
+		UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
+	    UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
+		if((MatchDetailDTO)request.getAttribute("mchTeamDetail")!=null){
+  			MatchDetailDTO dto = (MatchDetailDTO)request.getAttribute("mchTeamDetail"); 
+  			SportsMatchDTO sm = dto.getSportsMatch();
+  			GroundDTO grd = dto.getGround(); 
+  			List<TeamDTO> teamlist = dto.getTeam();
+  	%>
 	<div class="container mt">
 		<div class="row">
 			<div class="col-lg-10 col-lg-offset-1 centered">
@@ -121,11 +122,11 @@
 			</div>
 
 			<% for(int i=0;i<teamlist.size();i++){
-	  		TeamDTO team = teamlist.get(i); %>
+	  			TeamDTO team = teamlist.get(i); %>
 
 			<div class="col-lg-4 col-lg-offset-1">
 				<div class="spacing"></div>
-				<% if(sm.getHomeaway().equals("0")){ %>
+				<% if(team.getHomeaway().equals("0")){ %>
 				<h3>HOME TEAM</h3>
 				<% }else{ %>
 				<h3>AWAY TEAM</h3>
@@ -142,7 +143,7 @@
 				<p>
 					<b>유니폼 색상 : <%= team.getTeamUniform() %></b>
 				</p>
-				<% if(sm.getTmGrade().equals("매니저")){ %>
+				<% if(team.getTeamNo().equals(userSprots.getTeamNo())&team.getTmGrade().equals("매니저")){ %>
 				<div style="float: right;">
 					<input type="radio" id="backupOk" name="backUp" value="0">
 					<label for="backupOk">용병필요</label> <input type="radio"
@@ -157,15 +158,13 @@
 				<% } %>
 
 			</div>
-			<input type="hidden" id="teamNo" name="teamNo"
-				value="<%= team.getTeamNo() %>">
-			<% } %>
-			<input type="hidden" id="mchNo" name="mchNo"
-				value="<%= sm.getMchNo() %>">
+			<input type="hidden" id="teamNo" name="teamNo" value="<%= team.getTeamNo() %>">
+			<input type="hidden" id="mchNo" name="mchNo" value="<%= sm.getMchNo() %>">
+			<input type="hidden" id="myTeamNo" name="myTeamNo" value="<%= userSprots.getTeamNo() %>">
 		</div>
 	</div>
 	<div id="myfix">
-		<% if(sm.getTmGrade().equals("매니저")){ %>
+		<% if(team.getTeamNo().equals(userSprots.getTeamNo())&team.getTmGrade().equals("매니저")){ %>
 		<a id="matchChange" class="btn btn-block btn-theme2">매치수정</a>
 		<% } else{%>
 		<form action="">
@@ -174,9 +173,11 @@
 		</form>
 		<% } %>
 	</div>
-	<%} %>
+	<%	}
+	} %>
 	<script type="text/javascript">
   	teamNo = $("#teamNo").val();
+  	myTeamNo = $("#myTeamNo").val();
   	mchNo = $("#mchNo").val();
   	mydata = "<form action=''>"
   				+ "<input type='number' id='backupNum' name='backupNum' placeholder='용병필요인원 수'>"
@@ -228,7 +229,7 @@
   		});
   		
   		$("#matchjoin").on("click", function() {
-			location.href="/LPG/match/join.do?mchNo="+mchNo+"&teamNo="+teamNo;
+			location.href="/LPG/match/join.do?mchNo="+mchNo+"&teamNo="+myTeamNo;
 		})
 		$("#matchChange").on("click", function() {
 			location.href="/LPG/match/change.do?mchNo="+mchNo;

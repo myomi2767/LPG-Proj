@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<h3>매치수정</h3>
+			<h3>매치상세조회</h3>
 		</div>
 		<!-- /row -->
 	</div>

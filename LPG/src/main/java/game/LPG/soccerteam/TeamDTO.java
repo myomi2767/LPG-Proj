@@ -3,7 +3,7 @@ package game.LPG.soccerteam;
 import org.springframework.web.multipart.MultipartFile;
 
 public class TeamDTO {
-   private int teamNo;
+   private String teamNo;
    private String teamName;
    private String teamIntroduce;
    private String teamLocation;
@@ -21,17 +21,17 @@ public class TeamDTO {
    private int count;
    private MultipartFile upFile;
    private String sportsNo;
-   
+   private String homeaway;
+   private String tmGrade;
 
    public TeamDTO() {
 
    }
-   
 
-   public TeamDTO(int teamNo, String teamName, String teamIntroduce, String teamLocation, String teamGround,
+   public TeamDTO(String teamNo, String teamName, String teamIntroduce, String teamLocation, String teamGround,
 		String teamAbility, String teamUniform, String teamManner, String teamStrategy, String teamPre, String teamDate,
 		String teamAge, String teamEmblem, String memberPrivate, String teamGender, int count, MultipartFile upFile,
-		String sportsNo) {
+		String sportsNo, String homeaway, String tmGrade) {
 	super();
 	this.teamNo = teamNo;
 	this.teamName = teamName;
@@ -51,14 +51,16 @@ public class TeamDTO {
 	this.count = count;
 	this.upFile = upFile;
 	this.sportsNo = sportsNo;
-}
+	this.homeaway = homeaway;
+	this.tmGrade = tmGrade;
+   }
 
 
-public int getTeamNo() {
+   public String getTeamNo() {
       return teamNo;
    }
 
-   public void setTeamNo(int teamNo) {
+   public void setTeamNo(String teamNo) {
       this.teamNo = teamNo;
    }
 
@@ -199,6 +201,21 @@ public int getTeamNo() {
 		this.sportsNo = sportsNo;
 	}
 
+	public String getHomeaway() {
+		return homeaway;
+	}
+
+	public void setHomeaway(String homeaway) {
+		this.homeaway = homeaway;
+	}
+
+	public String getTmGrade() {
+		return tmGrade;
+	}
+
+	public void setTmgrade(String tmGrade) {
+		this.tmGrade = tmGrade;
+	}
 
 	@Override
 	public String toString() {
@@ -207,9 +224,8 @@ public int getTeamNo() {
 				+ ", teamUniform=" + teamUniform + ", teamManner=" + teamManner + ", teamStrategy=" + teamStrategy
 				+ ", teamPre=" + teamPre + ", teamDate=" + teamDate + ", teamAge=" + teamAge + ", teamEmblem="
 				+ teamEmblem + ", memberPrivate=" + memberPrivate + ", teamGender=" + teamGender + ", count=" + count
-				+ ", upFile=" + upFile + ", sportsNo=" + sportsNo + "]";
+				+ ", upFile=" + upFile + ", sportsNo=" + sportsNo + ", homeaway=" + homeaway + ", tmGrade=" + tmGrade
+				+ "]";
 	}
 
-	
-   
 }

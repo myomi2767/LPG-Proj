@@ -1,5 +1,6 @@
 package game.LPG.sportsMatch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -43,18 +44,31 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 	}
 	
 	@Override
-	public List<SportsMatchDTO> matchlist(MatchSelectDTO ms) {
-		List<SportsMatchDTO> list =null;
+	public List<MatchDetailDTO> matchlist(MatchSelectDTO ms) {
+		List<MatchDetailDTO> detail = new ArrayList<MatchDetailDTO>();
+		List<SportsMatchDTO> list = null;
 		System.out.println(ms);
 		if((ms.getMchType().equals("0"))) {
-			System.out.println("000000");
 			list = sqlSession.selectList("game.LPG.sportsMatch.matchListTeam", ms);
+			for(int i=0;i<list.size();i++) {
+				SportsMatchDTO sm = list.get(i);
+				String mchNo = sm.getMchNo();
+				System.out.println(mchNo);
+				List<TeamDTO> team = sqlSession.selectList("game.LPG.sportsMatch.matchTeamDetailT", mchNo);
+				detail.add(new MatchDetailDTO(sm, null, team));
+			}
+			System.out.println(detail);
 		} else {
-			System.out.println("xxxxxxxxxxxxxx");
 			list = sqlSession.selectList("game.LPG.sportsMatch.matchListIndiv", ms);
+			for(int i=0;i<list.size();i++) {
+				SportsMatchDTO sm = list.get(i);
+				String mchNo = sm.getMchNo();
+				GroundDTO ground = sqlSession.selectOne("game.LPG.sportsMatch.matchIndivDetailG", mchNo);
+				detail.add(new MatchDetailDTO(sm, ground, null));
+			}
 		}
 		System.out.println(list);
-		return list;
+		return detail;
 	}
 	@Override
 	public SportsMatchDTO MatchIndvDetail(String mchNo) {

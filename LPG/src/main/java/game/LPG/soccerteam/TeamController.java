@@ -46,6 +46,7 @@ public class TeamController {
 	//팀 생성하기
 	@RequestMapping(value="/team/create.do", method=RequestMethod.POST)
 	public String teamCreate(TeamDTO dto) {
+		System.out.println(dto.getSportsNo());
 		System.out.println("컨트롤러:"+dto);
 		System.out.println("컨트롤러TM:"+dto);
 		service.insert(dto);

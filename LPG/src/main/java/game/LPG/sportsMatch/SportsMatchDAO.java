@@ -10,7 +10,7 @@ public interface SportsMatchDAO {
 	int insertIndiv(SportsMatchDTO sportsMatch);
 	int insertTeam(SportsMatchDTO sportsMatch);
 	TeamMemberDTO teamNoSearch(UserSportsDTO su);
-	List<SportsMatchDTO> matchlist(MatchSelectDTO select);
+	List<MatchDetailDTO> matchlist(MatchSelectDTO ms);
 	SportsMatchDTO MatchIndvDetail(String mchNo);
 	MatchDetailDTO MatchTeamDetail(String mchNo);
 	int backUpNumAdd(SportsMatchTeamDTO smt);

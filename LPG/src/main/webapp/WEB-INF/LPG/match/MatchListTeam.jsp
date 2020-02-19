@@ -1,3 +1,5 @@
+<%@page import="game.LPG.soccerteam.TeamDTO"%>
+<%@page import="game.LPG.sportsMatch.MatchDetailDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="game.LPG.sportsMatch.SportsMatchDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -19,6 +21,9 @@ ul {
 	padding: 0;
 }
 </style>
+<script type="text/javascript">
+	
+</script>
 </head>
 
 <body>
@@ -26,7 +31,7 @@ ul {
 	<!-- *****************************************************************************************************************
 	 PORTFOLIO SECTION
 	 ***************************************************************************************************************** -->
-	<% List<SportsMatchDTO> list = (List<SportsMatchDTO>)request.getAttribute("matchlist"); %>
+	<% List<MatchDetailDTO> list = (List<MatchDetailDTO>)request.getAttribute("matchlist"); %>
 	<div class="container centered">
 		<div>
 			<div class="hline"></div>
@@ -46,21 +51,49 @@ ul {
 			<div class="recentitems portfolio" data-animate="fadeIn">
 				<!-- 중심 -->
 				<% for(int i=0;i<list.size();i++){ 
-						SportsMatchDTO match = list.get(i);
+						MatchDetailDTO match = list.get(i);
+						SportsMatchDTO sm = match.getSportsMatch();
+						List<TeamDTO> teamList = match.getTeam();
+						
 				%>
 				<div class="graphic-design">
-					<div class="he-wrap tpl6" <% if(match.getMchUrgent().equals("긴급")){%>style="border: 3px solid red;"<%} %>>
-						<img src="/LPG/img/<%= match.getTeamEmblem()%>" alt="팀앰블럼" class="myimg"> 
-						<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg"> 
-						<img src="/LPG/img/<%= match.getTeamEmblem()%>" alt="팀앰블럼" class="myimg">
+					<div class="he-wrap tpl6" <% if(sm.getMchUrgent().equals("긴급")){%>style="border: 3px solid red;"<%} %>>
+					<% for(int j=0;j<teamList.size();j++){ 
+						TeamDTO team = teamList.get(j); 
+						if(teamList.size()==1){%>
+							<img src="/LPG/img/<%= team.getTeamEmblem()%>" alt="팀앰블럼" class="myimg"> 
+							<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg">
+							<img src="/LPG/img/wanted.png" alt="상대팀없음" class="myimg">
+						<% }else if(teamList.size()==2){ 
+								if(team.getHomeaway().equals("0")){%>
+							<img src="/LPG/img/<%= team.getTeamEmblem()%>" alt="팀앰블럼" class="myimg"> 
+							<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg">
+								<%}else { %>
+							<img src="/LPG/img/<%= team.getTeamEmblem()%>" alt="팀앰블럼" class="myimg">
+						<% 		}
+							} 
+						}
+						%>
 						<div class="he-view">
-							<div id="detailGo" class="bg a0">
+							<div class="bg a0 detailGo">
 								<h3 class="a1" data-animate="fadeInDown" style="word-spacing: 350px">HOME VS AWAY</h3>
-								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 735px">
-									<%= match.getTeamName() %> <%= match.getGrdName()%> <%= match.getTeamName() %></h4>
-								<input type="hidden" id="mchNo" name="mchNo" value="<%= match.getMchNo() %>">
+								<% for(int j=0;j<teamList.size();j++){ 
+									TeamDTO team = teamList.get(j); 
+									if(teamList.size()==1){ %>
+								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 308px;">
+									<%= team.getTeamName() %> <%= sm.getMchGrd()%> 팀구함</h4>
+								<%} else if(teamList.size()==2){
+										if(team.getHomeaway().equals("0")){%>
+								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 308px;">
+									<%= team.getTeamName() %> <%= sm.getMchGrd()%>
+								<% 		} else{ %>
+									<%= team.getTeamName() %></h4>
+								<% 		}
+									} 
+								}%>	
+								<input type="hidden" id="mchNo<%= i %>" name="mchNo" value="<%= sm.getMchNo() %>">
 							</div>
-							
+								
 							<!-- he bg -->
 						</div>
 						<!-- he view -->
@@ -72,15 +105,15 @@ ul {
 			</div>
 			<!-- portfolio -->
 			<!-- 중심 -->
-			
 		</div>
 		<!-- portfolio container -->
 	</div>
 	<!--/Portfoliowrap -->
 	<script type="text/javascript">
-		mchNo = $("#mchNo").val();
+	/* mchNo의 div에서 this의 find> input해서 attr값을 mchNo에 넣어준다. */
 		$(document).ready(function() {
-			$("#detailGo").on("click", function(){
+			$(".detailGo").on("click", function(){
+				mchNo = $(this).children().last().attr("value");
 				location.href="/LPG/match/mchTeamDetail.do?mchNo="+mchNo;
 			});
 		});

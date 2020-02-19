@@ -46,8 +46,8 @@ ul {
 <!-- 내가 추가한 링크 -->
 <!-- Main Stylesheet File -->
 <link href="/LPG/css/radio.css" rel="stylesheet">
-<!-- <link rel="stylesheet" type="text/css" href="/LPG/lib/dist/hello.week.css" /> -->
-<link rel="stylesheet" type="text/css" href="/LPG/lib/dist/hello.week.min.css" />
+<link rel="stylesheet" type="text/css" href="/LPG/lib/dist/hello.week.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/LPG/lib/dist/hello.week.min.css" /> -->
 <link rel="stylesheet" type="text/css" href="/LPG/lib/dist/hello.week.theme.min.css" />
 <!-- <link rel="stylesheet" type="text/css" href="/LPG/lib/dist/default.theme.css" /> -->
 <script type="module" src="/LPG/lib/dist/hello-week.js" ></script>
@@ -57,6 +57,7 @@ ul {
 <script type="module">
 	import {HelloWeek} from '/LPG/lib/dist/hello-week.js';
 	const myCalendar = new HelloWeek({
+		format: 'YY/MM/DD',
       	todayHighlight: false,
       	disablePastDays: true,
      	multiplePick: false,
@@ -145,12 +146,12 @@ ul {
 
 	<script>
 		$(function() {
-			var availableTags = [ "서울시 종로구", "서울시 중구", "서울시 용산구", "서울시 성동구",
-					"서울시 광진구", "서울시 동대문구", "서울시 중랑구", "서울시 성북구", "서울시 강북구",
-					"서울시 도봉구", "서울시 노원구", "서울시 은평구", "서울시 서대문구", "서울시 마포구",
-					"서울시 양천구", "서울시 강서구", "서울시 구로구", "서울시 금천구", "서울시 영등포구",
-					"서울시 동작구", "서울시 관악구", "서울시 서초구", "서울시 강남구", "서울시 송파구",
-					"서울시 강동구" ];
+			var availableTags = [ "종로구", "중구", "용산구", "성동구",
+					"광진구", "동대문구", "중랑구", "성북구", "강북구",
+					"도봉구", "노원구", "은평구", "서대문구", "마포구",
+					"양천구", "강서구", "구로구", "금천구", "영등포구",
+					"동작구", "관악구", "서초구", "강남구", "송파구",
+					"강동구" ];
 			$("#area").autocomplete({
 				source : availableTags
 			});

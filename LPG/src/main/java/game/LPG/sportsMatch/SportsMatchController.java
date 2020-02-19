@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import game.LPG.soccerteam.TeamDTO;
 import game.LPG.soccerteam.TeamMemberDTO;
 import game.LPG.userSports.UserSportsDTO;
 
@@ -55,7 +56,7 @@ public class SportsMatchController {
 	public ModelAndView matchlist(MatchSelectDTO ms) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("검색한 값=>"+ms);
-		List<SportsMatchDTO> list = service.matchlist(ms);
+		List<MatchDetailDTO> list = service.matchlist(ms);
 		System.out.println("결과 값=>"+list);
 		mav.addObject("matchlist", list);
 		if(ms.getMchType().equals("0")) {
@@ -79,8 +80,10 @@ public class SportsMatchController {
 	}
 	
 	@RequestMapping(value="/match/mchTeamDetail.do")
-	public ModelAndView mchTeamDetail(String mchNo) {
+	public ModelAndView mchTeamDetail(String mchNo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		UserSportsDTO su = (UserSportsDTO)session.getAttribute("userSports");
+		int sportsNo = su.getSportsNo();
 		System.out.println(mchNo);
 		MatchDetailDTO list = service.MatchTeamDetail(mchNo);
 		System.out.println("controller=>"+list);

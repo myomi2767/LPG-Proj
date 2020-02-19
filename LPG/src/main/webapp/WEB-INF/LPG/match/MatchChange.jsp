@@ -14,10 +14,10 @@
 	%>
 	<div class="container mtb">
 		<div class="row">
+		<h4>매치수정</h4>
 			<div class="col-sm-8">
-				<h4>청산별곡 Ver.2</h4>
 				<div class="hline"></div>
-				<p>살어리 살어리랐다 청산에 살어리랐다</p>
+				<p></p>
 				<form class="form-horizontal style-from" action="" method="POST">
 
 					<div class="form-group">
@@ -162,11 +162,11 @@
 							<div class="col-sm-2">
 								<h4>실력:</h4>
 							</div>
-							<input style="margin-top: 10px" type="checkbox" class="radiodiv" id="mchAbil0" name="mchAbil" value="상"> 
+							<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchAbil0" name="mchAbil" value="상"> 
 								<label for="mchAbil0">상</label>
-							<input style="margin-top: 10px" type="checkbox" class="radiodiv" id="mchAbil1" name="mchAbil" value="중">
+							<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchAbil1" name="mchAbil" value="중">
 								<label for="mchAbil1">중</label> 
-							<input style="margin-top: 10px" type="checkbox" class="radiodiv" id="mchAbil2" name="mchAbil" value="하">
+							<input style="margin-top: 10px" type="radio" class="radiodiv" id="mchAbil2" name="mchAbil" value="하">
 								<label for="mchAbil2">하</label>
 						</div>
 					</div>
@@ -210,7 +210,7 @@
 			<%-- mchDate = (<%= sm.getMchDate() %>); --%>
 			mchDateStart = <%= sm.getMchDateStart() %>;
 			mchDateEnd = <%= sm.getMchDateEnd() %>;
-			mchPlay = <%= sm.getMchPlay() %>;
+			mchPlay = "<%= sm.getMchPlay() %>";
 			mchGender = <%= sm.getMchGender() %>;
 			mchAbil = "<%= sm.getMchAbil() %>";
 			mchShoes = <%= sm.getMchShoes() %>;
