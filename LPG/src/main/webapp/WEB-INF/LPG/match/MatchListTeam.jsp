@@ -54,46 +54,38 @@ ul {
 						MatchDetailDTO match = list.get(i);
 						SportsMatchDTO sm = match.getSportsMatch();
 						List<TeamDTO> teamList = match.getTeam();
-						
+						if(teamList.size()==1){
+							TeamDTO team = teamList.get(0);
 				%>
 				<div class="graphic-design">
 					<div class="he-wrap tpl6" <% if(sm.getMchUrgent().equals("긴급")){%>style="border: 3px solid red;"<%} %>>
-					<% for(int j=0;j<teamList.size();j++){ 
-						TeamDTO team = teamList.get(j); 
-						if(teamList.size()==1){%>
-							<img src="/LPG/img/<%= team.getTeamEmblem()%>" alt="팀앰블럼" class="myimg"> 
-							<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg">
-							<img src="/LPG/img/wanted.png" alt="상대팀없음" class="myimg">
-						<% }else if(teamList.size()==2){ 
-								if(team.getHomeaway().equals("0")){%>
-							<img src="/LPG/img/<%= team.getTeamEmblem()%>" alt="팀앰블럼" class="myimg"> 
-							<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg">
-								<%}else { %>
-							<img src="/LPG/img/<%= team.getTeamEmblem()%>" alt="팀앰블럼" class="myimg">
-						<% 		}
-							} 
-						}
-						%>
+						<img src="/LPG/img/<%= team.getTeamEmblem()%>" alt="팀앰블럼" class="myimg"> 
+						<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg">
+						<img src="/LPG/img/wanted.png" alt="상대팀없음" class="myimg">
+							<div class="he-view">
+							<div class="bg a0 detailGo">
+								<h3 class="a1" data-animate="fadeInDown" style="word-spacing: 350px">HOME VS AWAY</h3>
+								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 308px;">
+									<%= team.getTeamName() %> <%= sm.getMchGrd()%> 팀구함</h4>
+								<input type="hidden" id="mchNo<%= i %>" name="mchNo" value="<%= sm.getMchNo() %>">
+				<% 		}else{ 
+							TeamDTO team1 = teamList.get(0);
+							TeamDTO team2 = teamList.get(1);
+				%>
+				<div class="graphic-design">
+					<div class="he-wrap tpl6" <% if(sm.getMchUrgent().equals("긴급")){%>style="border: 3px solid red;"<%} %>>								
+						<img src="/LPG/img/<%= team1.getTeamEmblem()%>" alt="팀앰블럼" class="myimg"> 
+						<img src="/LPG/img/portfolio/versus.jpg" alt="" class="myimg">
+						<img src="/LPG/img/<%= team2.getTeamEmblem()%>" alt="팀앰블럼" class="myimg">
 						<div class="he-view">
 							<div class="bg a0 detailGo">
 								<h3 class="a1" data-animate="fadeInDown" style="word-spacing: 350px">HOME VS AWAY</h3>
-								<% for(int j=0;j<teamList.size();j++){ 
-									TeamDTO team = teamList.get(j); 
-									if(teamList.size()==1){ %>
 								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 308px;">
-									<%= team.getTeamName() %> <%= sm.getMchGrd()%> 팀구함</h4>
-								<%} else if(teamList.size()==2){
-										if(team.getHomeaway().equals("0")){%>
-								<h4 class="a1" data-animate="fadeInDown" style="word-spacing: 308px;">
-									<%= team.getTeamName() %> <%= sm.getMchGrd()%>
-								<% 		} else{ %>
-									<%= team.getTeamName() %></h4>
-								<% 		}
-									} 
-								}%>	
+									<%= team1.getTeamName() %> <%= sm.getMchGrd()%> <%= team2.getTeamName() %></h4>
+							<% 	 
+						}%>	
 								<input type="hidden" id="mchNo<%= i %>" name="mchNo" value="<%= sm.getMchNo() %>">
 							</div>
-								
 							<!-- he bg -->
 						</div>
 						<!-- he view -->

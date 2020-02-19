@@ -111,6 +111,7 @@ public class TeamDAOImpl implements TeamDAO {
 	//팀 정보보기 (로그인 등급)
 	public TeamMemberDTO Grade(String sportsNo) {
 		TeamMemberDTO grade = sqlSession.selectOne("game.LPG.soccerteam.mygrade", sportsNo);
+		System.out.println("daoTM"+grade);
 		return grade;
 	}
 	

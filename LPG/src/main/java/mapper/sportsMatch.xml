@@ -28,11 +28,9 @@
 <!-- ======================================= matchList select문 ======================================== -->
 	<select id="matchListTeam" resultType="sportsMatch" parameterType="ms">
 		select m.*
-		from sportsmatch m, sportsmatchteam tm, ground g, team t
+		from sportsmatch m, ground g
 		<where>
-			m.mchno=tm.mchno
-			and tm.teamno=t.teamno
-			and m.mchgrd = g.grdname
+			m.mchgrd = g.grdname
 			and m.mchtype=#{mchType}
 			<if test="mchPlay!=''">
 				and m.mchplay like '%' || #{mchPlay}
@@ -47,6 +45,29 @@
 				and m.mchname like '%' || #{mchName} || '%'
 			</if>
 		</where>
+		<!-- 
+		select m.*
+		from sportsmatch m, sportsmatchteam tm, ground g, team t
+		<where>
+			m.mchno=tm.mchno
+			and tm.teamno=t.teamno 
+			and 
+			m.mchgrd = g.grdname
+			and m.mchtype=#{mchType}
+			<if test="mchPlay!=''">
+				and m.mchplay like '%' || #{mchPlay}
+			</if>
+			<if test="mchDate!='null'">
+				and m.mchdate=to_date(#{mchDate})
+			</if>
+			<if test="grdArea!=''">
+				and g.grdarea like '%' || #{grdArea} || '%'
+			</if>
+			<if test="mchName!=''">
+				and m.mchname like '%' || #{mchName} || '%'
+			</if>
+		</where>
+		 -->
 	</select>
 	<select id="matchListIndiv" resultType="sportsMatch" parameterType="ms">
 		select m.*, g.grdaddr
@@ -74,34 +95,42 @@
 <!-- ======================================= matchTeam select문 ======================================== -->	
 	<select id="matchTeamDetailM" resultType="sportsMatch" parameterType="String">
 		select m.*
-		from sportsmatch m, sportsmatchteam smt, ground g, team t, teammember tm
+		from sportsmatch m
+		where m.mchNo = #{mchNo}
+	</select>
+	<!-- , sportsmatchteam smt, ground g, team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
 			and m.mchgrd=g.grdname
-			and t.teamno = tm.teamno
-			and m.mchNo = #{mchNo}
-	</select>
-	
+			and t.teamno = tm.teamno -->
 	<select id="matchTeamDetailG" resultType="ground" parameterType="String">
 		select g.*
+		from sportsmatch m, ground g
+		where m.mchgrd=g.grdname
+			and m.mchNo = #{mchNo}
+	</select>
+	<!-- select g.*
 		from sportsmatch m, sportsmatchteam smt, ground g, team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
 			and m.mchgrd=g.grdname
 			and t.teamno = tm.teamno
-			and m.mchNo = #{mchNo}
-	</select>
-	
+			and m.mchNo = #{mchNo} -->
 	<select id="matchTeamDetailT" resultType="team" parameterType="String">
 		select t.*, tm.tmgrade, smt.homeaway
+		from sportsmatch m, sportsmatchteam smt, team t, teammember tm
+		where m.mchno=smt.mchno
+			and smt.teamno=t.teamno
+			and t.teamno = tm.teamno
+			and m.mchNo = #{mchNo}
+	</select>
+	<!-- select t.*, tm.tmgrade, smt.homeaway
 		from sportsmatch m, sportsmatchteam smt, ground g, team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
 			and m.mchgrd=g.grdname
 			and t.teamno = tm.teamno
-			and m.mchNo = #{mchNo}
-	</select>
-
+			and m.mchNo = #{mchNo} -->
 <!-- ======================================= matchIndiv select문 ======================================== -->
 	
 	<select id="matchIndivDetailM" resultType="sportsMatch" parameterType="String">
@@ -159,10 +188,10 @@
 	</update>
 <!-- ==================매치 신청 ===============================-->
 	<insert id="matchJoinTeam" parameterType="smt">
-		insert into sportsmatchteam values(sportsmatchteam_seq.nextVal, #{mchNo}, #{sportsNo}, 0)
+		insert into sportsmatchteam values(sportsmatchteam_seq.nextVal, #{mchNo}, #{teamNo}, 0, 1)
 	</insert>
 	<insert id="matchJoinIndiv" parameterType="smt">
-		insert into sportsmatchteam values(sportsmatchIndiv_seq.nextVal, #{sportsNo}, #{mchNo})
+		insert into sportsmatchindiv values(sportsmatchIndiv_seq.nextVal, #{sportsNo}, #{mchNo})
 	</insert>
 <!-- ==================팀 매치 수정 ===============================-->
 	<update id="matchChage" parameterType="sportsMatch">

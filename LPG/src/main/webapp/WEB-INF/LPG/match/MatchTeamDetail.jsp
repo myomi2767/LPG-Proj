@@ -1,3 +1,4 @@
+<%@page import="game.LPG.soccerteam.TeamMemberDTO"%>
 <%@page import="game.LPG.userSports.UserSportsDTO"%>
 <%@page import="game.LPG.user.UserDTO"%>
 <%@page import="game.LPG.soccerteam.TeamDTO"%>
@@ -53,6 +54,7 @@
 	<% 
 		UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
 	    UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
+	    TeamMemberDTO teamMember = (TeamMemberDTO)request.getAttribute("teamMember");
 		if((MatchDetailDTO)request.getAttribute("mchTeamDetail")!=null){
   			MatchDetailDTO dto = (MatchDetailDTO)request.getAttribute("mchTeamDetail"); 
   			SportsMatchDTO sm = dto.getSportsMatch();
@@ -143,7 +145,7 @@
 				<p>
 					<b>유니폼 색상 : <%= team.getTeamUniform() %></b>
 				</p>
-				<% if(team.getTeamNo().equals(userSprots.getTeamNo())&team.getTmGrade().equals("매니저")){ %>
+				<% if(team.getTeamNo().equals(Integer.toString(teamMember.getTeamNo()))&teamMember.getTmGrade().equals("매니저")){ %>
 				<div style="float: right;">
 					<input type="radio" id="backupOk" name="backUp" value="0">
 					<label for="backupOk">용병필요</label> <input type="radio"
@@ -156,25 +158,27 @@
 					<a href="/LPG/match/mchTeamYong.do" class="btn btn-theme">용병신청</a>
 				</div>
 				<% } %>
-
 			</div>
 			<input type="hidden" id="teamNo" name="teamNo" value="<%= team.getTeamNo() %>">
+			<% } %>
 			<input type="hidden" id="mchNo" name="mchNo" value="<%= sm.getMchNo() %>">
-			<input type="hidden" id="myTeamNo" name="myTeamNo" value="<%= userSprots.getTeamNo() %>">
+			<input type="hidden" id="myTeamNo" name="myTeamNo" value="<%= teamMember.getTeamNo() %>">
 		</div>
 	</div>
 	<div id="myfix">
-		<% if(team.getTeamNo().equals(userSprots.getTeamNo())&team.getTmGrade().equals("매니저")){ %>
+		<% 	TeamDTO team = teamlist.get(0);
+			if(team.getTeamNo().equals(Integer.toString(teamMember.getTeamNo()))&teamMember.getTmGrade().equals("매니저")){ %>
 		<a id="matchChange" class="btn btn-block btn-theme2">매치수정</a>
-		<% } else{%>
+		<% 	} else if(teamlist.size()==2){%>
+		<div></div>
+		<% 	} else{%>
 		<form action="">
-			<input type="button" id="matchjoin" value="매치신청"
-				class="btn btn-block btn-theme2">
+			<input type="button" id="matchjoin" value="매치신청" class="btn btn-block btn-theme2">
 		</form>
-		<% } %>
 	</div>
-	<%	}
-	} %>
+	<% 		}
+		} %>
+	
 	<script type="text/javascript">
   	teamNo = $("#teamNo").val();
   	myTeamNo = $("#myTeamNo").val();
@@ -229,7 +233,7 @@
   		});
   		
   		$("#matchjoin").on("click", function() {
-			location.href="/LPG/match/join.do?mchNo="+mchNo+"&teamNo="+myTeamNo;
+			location.href="/LPG/match/joinTeam.do?mchNo="+mchNo+"&teamNo="+myTeamNo;
 		})
 		$("#matchChange").on("click", function() {
 			location.href="/LPG/match/change.do?mchNo="+mchNo;

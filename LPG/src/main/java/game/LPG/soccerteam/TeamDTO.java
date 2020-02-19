@@ -22,7 +22,6 @@ public class TeamDTO {
    private MultipartFile upFile;
    private String sportsNo;
    private String homeaway;
-   private String tmGrade;
 
    public TeamDTO() {
 
@@ -31,7 +30,7 @@ public class TeamDTO {
    public TeamDTO(String teamNo, String teamName, String teamIntroduce, String teamLocation, String teamGround,
 		String teamAbility, String teamUniform, String teamManner, String teamStrategy, String teamPre, String teamDate,
 		String teamAge, String teamEmblem, String memberPrivate, String teamGender, int count, MultipartFile upFile,
-		String sportsNo, String homeaway, String tmGrade) {
+		String sportsNo, String homeaway) {
 	super();
 	this.teamNo = teamNo;
 	this.teamName = teamName;
@@ -52,7 +51,6 @@ public class TeamDTO {
 	this.upFile = upFile;
 	this.sportsNo = sportsNo;
 	this.homeaway = homeaway;
-	this.tmGrade = tmGrade;
    }
 
 
@@ -209,14 +207,6 @@ public class TeamDTO {
 		this.homeaway = homeaway;
 	}
 
-	public String getTmGrade() {
-		return tmGrade;
-	}
-
-	public void setTmgrade(String tmGrade) {
-		this.tmGrade = tmGrade;
-	}
-
 	@Override
 	public String toString() {
 		return "TeamDTO [teamNo=" + teamNo + ", teamName=" + teamName + ", teamIntroduce=" + teamIntroduce
@@ -224,8 +214,7 @@ public class TeamDTO {
 				+ ", teamUniform=" + teamUniform + ", teamManner=" + teamManner + ", teamStrategy=" + teamStrategy
 				+ ", teamPre=" + teamPre + ", teamDate=" + teamDate + ", teamAge=" + teamAge + ", teamEmblem="
 				+ teamEmblem + ", memberPrivate=" + memberPrivate + ", teamGender=" + teamGender + ", count=" + count
-				+ ", upFile=" + upFile + ", sportsNo=" + sportsNo + ", homeaway=" + homeaway + ", tmGrade=" + tmGrade
-				+ "]";
+				+ ", upFile=" + upFile + ", sportsNo=" + sportsNo + ", homeaway=" + homeaway + "]";
 	}
 
 }
