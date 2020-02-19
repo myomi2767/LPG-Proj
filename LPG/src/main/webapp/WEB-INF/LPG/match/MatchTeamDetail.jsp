@@ -153,7 +153,9 @@
 						for="backupNoK">용병불필요</label>
 					<div id="backup<%= i+1 %>"></div>
 				</div>
-				<% } else{%>
+				<% } else if(team.getBackupNum().equals("0")){%>
+				<div></div>
+				<% } else {%>
 				<div class="text-right">
 					<a href="/LPG/match/mchTeamYong.do" class="btn btn-theme">용병신청</a>
 				</div>

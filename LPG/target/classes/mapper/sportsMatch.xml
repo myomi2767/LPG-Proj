@@ -117,7 +117,7 @@
 			and t.teamno = tm.teamno
 			and m.mchNo = #{mchNo} -->
 	<select id="matchTeamDetailT" resultType="team" parameterType="String">
-		select t.*, tm.tmgrade, smt.homeaway
+		select t.*, tm.tmgrade, smt.backupnum ,smt.homeaway
 		from sportsmatch m, sportsmatchteam smt, team t, teammember tm
 		where m.mchno=smt.mchno
 			and smt.teamno=t.teamno
