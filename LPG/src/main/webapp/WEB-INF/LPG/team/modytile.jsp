@@ -161,7 +161,7 @@
 				<div class="row">
 				<div class="col-sm-2"><h4>활동구장</h4></div>
 				<div class="col-lg-7">
-					<a href="#" class="btn btn-theme">구장 검색</a>
+					<a href="/LPG/ground/map/main.do" class="btn btn-theme">구장 검색</a>
 				</div>
 				</div>
 			</div>

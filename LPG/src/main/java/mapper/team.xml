@@ -56,9 +56,16 @@
 		select * from team where teamNo = #{teamNo}
 	</select>
 	
+	<!-- 팀 정보 페이지 권한에 따른 버튼 -->
+	<select id="mygrade" parameterType="String" resultType="teammember">
+		select * from teammember where sportsno = #{sportsNo}
+	</select>
+	
 	<!-- 팀원 정보조회 -->
 	<select id="teammemberinfo" resultType="teammember" parameterType="teammember">
-		select * from teamMember where teamNo = #{teamNo}
+		select tm.tmno, tm.tmgrade, tm.tmtend, tm.backnum, lu.username
+		from teammember tm, usersports us, lpguser lu
+		where lu.userid = us.userid and us.sportsno = tm.sportsno and tm.teamno = #{teamNo}
 	</select>
 	
 	<!-- 팀에서 팀원 개인 정보 조회 -->
@@ -112,9 +119,10 @@
 	<!-- 이름 구하는거 조인 -->
    <select id="id" resultType="teammember" parameterType="teammember">
       select u.userid as userid
-      from lpguser u, usersports us, teammember tm
+      from lpguser u, usersports us, teammember tm, team t
       where u.userid = us.userid and
            us.sportsno = tm.sportsno and
-           tm.tmno = #{tmno}
+           tm.teamno = t.teamno
+           tm.tmno = #{tmNo} and tm.teamno = #{teamNo}
    </select>
 </mapper>

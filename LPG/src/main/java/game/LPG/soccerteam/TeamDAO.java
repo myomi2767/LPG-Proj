@@ -37,6 +37,9 @@ public interface TeamDAO {
 	TeamDTO teamInfo(TeamDTO teaminfo);
 	List<TeamMemberDTO> teamInfo(TeamMemberDTO tminfo);
 	
+	//팀 정보보기 (로그인 등급)
+	TeamMemberDTO Grade(String sportsNo);
+	
 	//팀원 정보 수정
 	ArrayList<Integer> teamMemberUpdate(MemInfoModyDTO meminfo);
 	

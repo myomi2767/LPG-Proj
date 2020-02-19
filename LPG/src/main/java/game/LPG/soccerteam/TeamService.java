@@ -34,6 +34,9 @@ public interface TeamService {
 	TeamDTO teaminfo(TeamDTO teaminfo);
 	List<TeamMemberDTO> teaminfo(TeamMemberDTO tminfo);
 	
+	//팀 정보보기 (로그인 등급)
+	TeamMemberDTO Grade(String sportsNo);
+	
 	//팀원 정보 수정하기
 	ArrayList<Integer> teamMemberUpdate(MemInfoModyDTO meminfo);
 	

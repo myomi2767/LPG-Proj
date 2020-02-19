@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import game.LPG.userSports.UserSportsDTO;
+
 @Controller
 public class TeamController {
 	@Autowired
@@ -149,22 +151,27 @@ public class TeamController {
 	
 	//내 팀 정보보기
     @RequestMapping("/team/myteam.do")
-    public ModelAndView myteam(TeamDTO teaminfo, TeamMemberDTO tminfo) {
+    public ModelAndView myteam(TeamDTO teaminfo, TeamMemberDTO tminfo, HttpSession session) {
        ModelAndView mav = new ModelAndView();
+       
+       UserSportsDTO usersports = (UserSportsDTO)session.getAttribute("userSports");
+       
        TeamDTO list = service.teaminfo(teaminfo);
        List<TeamMemberDTO> tm = service.teaminfo(tminfo);
+       
        mav.addObject("teaminfo", list);
        mav.addObject("tmlist", tm);
-       mav.setViewName("teamMyteam");
+       
+
+       TeamMemberDTO teamdto = service.Grade(Integer.toString(usersports.getSportsNo()));
+       
+       mav.addObject("teammemberdto", teamdto);
+       
+       mav.setViewName("teamManager");
+       //mav.setViewName("teamMember");
+       //mav.setViewName("teamNormal");
        return mav;
     }
-	
-	
-	/*@RequestMapping("/team/myteam.do")
-	public String myteam() {
-		return "teamMyteam";
-	}*/
-	
 	
 	//팀 멤버 등급변경 페이지
 	@RequestMapping("/team/Mgrade.do")

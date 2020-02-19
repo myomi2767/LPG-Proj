@@ -26,9 +26,19 @@
 		<put-attribute name="content" value="/WEB-INF/LPG/team/searchtile.jsp"/>
 	</definition>
 	
-	<definition name="teamMyteam" extends="teamTemplate">
+	<definition name="teamManager" extends="teamTemplate">
 		<put-attribute name="header" value="/WEB-INF/LPG/team/headermyteam.jsp"/>
 		<put-attribute name="content" value="/WEB-INF/LPG/team/infomanagertile.jsp"/>
+	</definition>
+	
+	<definition name="teamMember" extends="teamTemplate">
+		<put-attribute name="header" value="/WEB-INF/LPG/team/headermyteam.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/LPG/team/infomembertile.jsp"/>
+	</definition>
+	
+	<definition name="teamNormal" extends="teamTemplate">
+		<put-attribute name="header" value="/WEB-INF/LPG/team/headermyteam.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/LPG/team/infonormaltile.jsp"/>
 	</definition>
 	
 <!-- 	<definition name="teamMyteam" extends="teamTemplate">

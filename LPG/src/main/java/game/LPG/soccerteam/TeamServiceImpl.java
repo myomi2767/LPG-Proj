@@ -93,6 +93,12 @@ public class TeamServiceImpl implements TeamService {
 		return tm;
 	}
 	
+	//팀 정보보기 (로그인 등급)
+	public TeamMemberDTO Grade(String sportsNo) {
+		TeamMemberDTO grade = dao.Grade(sportsNo);
+		return grade;
+	}
+	
 	//팀원 개인정보보기
 	public TeamMemberDTO timwonjungbo(TeamMemberDTO dto) {
 		TeamMemberDTO meminfo = dao.timwonjungbo(dto);

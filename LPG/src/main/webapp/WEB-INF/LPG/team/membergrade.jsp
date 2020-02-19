@@ -90,6 +90,7 @@ width: 60%;
 								%>
 								<tr class="tttr">
 									<td class="tttd">
+										<span><%= tml.getUserName()%></span>
 										<input type="hidden" name="meminfo[<%= i %>].tmNo" value="<%= tml.getTmNo()%>">
 									</td>
 									<td class="tttd">
@@ -114,13 +115,8 @@ width: 60%;
 										</select>
 									</td>
 									<td class="tttd">
-										<input type="text" name="meminfo[<%= i %>].backNum" class="backNum" id="backNum" style="width: 50px; text-align: center;">
-										<!-- placeholder="<%-- <%= tml.getBackNum() %> --%>" -->
+										<input type="text" name="meminfo[<%= i %>].backNum" class="backNum" id="backNum" placeholder="<%= tml.getBackNum() %>">
 									</td>
-									<%-- <td class="tttd">
-										<input type="number" name="count" class="backNum" id="backNum" style="width: 50px; text-align: center;">
-										<!-- placeholder="<%= tml.getBackNum() %>" -->
-									</td> --%>
 								</tr>
 							<% } %>
 							</table>

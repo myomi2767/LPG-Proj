@@ -1,8 +1,8 @@
 <%@page import="game.LPG.soccerteam.TeamDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,12 +150,12 @@
 			form.teamAge.value = "<%=request.getParameter("teamAge")%>";
 		}
 		if(teamLocation==""){
-			teamLocation="Áö¿ª¼±ÅÃ";
+			teamLocation="ì§€ì—­ì„ íƒ";
 		}else{
 			form.teamLocation.value = "<%=request.getParameter("teamLocation")%>";
 		}
 		if(teamName==""){
-			teamName="ÆÀ¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä";
+			teamName="íŒ€ëª…ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”";
 		}else{
 			form.teamName.value = "<%=request.getParameter("teamName")%>";
 		}
@@ -190,67 +190,67 @@
 		<div id="tsearchbuttonall">
 		<div style="float: left; width: 20%;">
 			<input type="radio" name="radio" value="1" id="tss" style="margin-left: 10%; margin-top: 10px;">
-			<label for="tss">¼±ÅÃÇ×¸ñÀ¸·Î °Ë»ö</label><br/>
+			<label for="tss">ì„ íƒí•­ëª©ìœ¼ë¡œ ê²€ìƒ‰</label><br/>
 			<input type="radio" name="radio" value="0" id="tns" style="margin-left: 10%">
-			<label for="tns">ÆÀ¸íÀ¸·Î °Ë»ö</label>
+			<label for="tns">íŒ€ëª…ìœ¼ë¡œ ê²€ìƒ‰</label>
 		</div>
 		<div style="float: left; width:80%; text-align: center;">
 			<form action="/LPG/team/detailsearch.do" name="form">
 				<div class="form-group" style="width: 100px; float: left;">
-	              <label>¼Ò¼Ó À¯Çü</label>
+	              <label>ì†Œì† ìœ í˜•</label>
 		              <select class="form-control" name="teamGender" id="teamGender">
-		              			<option value="3" selected="selected">¼ºº°</option>
-					            <option value="0">³²¼º</option>
-								<option value="1">È¥¼º</option>
-								<option value="2">¿©¼º</option>
+		              			<option value="3" selected="selected">ì„±ë³„</option>
+					            <option value="0">ë‚¨ì„±</option>
+								<option value="1">í˜¼ì„±</option>
+								<option value="2">ì—¬ì„±</option>
 					  </select>
 	            </div>
 				<div class="form-group" style="width: 120px; float: left; margin-left: 40px; margin-right: 40px;">
-	              <label>¿¬·É Á¦ÇÑ</label>
+	              <label>ì—°ë ¹ ì œí•œ</label>
 		              <select class="form-control" name="teamAge" id="teamAge">
-		              				<option value="100" selected="selected">¼±ÅÃ</option>
-					              	<option value="0">Á¦ÇÑ ¾øÀ½</option>
-									<option value="10">10´ë</option>
-									<option value="20">20´ë</option>
-									<option value="30">30´ë</option>
-									<option value="40">40´ë</option>
-									<option value="50">50´ëÀÌ»ó</option>
+		              				<option value="100" selected="selected">ì„ íƒ</option>
+					              	<option value="0">ì œí•œ ì—†ìŒ</option>
+									<option value="10">10ëŒ€</option>
+									<option value="20">20ëŒ€</option>
+									<option value="30">30ëŒ€</option>
+									<option value="40">40ëŒ€</option>
+									<option value="50">50ëŒ€ì´ìƒ</option>
 					              </select>
 	            </div>
 				<div class="form-group" style="width: 120px; float: left;">
-	            	<label>ÆÀ Áö¿ª</label>
+	            	<label>íŒ€ ì§€ì—­</label>
 		            	<select class="form-control" name="teamLocation" id="teamLocation">
-		            				<option value="Áö¿ª¼±ÅÃ" selected="selected">¼±ÅÃ</option>
-									<option value="°­¼­±¸">°­¼­±¸</option>
-									<option value="°­µ¿±¸">°­µ¿±¸</option>
-									<option value="°­³²±¸">°­³²±¸</option>
-									<option value="¼ººÏ±¸">¼ººÏ±¸</option>
-									<option value="Áß±¸">Áß±¸</option>
-									<option value="ÀºÆò±¸">ÀºÆò±¸</option>
-									<option value="±ÝÃµ±¸">±ÝÃµ±¸</option>
-									<option value="±¤Ä£±¸">±¤Ä£±¸</option>
-									<option value="¼­´ë¹®±¸">¼­´ë¹®±¸</option>
-									<option value="Áß¶û±¸">Áß¶û±¸</option>
-									<option value="°­ºÏ±¸">°­ºÏ±¸</option>
-									<option value="°ü¾Ç±¸">°ü¾Ç±¸</option>
-									<option value="±¸·Î±¸">±¸·Î±¸</option>
-									<option value="¿µµîÆ÷±¸">¿µµîÆ÷±¸</option>
-									<option value="¸¶Æ÷±¸">¸¶Æ÷±¸</option>
-									<option value="Á¾·Î±¸">Á¾·Î±¸</option>
-									<option value="µµºÀ±¸">µµºÀ±¸</option>
-									<option value="¿ë»ê±¸">¿ë»ê±¸</option>
-									<option value="µ¿ÀÛ±¸">µ¿ÀÛ±¸</option>
-									<option value="¼­ÃÊ±¸">¼­ÃÊ±¸</option>
-									<option value="¼ÛÆÄ±¸">¼ÛÆÄ±¸</option>
-									<option value="³ë¿ø±¸">³ë¿ø±¸</option>
-									<option value="¼ºµ¿±¸">¼ºµ¿±¸</option>
-									<option value="¾çÃµ±¸">¾çÃµ±¸</option>
-									<option value="µ¿´ë¹®±¸">µ¿´ë¹®±¸</option>
+		            				<option value="ì§€ì—­ì„ íƒ" selected="selected">ì„ íƒ</option>
+									<option value="ê°•ì„œêµ¬">ê°•ì„œêµ¬</option>
+									<option value="ê°•ë™êµ¬">ê°•ë™êµ¬</option>
+									<option value="ê°•ë‚¨êµ¬">ê°•ë‚¨êµ¬</option>
+									<option value="ì„±ë¶êµ¬">ì„±ë¶êµ¬</option>
+									<option value="ì¤‘êµ¬">ì¤‘êµ¬</option>
+									<option value="ì€í‰êµ¬">ì€í‰êµ¬</option>
+									<option value="ê¸ˆì²œêµ¬">ê¸ˆì²œêµ¬</option>
+									<option value="ê´‘ì¹œêµ¬">ê´‘ì¹œêµ¬</option>
+									<option value="ì„œëŒ€ë¬¸êµ¬">ì„œëŒ€ë¬¸êµ¬</option>
+									<option value="ì¤‘ëž‘êµ¬">ì¤‘ëž‘êµ¬</option>
+									<option value="ê°•ë¶êµ¬">ê°•ë¶êµ¬</option>
+									<option value="ê´€ì•…êµ¬">ê´€ì•…êµ¬</option>
+									<option value="êµ¬ë¡œêµ¬">êµ¬ë¡œêµ¬</option>
+									<option value="ì˜ë“±í¬êµ¬">ì˜ë“±í¬êµ¬</option>
+									<option value="ë§ˆí¬êµ¬">ë§ˆí¬êµ¬</option>
+									<option value="ì¢…ë¡œêµ¬">ì¢…ë¡œêµ¬</option>
+									<option value="ë„ë´‰êµ¬">ë„ë´‰êµ¬</option>
+									<option value="ìš©ì‚°êµ¬">ìš©ì‚°êµ¬</option>
+									<option value="ë™ìž‘êµ¬">ë™ìž‘êµ¬</option>
+									<option value="ì„œì´ˆêµ¬">ì„œì´ˆêµ¬</option>
+									<option value="ì†¡íŒŒêµ¬">ì†¡íŒŒêµ¬</option>
+									<option value="ë…¸ì›êµ¬">ë…¸ì›êµ¬</option>
+									<option value="ì„±ë™êµ¬">ì„±ë™êµ¬</option>
+									<option value="ì–‘ì²œêµ¬">ì–‘ì²œêµ¬</option>
+									<option value="ë™ëŒ€ë¬¸êµ¬">ë™ëŒ€ë¬¸êµ¬</option>
 								</select>
 	            </div>
 				<div class="tsearchbutton">
-					<input type="text" name="teamName" class="form-control" id="teamName" placeholder="ÆÀ¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä" style="float: left; width: 200px">
-					<input type="submit" name="tsb" id="tsb" value="°Ë»ö" style="margin-left: 5px; width: 60px; height: 33px;">
+					<input type="text" name="teamName" class="form-control" id="teamName" placeholder="íŒ€ëª…ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”" style="float: left; width: 200px">
+					<input type="submit" name="tsb" id="tsb" value="ê²€ìƒ‰" style="margin-left: 5px; width: 60px; height: 33px;">
 				</div>
 			</form>
 			</div>
@@ -258,38 +258,45 @@
 		<div class="footer">
 		<table id="tttable">
 			<tr>
-				<th class="ttth1">¹øÈ£</th>
-		   		<th class="ttth2">ÆÀ¸í</th>
-		    	<th class="ttth3">ÆÀ Á¤º¸</th>
+				<th class="ttth1">ë²ˆí˜¸</th>
+		   		<th class="ttth2">íŒ€ëª…</th>
+		    	<th class="ttth3">íŒ€ ì •ë³´</th>
 			</tr>
 			
 			
 			<%
 			String teamage = "";
 			String teamgender = "";
+			String mem ="";
 			for(int i=0;i<list.size();i++){
 				TeamDTO row = list.get(i);
 				
 				if(row.getTeamAge().equals("0")){
-					teamage = "Á¦ÇÑ¾øÀ½";
+					teamage = "ì œí•œì—†ìŒ";
 				}else if(row.getTeamAge().equals("10")){
-					teamage = "10´ë";
+					teamage = "10ëŒ€";
 				}else if(row.getTeamAge().equals("20")){
-					teamage = "20´ë";
+					teamage = "20ëŒ€";
 				}else if(row.getTeamAge().equals("30")){
-					teamage = "30´ë";
+					teamage = "30ëŒ€";
 				}else if(row.getTeamAge().equals("40")){
-					teamage = "40´ë";
+					teamage = "40ëŒ€";
 				}else if(row.getTeamAge().equals("50")){
-					teamage = "50´ëÀÌ»ó"; 	
+					teamage = "50ëŒ€ì´ìƒ"; 	
 				}
 				
 				if(row.getTeamGender().equals("0")){
-					teamgender = "³²¼º";
+					teamgender = "ë‚¨ì„±";
 				}else if(row.getTeamGender().equals("1")){
-					teamgender = "È¥¼º";
+					teamgender = "í˜¼ì„±";
 				}else if(row.getTeamGender().equals("2")){
-					teamgender = "¿©¼º";
+					teamgender = "ì—¬ì„±";
+				}
+				
+				if(row.getMemberPrivate().equals("0")){
+					mem = "ê³µê°œ";
+				}else{
+					mem = "ë¹„ê³µê°œ";
 				}
 			%>
 			<tr class="tttr" onclick="location.href='/LPG/team/myteam.do?teamNo=<%= row.getTeamNo()%>'">
@@ -300,26 +307,26 @@
 		    		<div class="a">
 		    			<div class="b">
 		    				<div class="c">
-		    					<p>Áö¿ª : <%= row.getTeamLocation() %></p>
+		    					<p>ì§€ì—­ : <%= row.getTeamLocation() %></p>
 		    				</div>
 		    				<div class="c">
-		    					<p>ÆÀ ½Ç·Â : <%= row.getTeamAbility() %></p>
-		    				</div>
-		    			</div>
-		    			<div class="b">
-		    				<div class="c">
-		    					<p>¿¬·ÉÁ¦ÇÑ : <%= teamage %></p>
-		    				</div>
-		    				<div class="c">
-		    					<p>¼ºº° : <%= teamgender %></p>
+		    					<p>íŒ€ì›ì •ë³´ : <%= mem %></p>
 		    				</div>
 		    			</div>
 		    			<div class="b">
 		    				<div class="c">
-		    					<p>½Ç·Â : <%= row.getTeamAbility() %></p>
+		    					<p>ì—°ë ¹ì œí•œ : <%= teamage %></p>
 		    				</div>
 		    				<div class="c">
-		    					<p>°æ±âÀ¯Çü : <%= row.getTeamPre() %></p>
+		    					<p>ì„±ë³„ : <%= teamgender %></p>
+		    				</div>
+		    			</div>
+		    			<div class="b">
+		    				<div class="c">
+		    					<p>ì‹¤ë ¥ : <%= row.getTeamAbility() %></p>
+		    				</div>
+		    				<div class="c">
+		    					<p>ê²½ê¸°ìœ í˜• : <%= row.getTeamPre() %></p>
 		    				</div>
 		    			</div>
 		    		</div>

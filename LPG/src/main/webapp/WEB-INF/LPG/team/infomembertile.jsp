@@ -2,8 +2,8 @@
 <%@page import="java.util.List"%>
 <%@page import="game.LPG.soccerteam.TeamDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,28 +154,27 @@ table, th, td {
 </style>
 </head>
 <body>
-<% TeamMemberDTO mg = (TeamMemberDTO)request.getAttribute("teammemberdto"); %>
 <% TeamDTO list = (TeamDTO)request.getAttribute("teaminfo");%>
 <% ArrayList<TeamMemberDTO> tmlist = (ArrayList<TeamMemberDTO>)request.getAttribute("tmlist");%>
 <% TeamMemberDTO tminfo = (TeamMemberDTO)request.getAttribute("teammeminfo"); %>
 <%
 String teamage = "";
 if(list.getTeamAge().equals("0")){
-	teamage = "ì œí•œì—†ìŒ";
+	teamage = "Á¦ÇÑ¾øÀ½";
 }else if(list.getTeamAge().equals("10")){
-	teamage = "10ëŒ€";
+	teamage = "10´ë";
 }else if(list.getTeamAge().equals("20")){
-	teamage = "20ëŒ€";
+	teamage = "20´ë";
 }else if(list.getTeamAge().equals("30")){
-	teamage = "30ëŒ€";
+	teamage = "30´ë";
 }else if(list.getTeamAge().equals("40")){
-	teamage = "40ëŒ€";
+	teamage = "40´ë";
 }else if(list.getTeamAge().equals("50")){
-	teamage = "50ëŒ€ì´ìƒ"; 	
+	teamage = "50´ëÀÌ»ó"; 	
 }
 String ts = "";
 if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
-	ts="ì—†ìŒ";
+	ts="¾øÀ½";
 }else if(list.getTeamStrategy().equals("541")){
 	ts = "5-4-1";
 }else if(list.getTeamStrategy().equals("532")){
@@ -199,43 +198,31 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 			<div class="col-lg-10 col-lg-offset-1 centered">
 				<div id="carousel-example-generic" class="carousel slide"
 					data-ride="carousel">
-					<div>
-					<%if(mg.getTmGrade().equals("ë§¤ë‹ˆì €") && Integer.toString(mg.getTeamNo()) ==list.getTeamNo()){ %>
-					
-						<input type="button"  class="btn btn-theme" style="float: right" value="íŒ€ì› ë“±ê¸‰ ë³€ê²½" onclick="location.href='/LPG/team/Mgrade.do?teamNo=<%= list.getTeamNo()%>'">
-						<input type="button" class="btn btn-theme" style="float: right" value="íŒ€ ì •ë³´ìˆ˜ì •" onclick="location.href='/LPG/team/modyview.do?teamNo=<%= list.getTeamNo()%>'">
-						<a href="/LPG/team/apsearch.do" class="btn btn-theme" style="float: right">ê°€ìž…ì‹ ì²­ í™•ì¸</a>
-					<% }else if(((mg.getTmGrade().equals("íŒ€ì›") || mg.getTmGrade().equals("ì£¼ìž¥")) && Integer.toString(mg.getTeamNo())==list.getTeamNo()) || mg.getTeamNo()==0){ %>
-						
-					<%}else{ %>
-						<a href="/LPG/team/apply.do" class="btn btn-theme" style="float: right">ê°€ìž…ì‹ ì²­</a>
-					<% } %>
-					</div>
 					</div>
 					<div style="clear: both;">
 						<div class="team_img">
 							<div class="emblum" id="emblum">
-								<img class="imm" alt="" src="../img/2.PNG" title="ì‚¬ì§„ì„ ë„£ì–´ì£¼ì„¸ìš”"><%-- <%= list.getTeamEmblem() %> --%>
+								<img class="imm" alt="" src="../img/2.PNG" title="»çÁøÀ» ³Ö¾îÁÖ¼¼¿ä"><%-- <%= list.getTeamEmblem() %> --%>
 							</div>
 							<h2 class="team_info_name"><%= list.getTeamName() %></h2>
 						</div>
 						<div>
 							<table class="team_info">
 								<tr class="ttrr">
-									<td><label>ì§€ì—­</label> | <span><%= list.getTeamLocation() %></span></td>
-									<td><label>íŒ€ì› ìˆ˜</label> | <span> <%= list.getCount() %>ëª…</span></td>
+									<td><label>Áö¿ª</label> | <span><%= list.getTeamLocation() %></span></td>
+									<td><label>ÆÀ¿ø ¼ö</label> | <span> <%= list.getCount() %>¸í</span></td>
 								</tr>
 								<tr class="ttrr">
-									<td><label>ì£¼ í™œë™êµ¬ìž¥</label> | <span><%= list.getTeamGround() %></span></td>
-									<td><label>ê²½ê¸°ìœ í˜•</label> | <span><%= list.getTeamPre() %></span></td>
+									<td><label>ÁÖ È°µ¿±¸Àå</label> | <span></span></td>
+									<td><label>°æ±âÀ¯Çü</label> | <span><%= list.getTeamPre() %></span></td>
 								</tr>
 								<tr class="ttrr">
-									<td><label>ì‹¤ë ¥</label> | <span><%= list.getTeamAbility() %></span></td>
-									<td><label>ì—°ë ¹ ì œí•œ</label> | <span><%= teamage %></span></td>
+									<td><label>½Ç·Â</label> | <span><%= list.getTeamAbility() %></span></td>
+									<td><label>¿¬·É Á¦ÇÑ</label> | <span><%= teamage %></span></td>
 								</tr>
 								<tr class="ttrr">
-									<td><label>ìœ ë‹ˆí¼ ì„¤ëª…</label> | <span><%= list.getTeamUniform() %></span></td>
-									<td><label>ì£¼ ì „ìˆ </label> | <span><%= ts %></span></td>
+									<td><label>À¯´ÏÆû ¼³¸í</label> | <span><%= list.getTeamUniform() %></span></td>
+									<td><label>ÁÖ Àü¼ú</label> | <span><%= ts %></span></td>
 								</tr>
 								<tr class="ttr">
 									<td colspan="2">
@@ -250,12 +237,12 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 							</table>
 						</div>
 							<div class="footer">
-								<%if(list.getMemberPrivate().equals("0")){ %>
+						<%if(list.getMemberPrivate().equals("0")){ %>
 								<table id="tttable">
 									<tr>
-										<th class="ttth">ì´ë¦„</th>
-										<th class="ttth">ë“±ê¸‰</th>
-										<th class="ttth">í¬ì§€ì…˜</th>
+										<th class="ttth">ÀÌ¸§</th>
+										<th class="ttth">µî±Þ</th>
+										<th class="ttth">Æ÷Áö¼Ç</th>
 									</tr>
 									<%
 									for(int i=0;i<tmlist.size();i++){
@@ -271,10 +258,8 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 								</table>
 						<% }else{ %>
 							<div class="footer">
-								<h1>ë©¤ë²„ ì •ë³´ : ë¹„ê³µê°œ</h1>
+								<h1>¸â¹ö Á¤º¸ : ºñ°ø°³</h1>
 						<% } %>
-					</div>
-							</div>
 					</div>
 				</div>
 			</div>
