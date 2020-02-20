@@ -75,9 +75,9 @@ public class SportsMatchController {
 		System.out.println("mchNo=>"+mchNo);
 		ModelAndView mav = new ModelAndView();
 		
-		SportsMatchDTO list = service.MatchIndvDetail(mchNo);
+		MatchDetailDTO list = service.MatchIndvDetail(mchNo);
 		System.out.println(list);
-		mav.addObject("sportsMatchList", list);
+		mav.addObject("mchIndivDetail", list);
 		mav.setViewName("mchIndvDetail");
 		
 		return mav;

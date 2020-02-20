@@ -44,8 +44,8 @@ public class SportsMatchServiceImpl implements SportsMatchService {
 	}
 	
 	@Override
-	public SportsMatchDTO MatchIndvDetail(String mchNo) {
-		SportsMatchDTO list = dao.MatchIndvDetail(mchNo); 
+	public MatchDetailDTO MatchIndvDetail(String mchNo) {
+		MatchDetailDTO list = dao.MatchIndvDetail(mchNo); 
 		return list;
 	}
 	

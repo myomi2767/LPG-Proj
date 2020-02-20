@@ -71,6 +71,25 @@
 	</select>
 	<select id="matchListIndiv" resultType="sportsMatch" parameterType="ms">
 		select m.*, g.grdaddr
+		from sportsmatch m, ground g
+		<where>
+			m.mchgrd = g.grdname
+			and m.mchtype=#{mchType}
+			<if test="mchPlay!=''">
+				and m.mchplay like '%' || #{mchPlay}
+			</if>
+			<if test="mchDate!='null'">
+				and m.mchdate=to_date(#{mchDate})
+			</if>
+			<if test="grdArea!=''">
+				and g.grdarea like '%' || #{grdArea} || '%'
+			</if>
+			<if test="mchName!=''">
+				and m.mchname like '%' || #{mchName} || '%'
+			</if>
+		</where>
+	</select>
+	<!-- select m.*, g.grdaddr
 		from sportsmatch m, usersports su, sportsmatchindiv im, ground g, groundreserve gr
 		<where>
 			im.mchno=m.mchno 
@@ -89,14 +108,15 @@
 			<if test="mchName!=''">
 				and m.mchname like '%' || #{mchName} || '%'
 			</if>
-		</where>
-	</select>
+		</where> -->
 <!-- =============================================================================================== -->
 <!-- ======================================= matchTeam select문 ======================================== -->	
 	<select id="matchTeamDetailM" resultType="sportsMatch" parameterType="String">
-		select m.*
-		from sportsmatch m
-		where m.mchNo = #{mchNo}
+		select mchno, mchname, to_char(mchdate,'yyyy-mm-dd') as mchdate, mchplay, mchgrd, mchprice, 
+			mchurgent, mchcontent, mchgender, mchshoes, mchabil, mchtype,
+			sportsno, mchdatestart, mchdateend
+		from sportsMatch 
+		where mchNo = #{mchNo}
 	</select>
 	<!-- , sportsmatchteam smt, ground g, team t, teammember tm
 		where m.mchno=smt.mchno
@@ -134,33 +154,23 @@
 <!-- ======================================= matchIndiv select문 ======================================== -->
 	
 	<select id="matchIndivDetailM" resultType="sportsMatch" parameterType="String">
-		select m.*
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
-		where m.mchno=smt.mchno
-			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
-			and t.teamno = tm.teamno
-			and m.mchNo = #{mchNo}
+		select mchno, mchname, to_char(mchdate,'yyyy-mm-dd') as mchdate, mchplay, mchgrd, mchprice, 
+			mchurgent, mchcontent, mchgender, mchshoes, mchabil, mchtype,
+			sportsno, mchdatestart, mchdateend
+		from sportsMatch 
+		where mchNo = #{mchNo}
 	</select>
 	<select id="matchIndivDetailG" resultType="ground" parameterType="String">
 		select g.*
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
-		where m.mchno=smt.mchno
-			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
-			and t.teamno = tm.teamno
+		from sportsmatch m, ground g
+		where m.mchgrd=g.grdname
 			and m.mchNo = #{mchNo}
 	</select>
 	<select id="matchIndivDetailSU" resultType="userSports" parameterType="String">
 		select su.*
-		from sportsmatch m, sportsmatchteam smt, ground g, groundreserve gr, team t, teammember tm
-		where m.mchno=smt.mchno
-			and smt.teamno=t.teamno
-			and m.mchno=gr.mchno
-			and g.grdno=gr.grdno
-			and t.teamno = tm.teamno
+		from sportsmatch m, sportsmatchindiv smi, usersports su
+		where m.mchno=smi.mchno
+			and smi.sportsno=su.sportsno
 			and m.mchNo = #{mchNo}
 	</select>
 <!-- =============================================================================================== -->

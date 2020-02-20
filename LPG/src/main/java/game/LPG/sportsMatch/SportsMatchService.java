@@ -8,7 +8,7 @@ import game.LPG.userSports.UserSportsDTO;
 public interface SportsMatchService {
 	int insert(SportsMatchDTO sportsMatch);
 	List<MatchDetailDTO> matchlist(MatchSelectDTO ms); 
-	SportsMatchDTO MatchIndvDetail(String mchNo);
+	MatchDetailDTO MatchIndvDetail(String mchNo);
 	MatchDetailDTO MatchTeamDetail(String mchNo);
 	int backUpNumAdd(SportsMatchTeamDTO smt);
 	int matchJoinTeam(SportsMatchTeamDTO smt);

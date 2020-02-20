@@ -11,7 +11,7 @@ public interface SportsMatchDAO {
 	int insertTeam(SportsMatchDTO sportsMatch);
 	TeamMemberDTO teamNoSearch(UserSportsDTO su);
 	List<MatchDetailDTO> matchlist(MatchSelectDTO ms);
-	SportsMatchDTO MatchIndvDetail(String mchNo);
+	MatchDetailDTO MatchIndvDetail(String mchNo);
 	MatchDetailDTO MatchTeamDetail(String mchNo);
 	int backUpNumAdd(SportsMatchTeamDTO smt);
 	int matchJoinTeam(SportsMatchTeamDTO smt);

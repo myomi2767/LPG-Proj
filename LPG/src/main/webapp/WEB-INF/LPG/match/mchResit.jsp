@@ -22,7 +22,7 @@
         <p>살어리 살어리랐다 청산에 살어리랐다</p>
         <form class="form-horizontal style-from" action="/LPG/match/matchResist.do" method="POST">
 			<input type="hidden" name="sportsNo" value="<%= userSprots.getSportsNo() %>">
-			<% if( teamNoSearch.getTeamNo()!=0){ %>
+			<% if( !teamNoSearch.getTeamNo().equals("0")){ %>
 			<input type="hidden" id="teamNo" name="teamNo" value="<%= teamNoSearch.getTeamNo() %>">
 			<% }%>
             <div class="form-group">

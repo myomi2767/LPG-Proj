@@ -63,7 +63,9 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 			for(int i=0;i<list.size();i++) {
 				SportsMatchDTO sm = list.get(i);
 				String mchNo = sm.getMchNo();
+				System.out.println(mchNo);
 				GroundDTO ground = sqlSession.selectOne("game.LPG.sportsMatch.matchIndivDetailG", mchNo);
+				System.out.println("dao:"+ground);
 				detail.add(new MatchDetailDTO(sm, ground, null));
 			}
 		}
@@ -71,9 +73,11 @@ public class SportsMatchDAOImpl implements SportsMatchDAO {
 		return detail;
 	}
 	@Override
-	public SportsMatchDTO MatchIndvDetail(String mchNo) {
-		SportsMatchDTO list = (SportsMatchDTO) sqlSession.selectOne("game.LPG.sportsMatch.mchNoSearch", mchNo);
-		return list;
+	public MatchDetailDTO MatchIndvDetail(String mchNo) {
+		SportsMatchDTO sm = (SportsMatchDTO) sqlSession.selectOne("game.LPG.sportsMatch.matchIndivDetailM", mchNo);
+		GroundDTO grd = sqlSession.selectOne("game.LPG.sportsMatch.matchTeamDetailG", mchNo);
+		MatchDetailDTO detail = new MatchDetailDTO(sm, grd, null);
+		return detail;
 	}
 	public MatchDetailDTO MatchTeamDetail(String mchNo) {
 		SportsMatchDTO sm = sqlSession.selectOne("game.LPG.sportsMatch.matchTeamDetailM", mchNo);

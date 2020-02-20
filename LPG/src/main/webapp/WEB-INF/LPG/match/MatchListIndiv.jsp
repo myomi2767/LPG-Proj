@@ -70,16 +70,23 @@ th, td {
 								<div class="graphic-design">
 									<div class="he-wrap tpl6">
 										<div class="row">
-											<div class="col-lg-2">
-												<h2>경기시간: <%= sm.getMchDate() %></h2>
+											<div class="col-lg-3">
+												<div class="row" style="float: left;margin-left: 15px"><h4>경기제목: <%= sm.getMchName() %></h4></div>
+												<div class="row" style="float: left;margin-left: 15px"><h4>경기시간: <%= sm.getMchDate() %></h4></div>
 											</div>
-											<div class="col-lg-6">
-												<h2><%= sm.getMchName() %>></h2>
-												<h3><%= ground.getGrdAddr() %>></h3>
-												<p>매치성별:<%= sm.getMchGender() %> 및 매치수준 : <%= sm.getMchAbil() %> </p>
+											<div class="col-lg-7">
+												<div class="row" style="text-align: left;margin-left: 15px "><h4>구장: <%= sm.getMchGrd() %></h4></div>
+												<% if(sm.getMchGender().equals("0")){ %>
+												<div class="row" style="text-align: left;margin-left: 15px "><h4>매치성별 : 남성매치 </h4></div>
+												<% } else if(sm.getMchGender().equals("1")){%>
+												<div class="row" style="text-align: left;margin-left: 15px "><h4>매치성별 : 여성매치 </h4></div>
+												<% } else{%>
+												<div class="row" style="text-align: left;margin-left: 15px "><h4>매치성별 : 혼성매치 </h4></div>
+												<% }%> 
+												<div class="row" style="text-align: left;margin-left: 15px "><h4>매치수준 : <%= sm.getMchAbil() %></h4></div> 
 											</div>
-											<div class="col-lg-4">
-												<h2>매치신청</h2>
+											<div class="col-lg-1">
+												<input type="button" class="btn btn-theme" value="매치신청" style="margin-top: 35px">
 											</div>
 										</div>
 										<div class="he-view">
@@ -111,7 +118,7 @@ th, td {
 	$(document).ready(function() {
 		$(".detailGo").on("click", function(){
 			mchNo = $(this).children().last().attr("value");
-			location.href="/LPG/match/mchTeamDetail.do?mchNo="+mchNo;
+			location.href="/LPG/match/mchIndvDetail.do?mchNo="+mchNo;
 		});
 	});
 	</script>
