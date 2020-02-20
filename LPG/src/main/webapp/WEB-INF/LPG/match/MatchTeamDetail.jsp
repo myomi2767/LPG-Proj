@@ -145,7 +145,7 @@
 				<p>
 					<b>유니폼 색상 : <%= team.getTeamUniform() %></b>
 				</p>
-				<% if(team.getTeamNo().equals(Integer.toString(teamMember.getTeamNo()))&teamMember.getTmGrade().equals("매니저")){ %>
+				<% if(team.getTeamNo().equals(teamMember.getTeamNo())&teamMember.getTmGrade().equals("매니저")){ %>
 				<div style="float: right;">
 					<input type="radio" id="backupOk" name="backUp" value="0">
 					<label for="backupOk">용병필요</label> <input type="radio"
@@ -169,7 +169,7 @@
 	</div>
 	<div id="myfix">
 		<% 	TeamDTO team = teamlist.get(0);
-			if(team.getTeamNo().equals(Integer.toString(teamMember.getTeamNo()))&teamMember.getTmGrade().equals("매니저")){ %>
+			if(team.getTeamNo().equals(teamMember.getTeamNo())&teamMember.getTmGrade().equals("매니저")){ %>
 		<a id="matchChange" class="btn btn-block btn-theme2">매치수정</a>
 		<% 	} else if(teamlist.size()==2){%>
 		<div></div>

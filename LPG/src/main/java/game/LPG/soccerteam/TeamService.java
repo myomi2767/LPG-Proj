@@ -10,7 +10,7 @@ public interface TeamService {
 	//팀 생성
 	int insert(TeamDTO dto);
 	//팀원 신청현황
-	List<TeamMemberDTO> tmemberSearchList(int teamNo);
+	List<TeamMemberDTO> tmemberSearchList(String teamNo);
 	//팀원 수락하기
 	void tmemberUpdate(String[] teamNos);
 	//팀원 거절하기

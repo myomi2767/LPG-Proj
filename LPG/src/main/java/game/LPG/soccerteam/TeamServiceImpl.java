@@ -30,7 +30,7 @@ public class TeamServiceImpl implements TeamService {
 
 	//팀원 신청현황
 	@Override
-	   public List<TeamMemberDTO> tmemberSearchList(int teamNo) {
+	   public List<TeamMemberDTO> tmemberSearchList(String teamNo) {
 	      List<TeamMemberDTO> list = null;
 	      list = dao.tmemberList(teamNo);
 	      return list;

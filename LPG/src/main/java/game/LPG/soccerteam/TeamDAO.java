@@ -9,7 +9,7 @@ public interface TeamDAO {
 	int insert(TeamDTO dto);
 	int insertTM(TeamDTO dto);
 	//팀원 신청현황
-	List<TeamMemberDTO> tmemberList(int teamNo);
+	List<TeamMemberDTO> tmemberList(String teamNo);
 	
 	//팀원 신청 수락
 	void tmemberUpdate(String[] teamNos);

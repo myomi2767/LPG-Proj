@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<h3>내 팀 정보</h3>
+			<h3>팀 정보</h3>
 		</div>
 		<!-- /row -->
 	</div>

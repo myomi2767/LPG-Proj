@@ -64,7 +64,7 @@ public class TeamController {
 	
 	//팀원 신청현황
 	@RequestMapping("/team/apsearch.do")
-	   public ModelAndView tmemberView(int teamNo) {
+	   public ModelAndView tmemberView(String teamNo) {
 	      ModelAndView mav = new ModelAndView();
 	      List<TeamMemberDTO> list = service.tmemberSearchList(teamNo);
 	      mav.addObject("tmemberlist", list);

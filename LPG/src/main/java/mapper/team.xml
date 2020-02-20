@@ -92,21 +92,21 @@
 	</select>
 	
 	<!-- 팀원 신청현황 -->
-	<select id="tmemberlist" resultType="teammember" parameterType="int">
+	<select id="tmemberlist" resultType="teammember" parameterType="String">
 	     select * 
 	     from teamMember
 	     where teamNo=#{teamNo}
 	</select>
 	
 	<!-- 팀가입 승인 -->
-	<update id="tmemberapprove" parameterType="int">
+	<update id="tmemberapprove" parameterType="String">
       update teammember set
       memstat = 1
       where tmNo = #{teamNo}
    </update>
    
    	<!-- 팀가입 거절 -->
-   <update id="tmemberdeny" parameterType="int">
+   <update id="tmemberdeny" parameterType="String">
       update teammember set
       memstat = 2
       where teamno = #{teamNo}
@@ -114,7 +114,7 @@
    
    <!-- 팀 가입신청하기 -->
 	<insert id="teammember">
-      insert into teammember values(tmno_seq.nextval,sysdate,'팀원',#{teamNo},#{sportsNo},#{tmTend},#{teamAbility},#{backNum},0)
+      insert into teammember values(tmno_seq.nextval,sysdate,'팀원',#{teamNo},#{sportsNo},null,null,0,0)
     </insert>
 	<!-- 이름 구하는거 조인 -->
    <select id="id" resultType="teammember" parameterType="teammember">

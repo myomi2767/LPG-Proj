@@ -7,7 +7,7 @@ public class TeamMemberDTO {
    private String tmJoindate;
    private String tmGrade;
    private String sportsNo;
-   private int teamNo;
+   private String teamNo;
    private String tmTend;
    private String tmAbility;
    private String backNum;
@@ -17,7 +17,7 @@ public class TeamMemberDTO {
       
    }
 
-   public TeamMemberDTO(String userName, String tmNo, String tmJoindate, String tmGrade, String sportsNo, int teamNo,
+   public TeamMemberDTO(String userName, String tmNo, String tmJoindate, String tmGrade, String sportsNo, String teamNo,
          String tmTend, String tmAbility, String backNum, String count) {
       super();
       this.userName = userName;
@@ -72,11 +72,11 @@ public class TeamMemberDTO {
       this.sportsNo = sportsNo;
    }
 
-   public int getTeamNo() {
+   public String getTeamNo() {
       return teamNo;
    }
 
-   public void setTeamNo(int teamNo) {
+   public void setTeamNo(String teamNo) {
       this.teamNo = teamNo;
    }
 

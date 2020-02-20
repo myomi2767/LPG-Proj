@@ -25,7 +25,7 @@ public class TeamDAOImpl implements TeamDAO {
 	}
 	//팀원 신청현황
 	@Override
-	   public List<TeamMemberDTO> tmemberList(int teamNo) {
+	   public List<TeamMemberDTO> tmemberList(String teamNo) {
 	      return sqlSession.selectList("game.LPG.soccerteam.tmemberlist", teamNo);
 	   }
 	//팀원 신청 수락하기

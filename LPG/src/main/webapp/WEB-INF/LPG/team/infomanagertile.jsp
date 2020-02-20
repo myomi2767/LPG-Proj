@@ -154,7 +154,6 @@ table, th, td {
 </style>
 </head>
 <body>
-<% TeamMemberDTO mg = (TeamMemberDTO)request.getAttribute("teammemberdto"); %>
 <% TeamDTO list = (TeamDTO)request.getAttribute("teaminfo");%>
 <% ArrayList<TeamMemberDTO> tmlist = (ArrayList<TeamMemberDTO>)request.getAttribute("tmlist");%>
 <% TeamMemberDTO tminfo = (TeamMemberDTO)request.getAttribute("teammeminfo"); %>
@@ -200,22 +199,29 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 				<div id="carousel-example-generic" class="carousel slide"
 					data-ride="carousel">
 					<div>
-					<%if(mg.getTmGrade().equals("매니저") && Integer.toString(mg.getTeamNo()) ==list.getTeamNo()){ %>
+					 <!-- && mg.getTeamNo()==list.getTeamNo() -->
+					<% if(request.getAttribute("teammemberdto")!=null){
+						TeamMemberDTO mg = (TeamMemberDTO)request.getAttribute("teammemberdto");
+					%>
+					<% if(mg.getTmGrade().equals("매니저") && mg.getTeamNo().equals(list.getTeamNo())){ %>
 					
 						<input type="button"  class="btn btn-theme" style="float: right" value="팀원 등급 변경" onclick="location.href='/LPG/team/Mgrade.do?teamNo=<%= list.getTeamNo()%>'">
 						<input type="button" class="btn btn-theme" style="float: right" value="팀 정보수정" onclick="location.href='/LPG/team/modyview.do?teamNo=<%= list.getTeamNo()%>'">
 						<a href="/LPG/team/apsearch.do" class="btn btn-theme" style="float: right">가입신청 확인</a>
-					<% }else if(((mg.getTmGrade().equals("팀원") || mg.getTmGrade().equals("주장")) && Integer.toString(mg.getTeamNo())==list.getTeamNo()) || mg.getTeamNo()==0){ %>
-						
-					<%}else{ %>
+					<% }else if((mg.getTmGrade().equals("팀원") || mg.getTmGrade().equals("주장"))){ %>
+					<% } 
+					}else{
+						%>
+						<!-- <input type="button" class="btn btn-theme" style="float: right" value="가입신청" onclick="Location.href='/LPG/team/apply.do'" > -->
 						<a href="/LPG/team/apply.do" class="btn btn-theme" style="float: right">가입신청</a>
-					<% } %>
+					<%
+					}%>
 					</div>
 					</div>
 					<div style="clear: both;">
 						<div class="team_img">
 							<div class="emblum" id="emblum">
-								<img class="imm" alt="" src="../img/2.PNG" title="사진을 넣어주세요"><%-- <%= list.getTeamEmblem() %> --%>
+								<img class="imm" alt="" src="../img/2.PNG" title="사진을 넣어주세요">
 							</div>
 							<h2 class="team_info_name"><%= list.getTeamName() %></h2>
 						</div>
