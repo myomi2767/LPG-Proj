@@ -56,10 +56,12 @@ public class TeamController {
 	}
 	
 	//팀원 가입신청하기
-	@RequestMapping(value="/team/apply.do", method=RequestMethod.POST)
+	@RequestMapping("/team/apply.do")
 	   public String teamapply(TeamMemberDTO dto) {
+		System.out.println("팀 가입 컨트롤러"+dto);
 	      service.teamapply(dto);
-	      return "redirect:/team/myteam.do";
+	      System.out.println("11111111111");
+	      return "redirect:/team/search.do";
 	   }
 	
 	//팀원 신청현황

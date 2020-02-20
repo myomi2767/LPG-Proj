@@ -44,7 +44,10 @@ public class TeamDAOImpl implements TeamDAO {
      }
      //팀 가입 신청하기
      public int teamapply(TeamMemberDTO dto) {
-        return sqlSession.insert("game.LPG.soccerteam.teamapply", dto);
+    	 System.out.println("팀 가입 dao"+dto);
+    	 int a = sqlSession.insert("game.LPG.soccerteam.teamapply", dto);
+    	 System.out.println("팀 가입 dao아웃"+a);
+        return a;
      }
 	
 	//팀명 체크

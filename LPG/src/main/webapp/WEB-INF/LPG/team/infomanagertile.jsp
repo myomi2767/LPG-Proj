@@ -1,3 +1,6 @@
+<%@page import="game.LPG.userSports.UserSportsDTO"%>
+<%@page import="game.LPG.user.UserDTO"%>
+<%@page import="java.security.spec.MGF1ParameterSpec"%>
 <%@page import="game.LPG.soccerteam.TeamMemberDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="game.LPG.soccerteam.TeamDTO"%>
@@ -154,6 +157,9 @@ table, th, td {
 </style>
 </head>
 <body>
+<%UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
+UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
+%>
 <% TeamDTO list = (TeamDTO)request.getAttribute("teaminfo");%>
 <% ArrayList<TeamMemberDTO> tmlist = (ArrayList<TeamMemberDTO>)request.getAttribute("tmlist");%>
 <% TeamMemberDTO tminfo = (TeamMemberDTO)request.getAttribute("teammeminfo"); %>
@@ -200,9 +206,12 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 					data-ride="carousel">
 					<div>
 					 <!-- && mg.getTeamNo()==list.getTeamNo() -->
+					<input type="hidden" id="apply1" value="<%= userSprots.getSportsNo()%>">
+					<input type="hidden" id="apply2" value="<%= list.getTeamNo()%>">
 					<% if(request.getAttribute("teammemberdto")!=null){
 						TeamMemberDTO mg = (TeamMemberDTO)request.getAttribute("teammemberdto");
 					%>
+					
 					<% if(mg.getTmGrade().equals("매니저") && mg.getTeamNo().equals(list.getTeamNo())){ %>
 					
 						<input type="button"  class="btn btn-theme" style="float: right" value="팀원 등급 변경" onclick="location.href='/LPG/team/Mgrade.do?teamNo=<%= list.getTeamNo()%>'">
@@ -212,8 +221,9 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 					<% } 
 					}else{
 						%>
-						<!-- <input type="button" class="btn btn-theme" style="float: right" value="가입신청" onclick="Location.href='/LPG/team/apply.do'" > -->
-						<a href="/LPG/team/apply.do" class="btn btn-theme" style="float: right">가입신청</a>
+						<input type="button" class="btn btn-theme" id="apply" style="float: right" value="가입신청">
+						
+						<!-- <a href="/LPG/team/apply.do" class="btn btn-theme" style="float: right">가입신청</a> -->
 					<%
 					}%>
 					</div>
@@ -286,6 +296,15 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	sportsNo = $("#apply1").val();
+	teamNo = $("#apply2").val();
+		$(document).ready(function() {
+			$("#apply").on("click",function(){
+				location.href="/LPG/team/apply.do?sportsNo="+sportsNo+"&teamNo="+teamNo;
+			})
+		})
+	</script>
 </body>
 
 </html>

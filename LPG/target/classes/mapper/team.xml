@@ -113,7 +113,7 @@
    </update>
    
    <!-- 팀 가입신청하기 -->
-	<insert id="teammember">
+	<insert id="teamapply" parameterType="teammember">
       insert into teammember values(tmno_seq.nextval,sysdate,'팀원',#{teamNo},#{sportsNo},null,null,0,0)
     </insert>
 	<!-- 이름 구하는거 조인 -->
