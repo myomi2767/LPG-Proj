@@ -158,8 +158,7 @@ table, th, td {
 </head>
 <body>
 <%UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
-UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");
-%>
+UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");%>
 <% TeamDTO list = (TeamDTO)request.getAttribute("teaminfo");%>
 <% ArrayList<TeamMemberDTO> tmlist = (ArrayList<TeamMemberDTO>)request.getAttribute("tmlist");%>
 <% TeamMemberDTO tminfo = (TeamMemberDTO)request.getAttribute("teammeminfo"); %>
@@ -216,7 +215,8 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 					
 						<input type="button"  class="btn btn-theme" style="float: right" value="팀원 등급 변경" onclick="location.href='/LPG/team/Mgrade.do?teamNo=<%= list.getTeamNo()%>'">
 						<input type="button" class="btn btn-theme" style="float: right" value="팀 정보수정" onclick="location.href='/LPG/team/modyview.do?teamNo=<%= list.getTeamNo()%>'">
-						<a href="/LPG/team/apsearch.do" class="btn btn-theme" style="float: right">가입신청 확인</a>
+						<input type="button" class="btn btn-theme" id="applycheck" style="float: right" value="가입신청 확인">
+						<!-- <a href="/LPG/team/apsearch.do" class="btn btn-theme" style="float: right">가입신청 확인</a> -->
 					<% }else if((mg.getTmGrade().equals("팀원") || mg.getTmGrade().equals("주장"))){ %>
 					<% } 
 					}else{
@@ -302,6 +302,10 @@ if(list.getTeamStrategy()==null || list.getTeamStrategy().equals("000")){
 		$(document).ready(function() {
 			$("#apply").on("click",function(){
 				location.href="/LPG/team/apply.do?sportsNo="+sportsNo+"&teamNo="+teamNo;
+			})
+			
+			$("#applycheck").on("click",function(){
+				location.href="/LPG/team/apsearch.do?teamNo="+teamNo;
 			})
 		})
 	</script>

@@ -1,6 +1,5 @@
 package game.LPG.user;
 
-import game.LPG.soccerteam.TeamMemberDTO;
 import game.LPG.userSports.UserSportsDTO;
 
 public interface UserService {	
@@ -16,5 +15,6 @@ public interface UserService {
 	UserDTO myinfoPWCheck(UserDTO ppc);
 	UserSportsDTO login2(UserDTO loginUserInfo);
 	/*UserSportsDTO login3(UserDTO loginUserInfo);*/
+	
 }
 

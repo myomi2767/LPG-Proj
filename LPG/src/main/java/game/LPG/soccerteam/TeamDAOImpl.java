@@ -31,15 +31,16 @@ public class TeamDAOImpl implements TeamDAO {
 	//팀원 신청 수락하기
 	public void tmemberUpdate(String[] teamNos) {
         for(int i =0; i<teamNos.length; i++) {
-           String teamNo = teamNos[i];
-           sqlSession.update("game.LPG.soccerteam.tmemberapprove", Integer.parseInt(teamNo));
+           int teamNo = Integer.parseInt(teamNos[i]);
+           System.out.println("~~~~~~~~~"+teamNo);
+           sqlSession.update("game.LPG.soccerteam.tmemberapprove", teamNo);
         }
      }
      //팀원 거절하기
      public void tmemreject(String[] teamNos) {
         for(int i =0; i<teamNos.length; i++) {
-           String teamNo = teamNos[i];
-           sqlSession.update("game.LPG.soccerteam.tmemberdeny", Integer.parseInt(teamNo));
+           int teamNo = Integer.parseInt(teamNos[i]);
+           sqlSession.update("game.LPG.soccerteam.tmemberdeny", teamNo);
         }
      }
      //팀 가입 신청하기

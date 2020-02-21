@@ -65,7 +65,7 @@
 	<select id="teammemberinfo" resultType="teammember" parameterType="teammember">
 		select tm.tmno, tm.tmgrade, tm.tmtend, tm.backnum, lu.username
 		from teammember tm, usersports us, lpguser lu
-		where lu.userid = us.userid and us.sportsno = tm.sportsno and tm.teamno = #{teamNo}
+		where lu.userid = us.userid and us.sportsno = tm.sportsno and tm.memstat = 1 and tm.teamno = #{teamNo}
 	</select>
 	
 	<!-- 팀에서 팀원 개인 정보 조회 -->
@@ -93,23 +93,23 @@
 	
 	<!-- 팀원 신청현황 -->
 	<select id="tmemberlist" resultType="teammember" parameterType="String">
-	     select * 
-	     from teamMember
-	     where teamNo=#{teamNo}
+	     select tm.tmno, tm.tmAbility, tm.tmtend, lu.username
+		from teammember tm, usersports us, lpguser lu
+		where lu.userid = us.userid and us.sportsno = tm.sportsno and tm.memstat = 0 and tm.teamno = #{teamNo}
 	</select>
 	
 	<!-- 팀가입 승인 -->
-	<update id="tmemberapprove" parameterType="String">
+	<update id="tmemberapprove" parameterType="int">
       update teammember set
       memstat = 1
       where tmNo = #{teamNo}
    </update>
    
    	<!-- 팀가입 거절 -->
-   <update id="tmemberdeny" parameterType="String">
+   <update id="tmemberdeny" parameterType="int">
       update teammember set
       memstat = 2
-      where teamno = #{teamNo}
+      where tmno = #{teamNo}
    </update>
    
    <!-- 팀 가입신청하기 -->

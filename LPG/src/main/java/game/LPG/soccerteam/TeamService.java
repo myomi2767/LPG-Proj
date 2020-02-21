@@ -45,4 +45,5 @@ public interface TeamService {
 	
 	//팀 엠블럼 수정
 	void upload(MultipartFile file,String path,String fileName);
+
 }

@@ -1,3 +1,5 @@
+<%@page import="java.security.spec.MGF1ParameterSpec"%>
+<%@page import="game.LPG.soccerteam.TeamMemberDTO"%>
 <%@page import="game.LPG.userSports.UserSportsDTO"%>
 <%@page import="game.LPG.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,6 +37,7 @@
 <body>
 	<% UserDTO user = (UserDTO)session.getAttribute("loginUserInfo"); 
 	   UserSportsDTO userSprots = (UserSportsDTO) session.getAttribute("userSports");%>
+	  
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -68,7 +71,6 @@
 					<ul class="dropdown-menu">
 						<li><a href="/LPG/team/create.do">팀 등록</a></li>
 						<li><a href="/LPG/team/search.do">팀 검색</a></li>
-						<li><a href="/LPG/team/myteam.do">내 팀보기</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" 

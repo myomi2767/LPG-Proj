@@ -77,22 +77,24 @@ public class TeamController {
 	//팀원 수락거절 하기
 	   @RequestMapping(value="/team/memdelete.do", method=RequestMethod.POST)
 	   public String memUpdate(HttpServletRequest request) {
-	      String[]teamNos = request.getParameterValues("teamNo");
+	      String[]tmNos = request.getParameterValues("teamNo");
+	      String myTeamNo = request.getParameter("myTeamNo");
 	      String action = request.getParameter("action");
 	      
-	      for(int i = 0; i < teamNos.length;i++) {
-	         System.out.println("teamNo=>"+teamNos[i]);
+	      for(int i = 0; i < tmNos.length;i++) {
+	         System.out.println("tmNo=>"+tmNos[i]);
 	      }
 	      System.out.println("action=>"+action);
 	      //승인시
 	      if(action.equals("approve")) {
-	         service.tmemberUpdate(teamNos);
+	         service.tmemberUpdate(tmNos);
 	      }
 	      //거절시
 	      else if (action.equals("deny")) {
-	         service.tmemreject(teamNos);
+	         service.tmemreject(tmNos);
 	      }
-	      return "/team/apsearch.do";
+	      String redirURL = "redirect:/team/search.do?teamNo="+myTeamNo;
+	      return redirURL;
 	   }
 	
 	//팀 수정페이지
