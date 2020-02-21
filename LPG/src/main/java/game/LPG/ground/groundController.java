@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
@@ -26,8 +27,9 @@ public class groundController {
 	/* search */
 	/* main */
 	@RequestMapping("/ground/map/main.do")
-	public ModelAndView mapMain() {
+	public ModelAndView mapMain(String pageNo) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("pageNo", pageNo);
 		mav.addObject("pageType", "main");
 		mav.addObject("base", "map");
 		mav.setViewName("mapMain");
@@ -45,7 +47,7 @@ public class groundController {
 
 	/* list */
 	@RequestMapping("/ground/map/list.do")
-	public ModelAndView mapList(String search) {
+	public ModelAndView mapList(String search, String pageNo) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("search=>" + search);
 		ArrayList<GroundAPIDTO> apiArr=new ArrayList<GroundAPIDTO>();
@@ -62,6 +64,8 @@ public class groundController {
 
 		apiArr = jp.parseJson(jsonResult);
 		System.out.println("apiArr size" + apiArr.size());
+		
+		
 		List<GroundDTO> groundList = service.searchGround(search);
 		System.out.println("groundList size" + groundList.size());
 
@@ -73,7 +77,8 @@ public class groundController {
 
 		mav.addObject("groundList", groundList);
 		mav.addObject("apiGroundList", apiArr);
-
+		
+		mav.addObject("pageNo",pageNo);
 		mav.addObject("pageType", "result");
 		mav.addObject("base", "map");
 		mav.setViewName("mapList");
@@ -96,7 +101,7 @@ public class groundController {
 
 	/* detail */
 	@RequestMapping("/ground/map/detail.do")
-	public ModelAndView mapDetail(String grdNo) {
+	public ModelAndView mapDetail(String grdNo, String pageNo) {
 		System.out.println("grdNo detail: " + grdNo);
 		ModelAndView mav = new ModelAndView();
 
@@ -129,13 +134,18 @@ public class groundController {
 
 		mav.addObject("starAvg", starAvg);
 		mav.addObject("count", count);
-
+		mav.addObject("pageNo", pageNo);
 		mav.addObject("pageType", "result");
 		mav.addObject("base", "map");
 		mav.setViewName("mapDetail");
 		return mav;
 	}
-
+	
+	@RequestMapping("/ground/sendName.do")
+	public void sendGrdName(String grdName,HttpSession session){
+		session.setAttribute("grdName", grdName);
+	}
+	
 	@RequestMapping("/ground/calendar/detail.do")
 	public ModelAndView calDetail(String grdNo) {
 		ModelAndView mav = new ModelAndView();
@@ -162,7 +172,8 @@ public class groundController {
 	}
 
 	@RequestMapping(value = "/ground/add.do", method = RequestMethod.POST)
-	public String saveGround(GroundDTO ground, HttpSession session) throws Exception {
+	public ModelAndView saveGround(GroundDTO ground, HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		System.out.println("add ground in controller=>" + ground.toString());
 		if (ground.getGrdImg() != null) {
 			MultipartFile file = ground.getUpload();
@@ -177,7 +188,9 @@ public class groundController {
 		}
 		int result = service.addGround(ground);
 		System.out.println("saveGround result=>" + result);
-		return "redirect:/match.do";
+		mav.setViewName("match");
+		//return "redirect:/match.do";
+		return mav;
 	}
 
 	/* review */

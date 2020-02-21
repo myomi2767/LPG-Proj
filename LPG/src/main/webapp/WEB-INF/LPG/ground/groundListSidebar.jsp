@@ -137,6 +137,8 @@
 		System.out.println("groundListSideBar 1");
 
 		String baseType = (String) request.getAttribute("base");
+		
+		String pageNo = (String)request.getAttribute("pageNo");
 	%>
 	<div class="leftPage">
 		<div class="content">
@@ -144,13 +146,13 @@
 			<hr />
 			<%
 				System.out.println("groundListSideBar 3");
-				if (((List<GroundDTO>) request.getAttribute("groundList")).size() != 0) {
+				if (((List<GroundDTO>) request.getAttribute("groundList")).size() > 0) {
 					List<GroundDTO> groundList = (List<GroundDTO>) request.getAttribute("groundList");
-					for (int i = 0; i < groundList.size()-1; i++) {
+					for (int i = 0; i < groundList.size(); i++) {
 			%>
 			<input type="hidden" name="ground" value="<%=groundList.get(i)%>">
 			<div class="outer"
-				onclick="location.href='/LPG/ground/<%if (baseType.equals("map")) {%>map<%} else if (baseType.equals("calendar")) {%>calendar<%}%>/detail.do?grdNo=<%=groundList.get(i).getGrdNo()%>'">
+				onclick="location.href='/LPG/ground/<%if (baseType.equals("map")) {%>map<%} else if (baseType.equals("calendar")) {%>calendar<%}%>/detail.do?grdNo=<%=groundList.get(i).getGrdNo()%>&pageNo=<%=pageNo%>'">
 				<div class="groundName col-md-12">
 					<div class="col-md-6 padzero">
 						<h1 class="placeName">
@@ -175,9 +177,10 @@
 				<br> <br>
 			</div>
 			<%
+				System.out.println("groundListSideBar 4");
 				}
 				}
-				if (((ArrayList<GroundDTO>) request.getAttribute("apiGroundList")).size() != 0) {
+				if ((((ArrayList<GroundDTO>) request.getAttribute("apiGroundList")).size() > 0) ) {
 					ArrayList<GroundAPIDTO> apiGroundList = (ArrayList<GroundAPIDTO>) request.getAttribute("apiGroundList");
 					System.out.println("groundApiSize:" + apiGroundList.size());
 					for (int i = 0; i < apiGroundList.size()-1; i++) {
@@ -186,7 +189,7 @@
 			<input type="hidden" name="ground" value="<%=apiGroundList.get(i)%>">
 
 			<div class="outer"
-				onclick="location.href='/LPG/ground/<%if (baseType.equals("map")) {%>map<%} else if (baseType.equals("calendar")) {%>calendar<%}%>/detail.do?grdNo=<%=apiGroundList.get(i).getGrdNo()%>'">
+				onclick="location.href='/LPG/ground/<%if (baseType.equals("map")) {%>map<%} else if (baseType.equals("calendar")) {%>calendar<%}%>/detail.do?grdNo=<%=apiGroundList.get(i).getGrdNo()%>&pageNo=<%=pageNo%>'">
 
 				<div class="groundName col-md-12">
 					<div class="col-md-6 padzero">

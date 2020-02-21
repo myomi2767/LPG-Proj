@@ -118,6 +118,7 @@ b{
 		int starAvg = (int)request.getAttribute("starAvg");
 		
 		int count = (int)request.getAttribute("count");
+		String pageNo = (String)request.getAttribute("pageNo");
 	%>
 	<div class=" leftPage">
 		<div class="content">
@@ -132,9 +133,11 @@ b{
 				</div>
 				<br />
 				<div class="groundName">
-					<h1 class="placeName">
+					<h1 class="placeName" onclick="location.href='/ground/sendName.do?grdName=<%=ground.getGrdName() %>>';window.close();">
+						
 						<%=ground.getGrdName() %>
 						<!-- ground name from db -->
+					
 					</h1>
 					<h3 class="placeType">
 						<%=ground.getGrdType() %>
@@ -152,9 +155,12 @@ b{
 					<b class="count">(<%=count %>)</b>
 					</span> 
 					<!-- mch 생성에서 넘어온 페이지일때만 보여주기 -->
-					<%-- <% if(){ %> --%>
+					
+					<%-- <% if(pageNo!=null){ 
+						if(pageNo=="2"){
+					%> --%>
 					<input type="button" class="btn btn-large btn-right" onclick="location.href='/LPG/ground/reserve.do?grdNo=<%=ground.getGrdNo() %>'" name="groundReserve" value="예약하기">
-					<%-- <% } %> --%>
+					<%-- <%} } %>  --%>
 				</div>
 				<div class="hline"></div>
 				<br />

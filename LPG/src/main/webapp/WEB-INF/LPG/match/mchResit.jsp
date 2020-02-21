@@ -197,10 +197,10 @@
   <script type="text/javascript">
   	$(document).ready(function() {
 		$("#search").on("click", function() {
-			location.href="/LPG/ground/map/main.do";
+			location.href="/LPG/ground/map/main.do?pageNo=1";
 		})
 		$("#reserve").on("click", function() {
-			location.href="/LPG/ground/reserve.do";
+			location.href="/LPG/ground/map/main.do?pageNo=2";
 		})
 	});
   	

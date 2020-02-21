@@ -7,7 +7,7 @@
 	<select id="search" parameterType="String" resultType="ground">
 		select grdNo, grdName, grdType 
 		from ground 
-		where grdname||grdaddr||grdarea||grddetail like '%'||#{search}||'%' and grdNo like 'P'||'%'
+		where grdname||grdaddr||grdarea||grddetail||grdtype like '%'||#{search}||'%' and grdNo like 'P'||'%'
 	</select>
 	<select id="detail" parameterType="String" resultType="ground">
 		select * 
@@ -23,11 +23,10 @@
 		where gr.mch_no=#{mch_no} and g.grdno = gr.grdno
 	</select>
 	<insert id="insertReview" parameterType="groundReview">
-	<!-- grdrevStar -> grdrevQ4 바꾼 후 위치 다시 확인 -->
 		insert into groundReview values(groundreview_seq.nextval, #{grdNo}, #{grdrevContext}, #{grdRevQ4}, #{grdRevQ1}, #{grdRevQ2}, #{grdRevQ3}, #{sportsNo})
 	</insert>
 	<insert id="insertReserve" parameterType="groundReserve">
-		insert into groundReserve values(groundreserve_seq.nextval, #{grdNo}, #{grdrsvUseDate}, #{grdrsvStartTime}, #{grdrsvEndTime}, sysdate, '', '', #{sportsNo}, sportsmatch_seq.nextval)
+		insert into groundReserve values(groundreserve_seq.nextval, #{grdNo}, #{grdrsvUseDate}, #{grdrsvStartTime}, #{grdrsvEndTime}, sysdate, '', '', #{sportsNo})
 	</insert>
 	<select id="reviewAvg" parameterType="String" resultType="int">
 		select avg(grdrevq1+grdrevq2+grdrevq3+grdrevq4)

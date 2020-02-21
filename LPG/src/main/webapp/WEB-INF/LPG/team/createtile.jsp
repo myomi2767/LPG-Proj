@@ -24,7 +24,19 @@
 	    
 	    $(document).ready(function(){
 	        
-	        $("#teamname").on("focusout", function() {
+	       setInterval(function() {
+    		   	<%System.out.println("work");%>
+	    	   <% if(session.getAttribute("grdName")!=null){ 
+					String grdName = (String)session.getAttribute("grdName");
+	    		   	System.out.println("grdName"+grdName);
+					%>
+					$("#grdName").text(<%=grdName%>);
+				<%
+				session.removeAttribute("grdName");
+				}%>
+	       }, 1000);
+	    	
+	    	$("#teamname").on("focusout", function() {
 	            var x = $(this).val();
 	            if (x.length > 0) {
 	                if (x.match(replaceId)) {
@@ -36,6 +48,7 @@
 	            $(this).val($(this).val().replace(replaceId, ""));
 	
 	        });
+	        
 	
 	    });
 	 
@@ -173,7 +186,8 @@
 					<div class="row">
 					<div class="col-sm-2"><h4>활동구장</h4></div>
 					<div class="col-lg-7">
-						<a href="/LPG/ground/map/main.do" class="btn btn-theme">구장 검색</a>
+						<span id = "grdName"></span>
+						<a href="/LPG/ground/map/main.do?page=1" target="_blank" class="btn btn-theme">구장 검색</a>
 					</div>
 					</div>
 				</div>

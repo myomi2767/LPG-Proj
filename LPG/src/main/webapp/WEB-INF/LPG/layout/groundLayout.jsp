@@ -203,11 +203,14 @@
 	 ***************************************************************************************************************** -->
 	<div id=posU>
 		<!-- side(side 위치) -->
-		<%if(baseType=="map"){ %>
+		<%if(baseType=="map"){ 
+			String pageNo = (String)request.getAttribute("pageNo");
+		%>
 		<form action="/LPG/ground/map/list.do"  method="GET">
 		<%}else{ %>
 		<form action="/LPG/ground/calendar/list.do"  method="GET">
 		<%} %>
+		<input type="hidden" name="pageNo" value="2">
 			<div class="searchBox">
 				<div class="search">
 					<input type="text" name="search" class="search-box" placeholder="구장명, 지역, 종목 검색"
